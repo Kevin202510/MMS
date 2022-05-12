@@ -66,7 +66,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 style="color: #62f5ed;">Light Sensor</h4>
+                                        <h4 style="color: #c5c9c9;">Light Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lightChart"></canvas>
@@ -77,11 +77,11 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 >Water Level Sensor</h4>
+                                        <h4 style="color: #62f5ed;">Water Level Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="waterLevelChart"></canvas>
-                                        <center><div class="badge badge-dark">OFF</div></center>
+                                        <center><div class="badge badge-success">GOOD</div></center>
                                     </div>
                                 </div>
                             </div>

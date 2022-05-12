@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             SoilmoisturesSeeder::class,
             TemperatureSeeder::class,
             UsersSeeder::class,
+            WaterlevelsSeeder::class,
         ]);
     }
 }

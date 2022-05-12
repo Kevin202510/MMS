@@ -28,7 +28,7 @@ function startChart(){
   fetchSoilMoisture();
   fetchCarbonDioxide();
   fetchLight();
-  showWaterLevelhart();
+  fetchWaterLevel();
 }
 
 function fetchTemperature(){
@@ -126,6 +126,25 @@ function fetchLight(){
   })
 }
 
+function fetchWaterLevel(){
+  $.ajax({
+    url: 'api/water/getNewVal',
+    type: 'GET',
+    dataType: 'json',
+    success: function (data){
+      waterLevelLabel = [];
+      waterLevelData = [];
+      console.log(data.length);
+      var newdata = data.reverse();
+        $.each (newdata, function (bb) {
+          waterLevelLabel.push(newdata[bb].waterlevel + " cfs");
+          waterLevelData.push(newdata[bb].waterlevel);
+          });    
+          showWaterLevelchart();
+    }
+  })
+}
+
 "use strict";
 
 var myTemperatureChart;
@@ -133,6 +152,7 @@ var myHumidityChart;
 var soilMoistureChart;
 var carbonDioxideChart;
 var lightChart;
+var waterLevelChart;
 
 function showTemperatureChart(){
   var ctx = document.getElementById("temperatureChart").getContext('2d');
@@ -320,8 +340,8 @@ function showCarbonDioxideChart(){
         label: 'Light Lumen',
         data: lightData,
         borderWidth: 2,
-        backgroundColor: '#62f5ed',
-        borderColor: '#a4ede9',
+        backgroundColor: '#e6faf9',
+        borderColor: '#dee3e3',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4
@@ -354,18 +374,18 @@ function showCarbonDioxideChart(){
   });
   }
 
-  function showWaterLevelhart(){
+  function showWaterLevelchart(){
     var ctx = document.getElementById("waterLevelChart").getContext('2d');
-    lightChart = new Chart(ctx, {
+    waterLevelChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels:waterLevelLabel,
         datasets: [{
-          label: 'Cubic',
+          label: 'Cubic Feet Per Second',
           data: waterLevelData,
           borderWidth: 2,
-          backgroundColor: '#6777ef',
-          borderColor: '#6777ef',
+          backgroundColor: '#62f5ed',
+          borderColor: '#a4ede9',
           borderWidth: 2.5,
           pointBackgroundColor: '#ffffff',
           pointRadius: 4
