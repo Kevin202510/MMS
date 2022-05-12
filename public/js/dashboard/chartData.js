@@ -188,8 +188,8 @@ function showHumidityChart(){
         label: 'Humidity',
         data: humidityData,
         borderWidth: 2,
-        backgroundColor: '#6777ef',
-        borderColor: '#6777ef',
+        backgroundColor: '#f27e1f',
+        borderColor: '#bd833c',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4
@@ -232,8 +232,8 @@ function showHumidityChart(){
           label: 'Soil Moisture',
           data: soilMoistureData,
           borderWidth: 2,
-          backgroundColor: '#6777ef',
-          borderColor: '#6777ef',
+          backgroundColor: '#ab8363',
+          borderColor: '#edc6a6',
           borderWidth: 2.5,
           pointBackgroundColor: '#ffffff',
           pointRadius: 4
@@ -276,8 +276,8 @@ function showCarbonDioxideChart(){
         label: 'Carbon Dioxide',
         data: co2Data,
         borderWidth: 2,
-        backgroundColor: '#6777ef',
-        borderColor: '#6777ef',
+        backgroundColor: '#79f78c',
+        borderColor: '#c7ebcd',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4
@@ -320,8 +320,8 @@ function showCarbonDioxideChart(){
         label: 'Light Lumen',
         data: lightData,
         borderWidth: 2,
-        backgroundColor: '#6777ef',
-        borderColor: '#6777ef',
+        backgroundColor: '#62f5ed',
+        borderColor: '#a4ede9',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4

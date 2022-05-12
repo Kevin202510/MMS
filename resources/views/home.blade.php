@@ -29,7 +29,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Humidity Sensor</h4>
+                                        <h4 style="color: #f27e1f;">Humidity Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="humidityChart"></canvas>
@@ -42,7 +42,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Soil Moisture Sensor</h4>
+                                        <h4 style="color: #ab8363;">Soil Moisture Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="soilMoistureChart"></canvas>
@@ -53,7 +53,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Carbon Dioxide Sensor</h4>
+                                        <h4 style="color: #79f78c;">Carbon Dioxide Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="co2Chart"></canvas>
@@ -66,7 +66,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Light Sensor</h4>
+                                        <h4 style="color: #62f5ed;">Light Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lightChart"></canvas>
@@ -77,7 +77,7 @@
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Water Level Sensor</h4>
+                                        <h4 >Water Level Sensor</h4>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="waterLevelChart"></canvas>
