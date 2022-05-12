@@ -49,22 +49,57 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: #ffffff;
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 15px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
             }
 
+            h5 {
+                background: #ffffff;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: bold;
+                font-family: -webkit-body;
+                font-size: 60px;
+                padding-top: 50px;
+                padding-right: 20px;
+                padding-bottom: 50px;
+                padding-left: 20px;
+            }
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .bg-image{
+                background-image: url("../img/bg2.jpg");
+                height: 100%;
+                filter: blur(5px);
+                -webkit-filter: blur(5px);
+                /* Center and scale the image nicely */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            #content{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                width: 90%;
+                padding: 20px;
+            }
         </style>
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
+    <body id="bodykoto">
+        <div class="bg-image"></div>
+        <div class="flex-center position-ref full-height" id="content">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -80,21 +115,9 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="title m-b-md" style="border-top: 2px; background-color: rgb(0 0 0 / 30%); border-radius: 25px;">
+                    <h5>Web-Based Mushroom Monitoring System <br> with <br> Smart Sprinkler</h5>
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
     </body>
 </html>

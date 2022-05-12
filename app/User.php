@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Roles;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -16,9 +18,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'role_id','fname','lname','address','contact','isApproved', 'email', 'password',
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -36,4 +37,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'fullName',
+        'roleName',
+        'statusName',
+    ];
+
+    public function getFullNameAttribute()
+        {
+            $fn=$this->fname.' '.$this->lname;
+            return  strtoupper($fn);
+        }
+
+        public function getRoleNameAttribute()
+        { 
+            if($this->role){
+                return $this->role->display_name;
+            }
+        }
+
+        public function getstatusNameAttribute()
+        { 
+            $status="Approved";
+            
+            if($this->isApproved==0){
+                $status = "Not Approved";
+            }
+            return $status;
+        }
+
+        public function role(){return $this->belongsTo(Roles::class);}
+
 }
