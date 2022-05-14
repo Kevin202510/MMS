@@ -60,7 +60,7 @@ class TemperatureSeeder extends Seeder
               [
                 'id'   => 10, 
                 'temperature'  => 45.20,
-                'status' => 0,
+                'status' => 1,
               ],
             ]
             );

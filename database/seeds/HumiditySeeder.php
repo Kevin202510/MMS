@@ -60,7 +60,7 @@ class HumiditySeeder extends Seeder
               [
                 'id'   => 10, 
                 'humidity'  => 65.8,
-                'status' => 0,
+                'status' => 1,
               ],
             ]
             );

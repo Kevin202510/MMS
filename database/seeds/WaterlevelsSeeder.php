@@ -60,7 +60,7 @@ class WaterlevelsSeeder extends Seeder
               [
                 'id'   => 10, 
                 'waterlevel'  => 1300.20,
-                'status' => 0,
+                'status' => 1,
               ],
             ]
             );

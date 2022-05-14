@@ -60,7 +60,7 @@ class LightsSeeder extends Seeder
               [
                 'id'   => 10, 
                 'lightsAmount'  => 180,
-                'status' => 0,
+                'status' => 1,
               ],
             ]
             );
