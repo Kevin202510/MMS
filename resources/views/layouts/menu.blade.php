@@ -22,8 +22,10 @@
         <li class="side-menus {{ Request::is('humidity*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('Humidity') }}"><i class="fas fa-humidity"></i><span>Humidity Sensor</span></a></li>
         <li class="side-menus {{ Request::is('light*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('Light') }}"><i class="fas fa-lightbulb-on"></i><span>Light Sensor</span></a></li>
         <li class="side-menus {{ Request::is('carbondioxide*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('CarbonDioxide') }}"><i class="fas fa-sensor-smoke"></i><span>CO2 Sensor</span></a></li>
-        <li class="side-menus {{ Request::is('soil*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('SoilMoisture') }}"><i class="fas fa-dewpoint"></i><span>Soil Moisture Sensor</span></a></li>
+        <!-- <li class="side-menus {{ Request::is('soil*') ? 'active' : '' }}"><a class="nav-link" href=" route('SoilMoisture') }}"><i class="fas fa-dewpoint"></i><span>Soil Moisture Sensor</span></a></li> -->
         <li class="side-menus {{ Request::is('water*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('WaterLevel') }}"><i class="fas fa-sprinkler"></i><span>Water Sprinkler Sensor</span></a></li>
+        <li class="menu-header">Sensors Settings</li>
+        <li class="side-menus {{ Request::is('water*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('Sensor Configuration') }}"><i class="fas fa-cogs"></i><span>Sensors Configuration</span></a></li>
         <!-- <li><a class="nav-link" href="{{ route('Temperature') }}"><i class="far fa-square"></i> <span>Water Level Sensor</span></a></li> -->
 
         <li class="menu-header">Management</li>

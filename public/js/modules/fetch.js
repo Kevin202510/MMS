@@ -352,7 +352,7 @@ const writer = (_entity, model) => {
 };
 
 const writerUser = (_entity, model) => {
-    alert(model)
+    // alert(model)
     attributes = _entity.attributes;
     actions = _entity.actions;
     var index = $("#table-main2 tr").length;

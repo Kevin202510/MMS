@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSensorsSettingsTable extends Migration
+class CreateSensorconfigurationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateSensorsSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sensors_settings', function (Blueprint $table) {
+        Schema::create('sensorsconfigurations', function (Blueprint $table) {
             $table->id();
-            $table->string("sensor_Name");
+            $table->string("sensor_name");
+            $table->double("sensor_limit_value");
+            $table->double("sensor_max_value");
             $table->string("isOn")->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +31,6 @@ class CreateSensorsSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sensors_settings');
+        Schema::dropIfExists('sensorsconfigurations');
     }
 }

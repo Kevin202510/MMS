@@ -29,10 +29,32 @@ Route::middleware('admin')->group(function () {
     Route::get('/soil', function () { return view('soil.index'); })->name('SoilMoisture')->middleware('auth');
     Route::get('/water', function () { return view('water.index'); })->name('WaterLevel')->middleware('auth');
     Route::get('/users', function () { return view('users.index'); })->name('Users')->middleware('auth');
+    Route::get('/sensorsconfiguration', function () { return view('sensors_configuration.index'); })->name('Sensor Configuration')->middleware('auth');
  
 
     // API's
     
+
+    Route::prefix('/api/sensorsconfigurations')->group(function() 
+    {
+        Route::get('/temperatureSetting', 'SensorsconfigurationController@index1');
+        Route::post('/save', 'SensorsconfigurationController@save'); 
+        Route::put('/{sensorsconfiguration}/update', 'SensorsconfigurationController@update');
+        
+        Route::get('/lightSetting', 'SensorsconfigurationController@index2');
+        Route::post('/savelight', 'SensorsconfigurationController@save2'); 
+        Route::put('/{sensorsconfiguration}/updatelight', 'SensorsconfigurationController@update2');
+
+        Route::get('/co2Setting', 'SensorsconfigurationController@index3');
+        Route::post('/saveco2', 'SensorsconfigurationController@save3'); 
+        Route::put('/{sensorsconfiguration}/updateco2', 'SensorsconfigurationController@update3');
+
+        Route::get('/humiditySetting', 'SensorsconfigurationController@index4');
+        Route::post('/savehumidity', 'SensorsconfigurationController@save4'); 
+        Route::put('/{sensorsconfiguration}/updatehumidity', 'SensorsconfigurationController@update4');
+
+        // Route::delete('/{sensorsconfiguration}/destroy', 'SensorsconfigurationController@destroy');  
+    });
 
     Route::prefix('/api/humidity')->group(function() 
     {

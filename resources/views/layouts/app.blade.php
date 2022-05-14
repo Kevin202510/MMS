@@ -8,8 +8,9 @@
     <!-- Bootstrap 4.1.1 -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
-    <!-- <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> -->
-    <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+    <link rel="icon" type="image/png" href="/img/favicon.ico">
+    <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
 
 @yield('page_css')

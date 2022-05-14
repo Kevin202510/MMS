@@ -5,7 +5,7 @@
         <div class="sidebar-brand sidebar-brand-sm">
         <a href="index.html">MMS</a>
     </div>
-    <ul class="sidebar-menu">
+    <ul class="sidebar-menu" style="margin-bottom:50px;">
         @include('layouts.menu')
     </ul>
 </aside>

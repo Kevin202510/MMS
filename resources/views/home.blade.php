@@ -22,7 +22,7 @@
                                     </div>
                                     <div class="card-body">
                                         <canvas id="temperatureChart"></canvas>
-                                        <center><div class="badge badge-success">Good</div></center>
+                                        <center id="tempstat"></center>
                                     </div>
                                 </div>
                             </div>
@@ -33,31 +33,7 @@
                                     </div>
                                     <div class="card-body">
                                         <canvas id="humidityChart"></canvas>
-                                        <center><div class="badge badge-success">Good</div></center>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 style="color: #ab8363;">Soil Moisture Sensor</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="soilMoistureChart"></canvas>
-                                        <center><div class="badge badge-success">Good</div></center>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 style="color: #79f78c;">Carbon Dioxide Sensor</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="co2Chart"></canvas>
-                                        <center><div class="badge badge-success">Good</div></center>
+                                        <center id="humiditystat"></center>
                                     </div>
                                 </div>
                             </div>
@@ -70,10 +46,23 @@
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lightChart"></canvas>
-                                        <center><div class="badge badge-success">Good</div></center>
+                                        <center id="lightstat"></center>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12 col-md-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 style="color: #38fcae;">Carbon Dioxide Sensor</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="co2Chart"></canvas>
+                                        <center id="co2stat"></center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -81,7 +70,7 @@
                                     </div>
                                     <div class="card-body">
                                         <canvas id="waterLevelChart"></canvas>
-                                        <center><div class="badge badge-success">GOOD</div></center>
+                                        <center id="waterlevelstat"></center>
                                     </div>
                                 </div>
                             </div>

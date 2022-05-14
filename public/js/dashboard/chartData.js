@@ -25,7 +25,7 @@ var waterLevelData = [];
 function startChart(){
   fetchTemperature();
   fetchHumidity();
-  fetchSoilMoisture();
+  // fetchSoilMoisture();
   fetchCarbonDioxide();
   fetchLight();
   fetchWaterLevel();
@@ -39,12 +39,23 @@ function fetchTemperature(){
       success: function (data){
         temperatureLabel = [];
         temperatureData = [];
-        console.log(data.length);
+        
         var newdata = data.reverse();
           $.each (newdata, function (bb) {
-            temperatureLabel.push(newdata[bb].temperature + "°C");
+                temperatureLabel.push(newdata[bb].temperature + "°C");
                 temperatureData.push(newdata[bb].temperature);
-            });    
+                // alert(bb);
+                if(data.length-1==bb){
+                  if(data[bb].status == 0){
+                    $("#tempstat").html('<div class="badge badge-danger">Good</div>');
+                  }else if(data[bb].status == 1){
+                    $("#tempstat").html('<div class="badge badge-success">Good</div>');
+                  }else{
+                    $("#tempstat").html('<div class="badge badge-warning">Good</div>');
+                  }
+                }
+            });   
+            // tempstat
           showTemperatureChart();
       }
     })
@@ -58,11 +69,20 @@ function fetchHumidity(){
     success: function (data){
       humidityLabel = [];
       humidityData = [];
-      console.log(data.length);
+      
       var newdata = data.reverse();
         $.each (newdata, function (bb) {
           humidityLabel.push(newdata[bb].humidity + " %");
           humidityData.push(newdata[bb].humidity);
+          if(data.length-1==bb){
+            if(data[bb].status == 0){
+              $("#humiditystat").html('<div class="badge badge-danger">Good</div>');
+            }else if(data[bb].status == 1){
+              $("#humiditystat").html('<div class="badge badge-success">Good</div>');
+            }else{
+              $("#humiditystat").html('<div class="badge badge-warning">Good</div>');
+            }
+          }
           });    
         showHumidityChart();
     }
@@ -77,11 +97,22 @@ function fetchSoilMoisture(){
     success: function (data){
       soilMoistureLabel = [];
       soilMoistureData = [];
-      console.log(data.length);
+      
       var newdata = data.reverse();
         $.each (newdata, function (bb) {
           soilMoistureLabel.push(newdata[bb].soilmoisture + " %");
           soilMoistureData.push(newdata[bb].soilmoisture);
+
+          if(data.length-1==bb){
+            if(data[bb].status == 0){
+              $("#soilmoisturestat").html('<div class="badge badge-danger">Good</div>');
+            }else if(data[bb].status == 1){
+              $("#soilmoisturestat").html('<div class="badge badge-success">Good</div>');
+            }else{
+              $("#soilmoisturestat").html('<div class="badge badge-warning">Good</div>');
+            }
+          }
+
           });    
         showSoilMoistureChart();
     }
@@ -96,11 +127,22 @@ function fetchCarbonDioxide(){
     success: function (data){
       co2Label = [];
       co2Data = [];
-      console.log(data.length);
+      
       var newdata = data.reverse();
         $.each (newdata, function (bb) {
           co2Label.push(newdata[bb].carbondioxideAmount + " ppm");
           co2Data.push(newdata[bb].carbondioxideAmount);
+
+          if(data.length-1==bb){
+            if(data[bb].status == 0){
+              $("#co2stat").html('<div class="badge badge-danger">Good</div>');
+            }else if(data[bb].status == 1){
+              $("#co2stat").html('<div class="badge badge-success">Good</div>');
+            }else{
+              $("#co2stat").html('<div class="badge badge-warning">Good</div>');
+            }
+          }
+
           });    
         showCarbonDioxideChart();
     }
@@ -115,11 +157,23 @@ function fetchLight(){
     success: function (data){
       lightLabel = [];
       lightData = [];
-      console.log(data.length);
+      
       var newdata = data.reverse();
         $.each (newdata, function (bb) {
           lightLabel.push(newdata[bb].lightsAmount + " lm");
           lightData.push(newdata[bb].lightsAmount);
+
+          if(data.length-1==bb){
+            if(data[bb].status == 0){
+              $("#lightstat").html('<div class="badge badge-danger">Good</div>');
+            }else if(data[bb].status == 1){
+              $("#lightstat").html('<div class="badge badge-success">Good</div>');
+            }else{
+              $("#lightstat").html('<div class="badge badge-warning">Good</div>');
+            }
+          }
+
+
           });    
         showLightChart();
     }
@@ -134,11 +188,23 @@ function fetchWaterLevel(){
     success: function (data){
       waterLevelLabel = [];
       waterLevelData = [];
-      console.log(data.length);
+      
       var newdata = data.reverse();
         $.each (newdata, function (bb) {
           waterLevelLabel.push(newdata[bb].waterlevel + " cfs");
           waterLevelData.push(newdata[bb].waterlevel);
+
+          if(data.length-1==bb){
+            if(data[bb].status == 0){
+              $("#waterlevelstat").html('<div class="badge badge-danger">Good</div>');
+            }else if(data[bb].status == 1){
+              $("#waterlevelstat").html('<div class="badge badge-success">Good</div>');
+            }else{
+              $("#waterlevelstat").html('<div class="badge badge-warning">Good</div>');
+            }
+          }
+
+
           });    
           showWaterLevelchart();
     }
@@ -164,8 +230,8 @@ function showTemperatureChart(){
         label: 'Temperature',
         data: temperatureData,
         borderWidth: 2,
-        backgroundColor: '#6777ef',
-        borderColor: '#6777ef',
+        backgroundColor: '#f5f184',
+        borderColor: '#aba50c',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4
@@ -296,8 +362,8 @@ function showCarbonDioxideChart(){
         label: 'Carbon Dioxide',
         data: co2Data,
         borderWidth: 2,
-        backgroundColor: '#79f78c',
-        borderColor: '#c7ebcd',
+        backgroundColor: '#38fcae',
+        borderColor: '#0c945d',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4
@@ -341,7 +407,7 @@ function showCarbonDioxideChart(){
         data: lightData,
         borderWidth: 2,
         backgroundColor: '#e6faf9',
-        borderColor: '#dee3e3',
+        borderColor: '#8fc4c2',
         borderWidth: 2.5,
         pointBackgroundColor: '#ffffff',
         pointRadius: 4
