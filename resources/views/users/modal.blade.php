@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 <form id="set-Model" class="form-horizontal">
+                    @csrf
                     <div class="modal-body">
                         <input type="hidden" name="id" id="id">
                         <div class="row">
@@ -41,8 +42,8 @@
                                     <input type="text" aria-label="Description" id="contact" name="contact" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text">Email</span>
-                                    <input type="email" aria-label="Description" id="email" name="email" class="form-control">
+                                    <span class="input-group-text">Username</span>
+                                    <input type="email" aria-label="Description" id="username" name="username" class="form-control">
                                 </div>
                             </div>
 

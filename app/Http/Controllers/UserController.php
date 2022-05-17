@@ -28,10 +28,63 @@ class UserController extends Controller
           'lname'     => $request->lname,
           'address'     => $request->address,
           'contact'     => $request->contact,
-          'email'    => $request->email,
+          'username'    => $request->username,
           'role_id'  => $request->role_id,
       ]);
       return response()->json($users);
+    }
+
+    public function upload(Request $request)
+    {
+
+      // $validation = Validator::make($request->all(),[
+      //   'upload-usersdata' =>'required|file|csv'
+      // ]);
+        //get file
+        $upload=$request->file('upload_usersdata');
+        $filePath=$upload->getRealPath();
+        //open and read
+        $file=fopen($filePath, 'r');
+
+        $header= fgetcsv($file);
+
+        // dd($header);
+        $escapedHeader=[];
+        //validate
+        foreach ($header as $key => $value) {
+            $lheader=strtolower($value);
+            $escapedItem=preg_replace('/[^a-z]/', '', $lheader);
+            array_push($escapedHeader, $escapedItem);
+        }
+
+        //looping through othe columns
+        while($columns=fgetcsv($file))
+        {
+            if($columns[0]=="")
+            {
+                continue;
+            }
+
+           $data= array_combine($escapedHeader, $columns);
+
+           // Table update
+           $fname=$data['fname'];
+           $lname=$data['lname'];
+           $address=$data['address'];
+           $contact=$data['contact'];
+           $username=$data['username'];
+
+           $users=User::create([
+            'fname'     => $fname,
+            'lname'     => $lname,
+            'address'     => $address,
+            'contact'     => $contact,
+            'username'    => $username,
+          ]);
+
+        }
+
+        return response()->json($users);
     }
 
     public function list()
@@ -49,6 +102,22 @@ class UserController extends Controller
         $user->update($input);
         return response()->json($user, 200);
     }
+
+    public function updatestatus(Request $request,User $user)
+    {
+        $user->isApproved = $request->isApproved;
+        $user->update();
+        return response()->json(array('success'=>true));
+    }
+
+    public function updatestatusDisapproved(Request $request,User $user)
+    {
+        $user->isApproved = $request->isApproved;
+        $user->deleted_at = $request->isApproved;
+        $user->update();
+        return response()->json(array('success'=>true));
+    }
+
 
     public function destroy(User $user)
     {

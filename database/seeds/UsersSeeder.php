@@ -16,7 +16,8 @@ class UsersSeeder extends Seeder
                 'role_id' => 1,
                 'fname' => 'kevin felix',
                 'lname' => 'caluag',
-                'email' => 'superadmin@gmail.com',
+                'isApproved' => 1,
+                'username' => 'superadmin',
                 'password' => Hash::make('password'),
             ]
             ]);

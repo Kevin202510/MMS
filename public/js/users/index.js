@@ -1,8 +1,5 @@
 import fetch from "../modules/fetch.js";
 /**
- * Develop by Tomas B. Pajarillaga Jr, RMT, RN, MSIT(future|thesis)
- * QA: Thomas Emmanuel R. Pajarillaga (14y/o)
- * Enhanced Community Quarantine(COVID-19)
  *-----------------------------------------------
  * @param Model entity.name
  * @param Attributes entity.attribute(show on table)
@@ -22,7 +19,108 @@ $("body").on("click", ".btn-find", async (e) =>
 $("body").on("click", ".btn-delete", (e) =>
     state.destroy($(e.currentTarget).data("index"))
 );
+$("body").on("click", ".btn-approved", function(e){
+    updateStatusApprove($(e.currentTarget).data("id"));
+});
 
+$("#uploadUsersData").click(function(event){
+    event.preventDefault();
+
+    var datas = $("#upload_usersdata")[0].files;
+
+    var fd = new FormData();
+    fd.append('upload_usersdata',datas[0]);
+
+    $.ajax({
+        method: "POST",
+        url: "api/users/upload/save",
+        data: fd, // serializes the form's elements.
+        dataType: "JSON",
+        contentType: false,
+        cache:false,
+        processData:false,
+        success: function(data)
+        {
+            swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Uploaded Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+                footer: "<a href>CleverTech</a>",
+            });
+            $('#uploadUsersDataModal').modal('toggle'); 
+            state.ask();
+            
+        },
+        statusCode: {
+            500: function(xhr) {
+                swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    text: xhr.statusText,
+                    footer: "<a href>CleverTech</a>",
+                });
+            },
+            404: function(xhr) {
+                swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    text: xhr.statusText,
+                    footer: "<a href>CleverTech</a>",
+                });
+            }
+          }
+
+        // error: function (xhr) {
+        // var err = JSON.parse(xhr.responseText);
+        // alert(err.message);
+        // }
+    });
+});
+
+
+function updateStatusApprove(id){
+    swal.fire({
+        title: "Are you sure",
+        text: "You Will Approve This User?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Approve it!",
+    }).then((result) => {  
+	/* Read more about isConfirmed, isDenied below */  
+    if (result.isConfirmed) {   
+
+        var stat = {isApproved:1};
+        
+        $.ajax({
+            type: "PUT",
+            url: "api/users/"+id+"/updatestatus",
+            encode: true,
+            data: stat,
+            success: function(data)
+            {
+                swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    footer: "<a href>InnovaTech</a>",
+                });
+                state.ask();
+            }
+        });
+    }
+});
+
+}
 // const togglePassword = document.querySelector("#togglePassword");
 // const password = document.querySelector("#password");
 
@@ -37,8 +135,9 @@ const state = {
     /* [Table] */
     entity: {
         name: "user",
-        attributes: ["roleName", "fullName", "address", "statusName", "email"],
+        attributes: ["roleName", "fullName", "address", "statusName", "username"],
         actions: {
+            approved: ["fa fa-thumbs-up", "Approve", "success"],
             find: ["fa fa-pencil-alt", "Edit", "info"],
             delete: ["fa fa-trash", "Delete", "danger"],
         },

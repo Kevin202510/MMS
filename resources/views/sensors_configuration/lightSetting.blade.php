@@ -3,6 +3,7 @@
 </div>
 <div class="card-body">
     <form id="lightSettingForm" class="needs-validation">
+    @csrf
         <input type="hidden" name="id" id="lightid" value="2">
         <div class="row">
             <div class="form-group col-12">

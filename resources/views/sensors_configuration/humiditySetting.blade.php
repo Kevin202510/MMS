@@ -3,6 +3,7 @@
 </div>
 <div class="card-body">
     <form id="humiditySettingForm" class="needs-validation">
+    @csrf
         <input type="hidden" name="id" id="humidityid" value="4">
         <div class="row">
             <div class="form-group col-12">

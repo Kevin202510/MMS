@@ -1,6 +1,6 @@
 @extends('layouts.auth_app')
 @section('title')
-    Admin Login
+    Login
 @endsection
 @section('content')
     <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
@@ -9,24 +9,20 @@
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
-                @if ($errors->any())
+                @if (session()->has('error'))
                     <div class="alert alert-danger p-0">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                        <input type="hidden" id="errorMessage" value="{{ session()->get('error') }}">
                     </div>
                 @endif
                 <div class="form-group">
-                    <label for="email" style="color: black; font-size:15px; font-weight: bold;">Email</label>
-                    <input aria-describedby="emailHelpBlock" id="email" type="email"
-                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"
-                           placeholder="Enter Email" tabindex="1"
-                           value="{{ (Cookie::get('email') !== null) ? Cookie::get('email') : old('email') }}" autofocus
+                    <label for="username" style="color: black; font-size:15px; font-weight: bold;">Username</label>
+                    <input aria-describedby="emailHelpBlock" id="username" type="text"
+                           class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username"
+                           placeholder="Enter Username" tabindex="1"
+                           value="{{ (Cookie::get('username') !== null) ? Cookie::get('username') : old('username') }}" autofocus
                            required>
                     <div class="invalid-feedback">
-                        {{ $errors->first('email') }}
+                        {{ $errors->first('username') }}
                     </div>
                 </div>
 
@@ -65,4 +61,26 @@
             </form>
         </div>
     </div>
+    <div class="mt-5 text-muted text-center">
+        Don't have an account ? <a
+                href="{{ route('register') }}">Sign Up</a>
+    </div>
+@endsection
+
+@section('javascript')
+<script>
+    $(document).ready(function(){
+        $(window).on( "load", function() {
+        if(!($("#errorMessage").val()===undefined)){
+            swal.fire({
+                icon: "error",
+                title: "Invalid Credentials",
+                showConfirmButton: false,
+                timer: 5000,
+                text: "Maybe Your Account is not Approved or has been deleted try to contact your administrator"
+            });
+        }
+        })
+    });
+</script>
 @endsection

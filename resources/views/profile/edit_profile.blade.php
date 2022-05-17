@@ -11,7 +11,7 @@
                     <div class="alert alert-danger d-none" id="editProfileValidationErrorsBox"></div>
                     <input type="hidden" name="user_id" id="pfUserId">
                     <input type="hidden" name="is_active" value="1">
-                    {{csrf_field()}}
+                    @csrf
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label>Name:</label><span class="required">*</span>
@@ -35,8 +35,8 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label>Email:</label><span class="required">*</span>
-                            <input type="text" name="email" id="pfEmail" class="form-control" required tabindex="3">
+                            <label>Username:</label><span class="required">*</span>
+                            <input type="text" name="username" id="username" class="form-control" required tabindex="3">
                         </div>
                     </div>
                     <div class="text-right">

@@ -1,5 +1,5 @@
 /*
-/ This module is a personnal used of InnovaTech.
+/ This module is a personnal used of CleverTech.
 / Develop by Tomas B. Pajarillaga Jr. RMT,RN,MSIT.
 / QA by Thomas Emmanuel R. Pajarillaga III.
 /  *** Note: 
@@ -29,7 +29,7 @@ const request = async (url, params, method = "GET") => {
                 showConfirmButton: false,
                 timer: 3000,
                 text: "The server responded with an unexpected status!",
-                footer: "<a href>InnovaTech</a>",
+                footer: "<a href>CleverTech</a>",
             });
         } else if (response.status === 204) {
             return null;
@@ -85,7 +85,7 @@ const store = async (_entity, params, withMsge = true) => {
                 title: "Your work has been saved",
                 showConfirmButton: false,
                 timer: 1500,
-                footer: "<a href>InnovaTech</a>",
+                footer: "<a href>CleverTech</a>",
             });
         }
         return model;
@@ -120,7 +120,7 @@ const update = async (_entity, pk, params, withMsge = true) => {
                 title: "Your work has been saved",
                 showConfirmButton: false,
                 timer: 1500,
-                footer: "<a href>InnovaTech</a>",
+                footer: "<a href>CleverTech</a>",
             });
         }
         return model;
@@ -149,7 +149,7 @@ const updateOrCreate = async (url, params, method) => {
             title: msge,
             showConfirmButton: false,
             timer: 1500,
-            footer: "<a href>InnovaTech</a>",
+            footer: "<a href>CleverTech</a>",
         });
         return res;
     }
@@ -172,7 +172,7 @@ const destroy = async (_entity, pk, remove = true, params = null) => {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, delete it!",
-        footer: "<a href>InnovaTech</a>",
+        footer: "<a href>CleverTech</a>",
     });
     if (result) {
         let key = params ? `?${objectToQueryString(params)}` : "";
@@ -189,7 +189,7 @@ const destroy = async (_entity, pk, remove = true, params = null) => {
                     title: "Your work has been saved",
                     showConfirmButton: false,
                     timer: 1500,
-                    footer: "<a href>InnovaTech</a>",
+                    footer: "<a href>CleverTech</a>",
                 });
             }
 

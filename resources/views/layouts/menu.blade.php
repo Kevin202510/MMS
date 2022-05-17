@@ -8,7 +8,6 @@
         <li class="nav-item dropdown">
             <li class="{{ Request::is('home*') ? 'active' : '' }}"><a class="nav-link" href="{{ url('home') }}"><i class="fas fa-tachometer-alt"></i></i> <span>Dashboard</span></a></li>
         </li>
-        @if(\Illuminate\Support\Facades\Auth::user()->role_id==1)
         <li class="menu-header">Sensors</li>
         <!-- <li class="nav-item dropdown">
         <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Layout</span></a>
@@ -24,6 +23,7 @@
         <li class="side-menus {{ Request::is('carbondioxide*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('CarbonDioxide') }}"><i class="fas fa-sensor-smoke"></i><span>CO2 Sensor</span></a></li>
         <!-- <li class="side-menus {{ Request::is('soil*') ? 'active' : '' }}"><a class="nav-link" href=" route('SoilMoisture') }}"><i class="fas fa-dewpoint"></i><span>Soil Moisture Sensor</span></a></li> -->
         <li class="side-menus {{ Request::is('water*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('WaterLevel') }}"><i class="fas fa-sprinkler"></i><span>Water Sprinkler Sensor</span></a></li>
+        @if(\Illuminate\Support\Facades\Auth::user()->role_id==1 )
         <li class="menu-header">Sensors Settings</li>
         <li class="side-menus {{ Request::is('water*') ? 'active' : '' }}"><a class="nav-link" href="{{ route('Sensor Configuration') }}"><i class="fas fa-cogs"></i><span>Sensors Configuration</span></a></li>
         <!-- <li><a class="nav-link" href="{{ route('Temperature') }}"><i class="far fa-square"></i> <span>Water Level Sensor</span></a></li> -->

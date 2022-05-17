@@ -20,7 +20,7 @@
                 <div class="alert alert-danger d-none" id=""></div>
                     <input type="hidden" name="is_active" value="1">
                     <input type="hidden" name="user_id" id="editPasswordValidationErrorsBox">
-                    {{csrf_field()}}
+                    @csrf
                 <div class="row">
                     <div class="form-group col-sm-12">
                         <label>Current Password:</label><span

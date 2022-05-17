@@ -17,6 +17,7 @@
                     <h4>List of Users</h4>
                     <div class="card-header-form">
                     <div class="text-right" style="margin-bottom:15px;">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#uploadUsersDataModal"><i class="fas fa-upload"></i></button>
                           <a href="javascript:void(0)" class="btn btn-success my-2 my-sm-0" id="btn-new"><span class="fa fa-plus"></span></a>
                       </div>
                      <form>
@@ -53,6 +54,7 @@
         </div>
     </section>
 @include('users/modal')
+@include('users/uploadUsersData')
 @endsection
 
 @section('javascript')

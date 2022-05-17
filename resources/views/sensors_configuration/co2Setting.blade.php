@@ -3,6 +3,7 @@
 </div>
 <div class="card-body">
     <form id="carbondioxideSettingForm" class="needs-validation">
+    @csrf
         <input type="hidden" name="id" id="carbondioxideid" value="3">
         <div class="row">
             <div class="form-group col-12">
