@@ -30,19 +30,15 @@ Route::middleware('admin')->group(function () {
     // API's
     Route::prefix('/api/sensorsconfigurations')->group(function() 
     {
-        Route::get('/temperatureSetting', 'SensorsconfigurationController@index1');
         Route::post('/save', 'SensorsconfigurationController@save'); 
         Route::put('/{sensorsconfiguration}/update', 'SensorsconfigurationController@update');
         
-        Route::get('/lightSetting', 'SensorsconfigurationController@index2');
         Route::post('/savelight', 'SensorsconfigurationController@save2'); 
         Route::put('/{sensorsconfiguration}/updatelight', 'SensorsconfigurationController@update2');
 
-        Route::get('/co2Setting', 'SensorsconfigurationController@index3');
         Route::post('/saveco2', 'SensorsconfigurationController@save3'); 
         Route::put('/{sensorsconfiguration}/updateco2', 'SensorsconfigurationController@update3');
 
-        Route::get('/humiditySetting', 'SensorsconfigurationController@index4');
         Route::post('/savehumidity', 'SensorsconfigurationController@save4'); 
         Route::put('/{sensorsconfiguration}/updatehumidity', 'SensorsconfigurationController@update4');
 
@@ -152,5 +148,13 @@ Route::middleware('employeeOrAdmin')->group(function () {
     {
         Route::get('/', 'TemperatureController@index');
         Route::get('/getNewVal', 'TemperatureController@index2');
+    });
+
+    Route::prefix('/api/sensorsconfigurations')->group(function() 
+    {
+        Route::get('/temperatureSetting', 'SensorsconfigurationController@index1');
+        Route::get('/lightSetting', 'SensorsconfigurationController@index2');
+        Route::get('/co2Setting', 'SensorsconfigurationController@index3');
+        Route::get('/humiditySetting', 'SensorsconfigurationController@index4'); 
     });
 });

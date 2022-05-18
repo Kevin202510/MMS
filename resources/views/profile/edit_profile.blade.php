@@ -8,14 +8,30 @@
             </div>
             <form method="POST" id="editProfileForm" enctype="multipart/form-data">
                 <div class="modal-body">
-                    <div class="alert alert-danger d-none" id="editProfileValidationErrorsBox"></div>
-                    <input type="hidden" name="user_id" id="pfUserId">
-                    <input type="hidden" name="is_active" value="1">
+                    <input type="hidden" name="id" id="id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
+                    <input type="hidden" name="role_id" id="role_id" value="{{\Illuminate\Support\Facades\Auth::user()->role_id}}">
+                    <input type="hidden" name="isApproved" id="isApproved" value="{{\Illuminate\Support\Facades\Auth::user()->isApproved}}">
                     @csrf
                     <div class="row">
                         <div class="form-group col-sm-6">
-                            <label>Name:</label><span class="required">*</span>
-                            <input type="text" name="name" id="pfName" class="form-control" required autofocus tabindex="1">
+                            <label>Firstname</label><span class="required">*</span>
+                            <input type="text" name="fname" id="fname" value="{{\Illuminate\Support\Facades\Auth::user()->fname}}" class="form-control" required autofocus tabindex="1">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Lastname</label><span class="required">*</span>
+                            <input type="text" name="lname" id="lname" class="form-control" value="{{\Illuminate\Support\Facades\Auth::user()->lname}}" required autofocus tabindex="1">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Address</label><span class="required">*</span>
+                            <input type="text" name="address" id="address" class="form-control" value="{{\Illuminate\Support\Facades\Auth::user()->address}}" required autofocus tabindex="1">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Contact</label><span class="required">*</span>
+                            <input type="text" name="contact" id="contact" class="form-control" value="{{\Illuminate\Support\Facades\Auth::user()->contact}}" required autofocus tabindex="1">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Username</label><span class="required">*</span>
+                            <input type="text" name="username" id="username" class="form-control" value="{{\Illuminate\Support\Facades\Auth::user()->username}}" required autofocus tabindex="1">
                         </div>
                         <div class="form-group col-sm-6 d-flex">
                             <div class="col-sm-4 col-md-6 pl-0 form-group">
@@ -31,12 +47,6 @@
                                 <img id='edit_preview_photo' class="img-thumbnail user-img user-profile-img profilePicture"
                                      src="{{asset('img/logo.png')}}"/>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label>Username:</label><span class="required">*</span>
-                            <input type="text" name="username" id="username" class="form-control" required tabindex="3">
                         </div>
                     </div>
                     <div class="text-right">

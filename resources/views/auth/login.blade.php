@@ -1,18 +1,22 @@
-@extends('layouts.auth_app')
-@section('title')
-    Login
-@endsection
-@section('content')
-    <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
-        <div class="card-header"><h4>Login</h4></div>
+@extends('layouts.welcome')
 
+@section('css')
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
+
+@section('title')
+    MMS
+@endsection
+
+@section('content')
+<div class="container px-4 px-lg-5 h-100" style="width: 600px;">
+    <div class="card card-primary" style="height: 470px; border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
+        <div class="card-header"><h4>Login</h4></div>
         <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @if (session()->has('error'))
-                    <div class="alert alert-danger p-0">
                         <input type="hidden" id="errorMessage" value="{{ session()->get('error') }}">
-                    </div>
                 @endif
                 <div class="form-group">
                     <label for="username" style="color: black; font-size:15px; font-weight: bold;">Username</label>
@@ -59,18 +63,18 @@
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="mt-5 text-muted text-center">
+            <div class="mt-5 text-muted text-center">
         Don't have an account ? <a
                 href="{{ route('register') }}">Sign Up</a>
     </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('javascript')
 <script>
     $(document).ready(function(){
-        $(window).on( "load", function() {
         if(!($("#errorMessage").val()===undefined)){
             swal.fire({
                 icon: "error",
@@ -80,7 +84,6 @@
                 text: "Maybe Your Account is not Approved or has been deleted try to contact your administrator"
             });
         }
-        })
     });
 </script>
 @endsection

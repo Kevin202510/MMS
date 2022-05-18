@@ -1,13 +1,19 @@
-@extends('layouts.auth_app')
-@section('title')
-    Register
-@endsection
-@section('content')
-    <div class="card card-primary">
-        <div class="card-header"><h4>Register</h4></div>
+@extends('layouts.welcome')
 
-        <div class="card-body pt-1">
-            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+@section('title')
+    MMS
+@endsection
+
+@section('css')
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+@endsection
+
+@section('content')
+<div class="container px-4 px-lg-5 h-100" style="width: 600px;">
+    <div class="card card-primary" style="height: 550px; border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
+        <div class="card-header"><h4>Register</h4></div>
+        <div class="card-body">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="role_id" id="role_id" value="2">
                 <div class="row">
@@ -83,8 +89,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="password" class="control-label">Password
-                                :</label><span
+                            <label for="password" class="control-label">Password</label><span
                                     class="text-danger">*</span>
                             <input id="password" type="password"
                                    class="form-control{{ $errors->has('password') ? ' is-invalid': '' }}"
@@ -97,9 +102,9 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="password_confirmation"
-                                   class="control-label">Confirm Password:</label><span
+                                   class="control-label">Confirm Password</label><span
                                     class="text-danger">*</span>
-                            <input id="password_confirmation" type="password" placeholder="Confirm account password"
+                            <input id="password_confirmation" type="password" placeholder="Confirm password"
                                    class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid': '' }}"
                                    name="password_confirmation" tabindex="2">
                             <div class="invalid-feedback">
@@ -109,17 +114,17 @@
                     </div>
                     <div class="col-md-12 mt-4">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                Register
-                            </button>
+                        <button type="submit" class="btn btn-lg btn-block" style="background-color: rgb(116 177 151); color: white; font-size: 15px;" tabindex="4">
+                            Register
+                        </button>
                         </div>
                     </div>
                 </div>
             </form>
+            <div class="mt-2 text-muted text-center">
+                Don't have an account ? <a href="{{ route('login') }}">Sign Up</a>
+            </div>
         </div>
     </div>
-    <div class="mt-5 text-muted text-center">
-        Already have an account ? <a
-                href="{{ route('login') }}">SignIn</a>
-    </div>
+</div>
 @endsection

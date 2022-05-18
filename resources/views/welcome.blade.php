@@ -1,123 +1,81 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.welcome')
 
-        <title>MMS</title>
+@section('title')
+    MMS
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #ffffff;
-                padding: 0 25px;
-                font-size: 15px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            h5 {
-                background: #ffffff;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                font-weight: bold;
-                font-family: -webkit-body;
-                font-size: 60px;
-                padding-top: 50px;
-                padding-right: 20px;
-                padding-bottom: 50px;
-                padding-left: 20px;
-            }
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-            .bg-image{
-                background-image: url("../img/bg2.jpg");
-                height: 100%;
-                filter: blur(5px);
-                -webkit-filter: blur(5px);
-                /* Center and scale the image nicely */
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-            * {
-                box-sizing: border-box;
-            }
-            #content{
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                z-index: 2;
-                width: 90%;
-                padding: 20px;
-            }
-        </style>
-    </head>
-    <body id="bodykoto">
-        <div class="bg-image"></div>
-        <div class="flex-center position-ref full-height" id="content">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md" style="border-top: 2px; background-color: rgb(0 0 0 / 30%); border-radius: 25px;">
-                    <h5>Web-Based Mushroom Monitoring System <br> with <br> Smart Sprinkler</h5>
-                </div>
+@section('content')
+<div class="container px-4 px-lg-5 h-100">
+    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8 align-self-end">
+            <h1 class="text-white font-weight-bold">Mushroom Monitoring System</h1>
+            <hr class="divider" />
         </div>
-    </body>
-</html>
+        <div class="col-lg-8 align-self-baseline">
+            <p class="text-white-75 mb-5">A Mushroom Monitoring System is a RealTime Monitoring for Bote Mushroom House located at Barangay Rio Chico General Tinio Nueva Ecija.</p>
+            <a class="btn btn-primary btn-xl" href="{{ route('login') }}">Find Out More</a>
+        </div>
+    </div>
+</div>
+<div id="portfolio">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
+                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Category</div>
+                        <div class="project-name">Project Name</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
+                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Category</div>
+                        <div class="project-name">Project Name</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
+                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Category</div>
+                        <div class="project-name">Project Name</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
+                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Category</div>
+                        <div class="project-name">Project Name</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
+                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Category</div>
+                        <div class="project-name">Project Name</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
+                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">Category</div>
+                        <div class="project-name">Project Name</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+@endsection
+

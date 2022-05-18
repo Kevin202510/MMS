@@ -1,7 +1,9 @@
 $(document).ready(function(){
-    $(window).on( "load", function() {
-      startChart();
-    })
+  showTemperatureChart();
+  showCarbonDioxideChart();
+  showLightChart();
+  showHumidityChart();
+  startChart();
 
     setInterval(function(){
       startChart();
@@ -21,14 +23,77 @@ var lightLabel = [];
 var lightData = [];
 var waterLevelLabel = [];
 var waterLevelData = [];
+var myTemperatureChart;
+var myHumidityChart;
+var soilMoistureChart;
+var carbonDioxideChart;
+var lightChart;
+var waterLevelChart;
 
 function startChart(){
-  fetchTemperature();
-  fetchHumidity();
-  // fetchSoilMoisture();
-  fetchCarbonDioxide();
-  fetchLight();
-  fetchWaterLevel();
+  $.ajax({
+    type: "GET",
+    url: "api/sensorsconfigurations/temperatureSetting",
+    dataType: "json",
+    encode: true,
+    success: function(datas)
+    {
+        if(datas[0].isOn==0){
+          myTemperatureChart.stop();
+          $("#tempstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+        }else{
+          fetchTemperature();
+        }
+    }
+  });
+
+  $.ajax({
+    type: "GET",
+    url: "api/sensorsconfigurations/humiditySetting",
+    dataType: "json",
+    encode: true,
+    success: function(data)
+    {
+        if(data[0].isOn==0){
+          myHumidityChart.stop();
+          $("#humiditystat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+        }else{
+          fetchHumidity();
+        }
+    }
+  });
+
+  $.ajax({
+    type: "GET",
+    url: "api/sensorsconfigurations/lightSetting",
+    dataType: "json",
+    encode: true,
+    success: function(data)
+    {
+        if(data[0].isOn==0){
+          lightChart.stop();
+          $("#lightstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+        }else{
+          fetchLight();
+        }
+    }
+  });
+
+  $.ajax({
+    type: "GET",
+    url: "api/sensorsconfigurations/co2Setting",
+    dataType: "json",
+    encode: true,
+    success: function(data)
+    {
+        if(data[0].isOn==0){
+          carbonDioxideChart.stop();
+          $("#co2stat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+        }else{
+          fetchCarbonDioxide();
+        }
+    }
+  });
 }
 
 function fetchTemperature(){
@@ -47,11 +112,11 @@ function fetchTemperature(){
                 // alert(bb);
                 if(data.length-1==bb){
                   if(data[bb].status == 0){
-                    $("#tempstat").html('<div class="badge badge-danger">Good</div>');
+                    $("#tempstat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
                   }else if(data[bb].status == 1){
-                    $("#tempstat").html('<div class="badge badge-success">Good</div>');
+                    $("#tempstat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
                   }else{
-                    $("#tempstat").html('<div class="badge badge-warning">Good</div>');
+                    $("#tempstat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
                   }
                 }
             });   
@@ -76,11 +141,11 @@ function fetchHumidity(){
           humidityData.push(newdata[bb].humidity);
           if(data.length-1==bb){
             if(data[bb].status == 0){
-              $("#humiditystat").html('<div class="badge badge-danger">Good</div>');
+              $("#humiditystat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
             }else if(data[bb].status == 1){
-              $("#humiditystat").html('<div class="badge badge-success">Good</div>');
+              $("#humiditystat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
             }else{
-              $("#humiditystat").html('<div class="badge badge-warning">Good</div>');
+              $("#humiditystat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
             }
           }
           });    
@@ -105,11 +170,11 @@ function fetchSoilMoisture(){
 
           if(data.length-1==bb){
             if(data[bb].status == 0){
-              $("#soilmoisturestat").html('<div class="badge badge-danger">Good</div>');
+              $("#soilmoisturestat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
             }else if(data[bb].status == 1){
-              $("#soilmoisturestat").html('<div class="badge badge-success">Good</div>');
+              $("#soilmoisturestat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
             }else{
-              $("#soilmoisturestat").html('<div class="badge badge-warning">Good</div>');
+              $("#soilmoisturestat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
             }
           }
 
@@ -135,11 +200,11 @@ function fetchCarbonDioxide(){
 
           if(data.length-1==bb){
             if(data[bb].status == 0){
-              $("#co2stat").html('<div class="badge badge-danger">Good</div>');
+              $("#co2stat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
             }else if(data[bb].status == 1){
-              $("#co2stat").html('<div class="badge badge-success">Good</div>');
+              $("#co2stat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
             }else{
-              $("#co2stat").html('<div class="badge badge-warning">Good</div>');
+              $("#co2stat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
             }
           }
 
@@ -165,11 +230,11 @@ function fetchLight(){
 
           if(data.length-1==bb){
             if(data[bb].status == 0){
-              $("#lightstat").html('<div class="badge badge-danger">Good</div>');
+              $("#lightstat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
             }else if(data[bb].status == 1){
-              $("#lightstat").html('<div class="badge badge-success">Good</div>');
+              $("#lightstat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
             }else{
-              $("#lightstat").html('<div class="badge badge-warning">Good</div>');
+              $("#lightstat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
             }
           }
 
@@ -196,11 +261,11 @@ function fetchWaterLevel(){
 
           if(data.length-1==bb){
             if(data[bb].status == 0){
-              $("#waterlevelstat").html('<div class="badge badge-danger">Good</div>');
+              $("#waterlevelstat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
             }else if(data[bb].status == 1){
-              $("#waterlevelstat").html('<div class="badge badge-success">Good</div>');
+              $("#waterlevelstat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
             }else{
-              $("#waterlevelstat").html('<div class="badge badge-warning">Good</div>');
+              $("#waterlevelstat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
             }
           }
 
@@ -212,13 +277,6 @@ function fetchWaterLevel(){
 }
 
 "use strict";
-
-var myTemperatureChart;
-var myHumidityChart;
-var soilMoistureChart;
-var carbonDioxideChart;
-var lightChart;
-var waterLevelChart;
 
 function showTemperatureChart(){
   var ctx = document.getElementById("temperatureChart").getContext('2d');
