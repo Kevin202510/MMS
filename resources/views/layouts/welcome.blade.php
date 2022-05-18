@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="Mushroom Monitoring System" />
-        <meta name="author" content="Kevin Felix Caluag" />
-        <title>MMS</title>
-        <link rel="icon" type="image/png" href="/img/favicon.ico">
-        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>@yield('title') | {{ config('app.name') }}</title>
+
+    <!-- General CSS Files -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 
         @yield('css')
     </head>
@@ -36,10 +42,18 @@
         <header class="masthead">
             @yield('content')
         </header>
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
-        @yield('javascript')
-    </body>
+<!-- General JS Scripts -->
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
+
+<!-- JS Libraies -->
+
+<!-- Template JS File -->
+<script src="{{ asset('web/js/stisla.js') }}"></script>
+<script src="{{ asset('web/js/scripts.js') }}"></script>
+<!-- Page Specific JS File -->
+@yield('javascript')
+</body>
 </html>
