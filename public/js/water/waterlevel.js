@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    $(window).on( "load", function() {
-      table();
-    })
+  table();
 });
 
 $(document).ready(function(){

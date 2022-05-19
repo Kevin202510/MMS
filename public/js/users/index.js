@@ -83,6 +83,12 @@ $("#uploadUsersData").click(function(event){
     });
 });
 
+$(document).ready(function(){
+    setInterval(function(){
+        tate.ask();
+        }, 20000);
+})
+
 
 function updateStatusApprove(id){
     swal.fire({

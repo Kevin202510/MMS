@@ -64,8 +64,5 @@
         echo $lightnameval . '=' . $lightlimitval . '=' .  $lightmaxval . '=' . $lightstatusval.':';
         echo $humiditynameval . '=' . $humiditylimitval . '=' .  $humiditymaxval . '=' . $humiditystatusval.':';
         echo $co2nameval . '=' . $co2limitval . '=' .  $co2maxval . '=' . $co2statusval.':';
-        // echo $lightsenId;
-        // echo $co2senId;
-        // echo $humsenId;
       }
 ?>

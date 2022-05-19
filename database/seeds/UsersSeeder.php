@@ -19,6 +19,14 @@ class UsersSeeder extends Seeder
                 'isApproved' => 1,
                 'username' => 'superadmin',
                 'password' => Hash::make('password'),
+            ],
+            [
+                'role_id' => 2,
+                'fname' => 'kevin',
+                'lname' => 'caluag',
+                'isApproved' => 1,
+                'username' => 'employee',
+                'password' => Hash::make('password'),
             ]
             ]);
     }
