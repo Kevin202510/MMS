@@ -1,4 +1,6 @@
 <?php
+
+echo "<script>alert('asdasda');</script>";
 class Sensors{
  public $link='';
  function __construct(){
