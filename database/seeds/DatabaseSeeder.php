@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             HumiditySeeder::class,
             LightsSeeder::class,
             RoleSeeder::class,
+            SensorconfigurationSeeder::class,
             SoilmoisturesSeeder::class,
             TemperatureSeeder::class,
             UsersSeeder::class,

@@ -18,7 +18,7 @@ class CreateSensorconfigurationsTable extends Migration
             $table->string("sensor_name");
             $table->double("sensor_limit_value");
             $table->double("sensor_max_value");
-            $table->string("isOn")->default(0);
+            $table->integer("isOn")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
