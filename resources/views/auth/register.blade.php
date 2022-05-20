@@ -6,11 +6,27 @@
 
 @section('css')
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <style>
+        @media screen and (min-width: 999px) {
+        #cont {
+          width: 750px;  
+        }
+        }
+        header.masthead {
+            padding-top: 5rem;
+            padding-bottom: calc(5rem - 2.5rem);
+            background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../img/bg4.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+        }
+    </style>
 @endsection
 
 @section('content')
-<div class="container px-4 px-lg-5 h-100" style="width: 600px;">
-    <div class="card card-primary" style="height: 550px; border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
+<div class="container px-4 px-lg-5 h-100" id="cont">
+    <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
         <div class="card-header"><h4>Register</h4></div>
         <div class="card-body">
         <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
@@ -79,7 +95,7 @@
                                     class="text-danger">*</span>
                             <input id="username" type="text"
                                    class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
-                                   placeholder="Enter Username" name="username" tabindex="1"
+                                   placeholder="Enter Username only accept letters and digits" name="username" tabindex="1"
                                    value="{{ old('username') }}"
                                    required autofocus>
                             <div class="invalid-feedback">

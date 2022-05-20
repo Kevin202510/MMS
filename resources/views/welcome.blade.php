@@ -4,6 +4,29 @@
     MMS
 @endsection
 
+@section('css')
+    <style>
+        @media (min-width: 992px) {
+        header.masthead {
+            height: 100vh;
+            min-height: 40rem;
+            padding-top: 4.5rem;
+            padding-bottom: 0;
+        }
+        }
+
+        header.masthead {
+            padding-top: 10rem;
+            padding-bottom: calc(10rem - 4.5rem);
+            background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../img/bg4.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+        }
+
+    </style>
+@endsection
 @section('content')
 <div class="container px-4 px-lg-5 h-100">
     <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
@@ -17,65 +40,5 @@
         </div>
     </div>
 </div>
-<div id="portfolio">
-    <div class="container-fluid p-0">
-        <div class="row g-0">
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
-                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Category</div>
-                        <div class="project-name">Project Name</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
-                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Category</div>
-                        <div class="project-name">Project Name</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
-                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Category</div>
-                        <div class="project-name">Project Name</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
-                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Category</div>
-                        <div class="project-name">Project Name</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
-                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Category</div>
-                        <div class="project-name">Project Name</div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <a class="portfolio-box" href="{{ asset('img/bg4.jpg') }}" title="Project Name">
-                    <img class="img-fluid" src="{{ asset('img/bg4.jpg') }}" alt="..." />
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">Category</div>
-                        <div class="project-name">Project Name</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    </div>
 @endsection
 

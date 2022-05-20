@@ -85,7 +85,7 @@ $("#uploadUsersData").click(function(event){
 
 $(document).ready(function(){
     setInterval(function(){
-        tate.ask();
+        state.ask();
         }, 20000);
 })
 

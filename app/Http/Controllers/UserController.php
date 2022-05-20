@@ -34,6 +34,13 @@ class UserController extends Controller
       return response()->json($users);
     }
 
+    public function updateProfile(Request $request, User $user)
+    {
+        $input = $request->all();
+        $user->update($input);
+        return response()->json($user, 200);
+    }
+
     public function upload(Request $request)
     {
 

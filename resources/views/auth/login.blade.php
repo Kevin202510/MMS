@@ -2,6 +2,22 @@
 
 @section('css')
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <style>
+        @media screen and (min-width: 999px) {
+        #cont {
+          width: 600px;  
+        }
+        }
+        header.masthead {
+            padding-top: 8rem;
+            padding-bottom: calc(10rem - 3.2rem);
+            background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../img/bg4.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+        }
+    </style>
 @endsection
 
 @section('title')
@@ -9,8 +25,8 @@
 @endsection
 
 @section('content')
-<div class="container px-4 px-lg-5 h-100" style="width: 600px;">
-    <div class="card card-primary" style="height: 470px; border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
+<div class="container px-4 px-lg-5 h-100" id="cont">
+    <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
         <div class="card-header"><h4>Login</h4></div>
         <div class="card-body">
         <form method="POST" action="{{ route('login') }}">
@@ -80,7 +96,7 @@
                 icon: "error",
                 title: "Invalid Credentials",
                 showConfirmButton: false,
-                timer: 5000,
+                timer: 3000,
                 text: "Maybe Your Account is not Approved or has been deleted try to contact your administrator"
             });
         }

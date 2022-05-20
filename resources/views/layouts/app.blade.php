@@ -80,5 +80,45 @@
             }
         };
     }(jQuery));
+
+        $(document).ready(function(){
+            $("#btnPrEditSave").click(function(event){
+            //   event.preventDefault();
+              var formData = {
+                id: $("#id").val(),
+                role_id: $("#role_id").val(),
+                isApproved: $("#isApproved").val(),
+                fname: $("#fname").val(),
+                lname: $("#lname").val(),
+                address: $("#address").val(),
+                contact: $("#contact").val(),
+                username: $("#username").val(),
+              };
+            //   var tempSettForm = $("#temperatureSettingForm");
+            //   $("#temperatureSettingForm").submit();
+      
+              $.ajax({
+                type: "PUT",
+                url: "api/users/"+formData.id+"/updateProfile",
+                data: formData, // serializes the form's elements.
+                dataType: "json",
+                encode: true,
+                success: function(data)
+                {
+                    swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500,
+                        footer: "<a href>InnovaTech</a>",
+                    });
+
+                    $('#EditProfileModal').modal('toggle');
+                }
+            });
+          })
+    });
+    
 </script>
 </html>

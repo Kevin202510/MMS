@@ -39,7 +39,6 @@ function CO2AmountInsert($co2Amount,$co2Amountstat){
 
 include("InnovatechDbCrudFunctions.php");
 
-$tempsenId = $_POST["temperaturesensorId"];
 
 $temperaturelimitval;
 $temperaturemaxval;

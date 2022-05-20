@@ -94,6 +94,7 @@ Route::middleware('admin')->group(function () {
         Route::get('/', 'UserController@index');
         Route::get('/list', 'UserController@list'); 
         Route::post('/save', 'UserController@save'); 
+        Route::put('/{user}/updateProfile', 'UserController@updateProfile'); 
         Route::post('/upload/save', 'UserController@upload'); 
         Route::put('/{user}/update', 'UserController@update');
         Route::put('/{user}/updatestatus', 'UserController@updatestatus');

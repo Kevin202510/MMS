@@ -10,6 +10,13 @@
     
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <style>
+        @media screen and (max-width: 996px) {
+            #heads {
+                height: inherit;
+            }
+        }
+    </style>
 
         @yield('css')
     </head>
@@ -34,21 +41,15 @@
                 @endif
             </div>
         </nav>
-        <header class="masthead">
+        <header class="masthead" id="heads">
             @yield('content')
         </header>
-<!-- General JS Scripts -->
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
-
-<!-- JS Libraies -->
-
-<!-- Template JS File -->
-<script src="{{ asset('web/js/stisla.js') }}"></script>
-<script src="{{ asset('web/js/scripts.js') }}"></script>
-<!-- Page Specific JS File -->
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 @yield('javascript')
 </body>
 </html>

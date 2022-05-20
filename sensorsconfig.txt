@@ -42,8 +42,22 @@ String co2sensorId = "& co2sensorId=";
 int humsenId=4;
 String humiditysensorId = "& humiditysensorId=";
 
-String review;
+String dataToReview;
 
+
+String temperaturePostName = "temperature=";
+int temperaturestatValue;
+
+String humidityPostName = "& humidity=";
+int humiditystatValue;
+
+String lightPostName = "& lightAmount=";
+int lightstatValue;
+
+String co2PostName = "& co2Amount=";
+int co2statValue;
+
+String dataToAddDBreview;
 
 /* Setup for Ethernet and RFID */
 
@@ -65,57 +79,31 @@ void setup() {
 
 /* Infinite Loop */
 void loop(){
-  Sending_To_phpmyadmindatabase(); 
-  delay(1000); // interval
+  sendDataToDB(); 
+  delay(20000); // interval
 }
 
-
-  void Sending_To_phpmyadmindatabase()   //CONNECTING WITH MYSQL
+void sendDataToDB()   //CONNECTING WITH MYSQL
  {
    if (client.connect(server, 80)) {
     Serial.println("connected");
+    temperatureAndHumiditySensor();
+    lightSensor();
+    humiditySensors();
+    co2Sensor();
     // Make a HTTP request:
-
-//    temperatureAndHumiditySensor();
-//    soilMoistureSensor();
-//    lightSensor();
-//    co2Sensor();
-  
-//    postData = postVariable + temperatureData;
-//    postData2 = postVariable2 + humidityData;
-//    postData3 = postVariable3 + soil_sensorValue;
-//    postData4 = postVariable4 + photovalue;
-//    postData5 = postVariable5 + co2amount;
-
+    dataToAddDBreview = (temperaturePostName+temperatureData+humidityPostName+humidityData+lightPostName+photovalue+co2PostName+co2amount);
     
-    review = (temperaturesensorId+tempsenId + lightsensorId + lightsenId + co2sensorId + co2senId + humiditysensorId + humsenId);
-    
-    client.println("POST /MMS/SensorConfigurator.php HTTP/1.1");
+    client.println("POST /MMS/MmsSensorsData.php HTTP/1.1");
     client.println("Host: 192.168.2.102");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.print("Content-Length: ");
-    client.println(review.length());
+    client.println(dataToAddDBreview.length());
     client.println();
-    client.print(review);
-//    Serial.print(review);
+    client.print(dataToAddDBreview);
+    Serial.print(dataToAddDBreview);
 
-    String val1 = client.readStringUntil('\r');
-    String val2 = client.readStringUntil('\r');
-    String val3 = client.readStringUntil('\r');
-    String val4 = client.readStringUntil('\r');
-    String val5 = client.readStringUntil('\r');
-    String val6 = client.readStringUntil('\r');
-    String val7 = client.readStringUntil('\r');
-    String val8 = client.readStringUntil('\r');
-
-    Serial.print(val8);
-//    String val9 = client.readStringUntil('=');
-//    Serial.print(val9);
-//    if(val8.length()==16){
-////      Serial.println(client.readString());
-//      double valit = client.readStringUntil('=').toDouble();
-//      Serial.println(valit);
-//    }
+    client.stop();
     
   } else {
     // if you didn't get a connection to the server:
@@ -124,15 +112,18 @@ void loop(){
  }
 
  void temperatureAndHumiditySensor(){
-  humidityData = dht.readHumidity();
   temperatureData = dht.readTemperature(); 
+ }
+
+ void humiditySensors(){
+  humidityData = dht.readHumidity();
  }
 
  void soilMoistureSensor(){
    soil_sensorValue = analogRead(soil_sensorPin); 
-//   Serial.print("Soil Moisture Value : ");
-//   Serial.println(soil_sensorValue);
-//   
+   Serial.print("Soil Moisture Value : ");
+   Serial.println(soil_sensorValue);
+   
    if (soil_sensorValue>limit) {
    digitalWrite(8, HIGH); 
    }
@@ -143,16 +134,6 @@ void loop(){
 
  void lightSensor(){
   photovalue = analogRead(pResistor);
-        
-  //You can change value "25"
-//  Serial.print("Light Value : ");
-//  Serial.println(photovalue);
-  if (photovalue > 25){
-    digitalWrite(ledPin, LOW);  //Turn led off
-  }
-  else{
-    digitalWrite(ledPin, HIGH); //Turn led on
-  }
  }
 
  
@@ -161,5 +142,5 @@ void co2Sensor(){
    co2amount = gasSensor.getPPM();
 //   Serial.print ("ppm: ");
 //   Serial.println (co2amount);
-   //end gas sensor
+//   //end gas sensor
 }

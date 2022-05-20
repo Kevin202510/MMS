@@ -49,7 +49,7 @@ class LoginController extends Controller
         $username = $request->username;
         $password = $request->password;
 
-        if(Auth::attempt(['username'=>$username,'password'=>$password,'isApproved'=>'1'])){
+        if(Auth::attempt(['username'=>$username,'password'=>$password,'isApproved'=>'1','deleted_at'=>null])){
             return redirect()->intended('home');
         }else{
             return redirect('login')->with('error','invalid credentials');
