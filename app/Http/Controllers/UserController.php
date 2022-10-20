@@ -141,9 +141,18 @@ class UserController extends Controller
 
     public function updatePassword(Request $request, User $user)
     {
-        $updateuserdata = ["password"=> md5($request->password),];
-        $user->update($updateuserdata);
+        $user->password = Hash::make($request->password);
+        $user->update();
         return response()->json($user, 200);
+    }
+
+    public function makeHashPass(Request $request){
+      if (Hash::check($request->currentpassword, $request->password)) {
+          return true;
+      }else{
+        return "0";
+      }
+
     }
 
     public function updatestatus(Request $request,User $user)

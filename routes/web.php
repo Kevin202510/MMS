@@ -37,17 +37,7 @@ Route::middleware('admin')->group(function () {
     {
         Route::post('/save', 'SensorsconfigurationController@save'); 
         Route::put('/{sensorsconfiguration}/update', 'SensorsconfigurationController@update');
-        
-        Route::post('/savelight', 'SensorsconfigurationController@save2'); 
-        Route::put('/{sensorsconfiguration}/updatelight', 'SensorsconfigurationController@update2');
-
-        Route::post('/saveco2', 'SensorsconfigurationController@save3'); 
-        Route::put('/{sensorsconfiguration}/updateco2', 'SensorsconfigurationController@update3');
-
-        Route::post('/savehumidity', 'SensorsconfigurationController@save4'); 
-        Route::put('/{sensorsconfiguration}/updatehumidity', 'SensorsconfigurationController@update4');
-
-        // Route::delete('/{sensorsconfiguration}/destroy', 'SensorsconfigurationController@destroy');  
+        Route::delete('/{sensorsconfiguration}/destroy', 'SensorsconfigurationController@destroy');  
     });
 
     Route::prefix('/api/humidity')->group(function() 
@@ -98,7 +88,8 @@ Route::middleware('admin')->group(function () {
     {
         Route::get('/', 'UserController@index');
         Route::get('/list', 'UserController@list'); 
-        Route::post('/save', 'UserController@save'); 
+        Route::post('/save', 'UserController@save');
+        Route::post('/checkpass', 'UserController@makeHashPass'); 
         Route::put('/{user}/updateProfile', 'UserController@updateProfile'); 
         Route::put('/{user}/updatePassword', 'UserController@updatePassword'); 
         Route::post('/upload/save', 'UserController@upload'); 

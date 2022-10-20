@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sensorsconfiguration;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class SensorsconfigurationController extends Controller
 {
@@ -20,7 +21,7 @@ class SensorsconfigurationController extends Controller
 
     public function index1()
     {
-        $sensorsconfiguration=Sensorsconfiguration::where('isActive','1')->get();
+        $sensorsconfiguration=Sensorsconfiguration::whereNull('deleted_at')->get();
         return response()->json($sensorsconfiguration);
     }
 
@@ -92,5 +93,12 @@ class SensorsconfigurationController extends Controller
         ];
         $sensorsconfiguration->update($sensorsconfigurations);
         return response()->json($sensorsconfiguration, 200);
+    }
+
+    public function destroy(Sensorsconfiguration $sensorsconfiguration)
+    {
+        $sensorsconfiguration->deleted_at = Carbon::tomorrow();
+        $sensorsconfiguration->update();
+        return response()->json(array('success'=>true));
     }
 }

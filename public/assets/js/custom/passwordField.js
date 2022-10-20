@@ -48,63 +48,81 @@ $(document).ready(function(){
     });
 
     $("#btnPrPasswordEditSave").click(function(event){
-        if($("#password").val() == CryptoJS.MD5($("#currentpassword").val())){
-            if($("#newPassword").val().length>=8){
-                if($("#newPassword").val() == $("#confirmPassword").val()){
-                    event.preventDefault();
-                    var formData = {
-                        id: $("#id").val(),
-                        password:$("#newPassword").val(),
-                    };
 
-                    $.ajax({
-                        type: "PUT",
-                        url: "api/users/"+formData.id+"/updatePassword",
-                        data: formData, // serializes the form's elements.
-                        dataType: "json",
-                        encode: true,
-                        success: function(data)
-                        {
+        var formData = {
+            password: $("#password").val(),
+            currentpassword: $("#currentpassword").val(),
+        };
+
+        $.ajax({
+                type: "POST",
+                url: "api/users/checkpass",
+                data: formData, // serializes the form's elements.
+                dataType: "json",
+                encode: true,
+                success: function(data)
+                {
+                    if(data==1){
+                        if($("#newPassword").val().length>=8){
+                            if($("#newPassword").val() == $("#confirmPassword").val()){
+                                event.preventDefault();
+                                var formData = {
+                                    id: $("#id").val(),
+                                    password:$("#newPassword").val(),
+                                };
+            
+                                $.ajax({
+                                    type: "PUT",
+                                    url: "api/users/"+formData.id+"/updatePassword",
+                                    data: formData, // serializes the form's elements.
+                                    dataType: "json",
+                                    encode: true,
+                                    success: function(data)
+                                    {
+                                        swal.fire({
+                                            position: "top-end",
+                                            icon: "success",
+                                            title: "Your work has been saved",
+                                            showConfirmButton: false,
+                                            timer: 1500,
+                                            footer: "<a href>InnovaTech</a>",
+                                        });
+                                        $('#changePasswordForm')[0].reset();
+                                        $('#changePasswordModal').modal('hide');
+                                        localStorage.clear();  
+                                        document.getElementById('logout-form').submit();
+                                        // location.replace('logout');
+                                    }
+                                });
+            
+                            }else{
+                                swal.fire({
+                                    position: "center",
+                                    icon: "error",
+                                    title: "Password Does Not Match",
+                                    showConfirmButton: true,
+                                    footer: "<a href>InnovaTech</a>",
+                                });
+                            }
+                        }else{
                             swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: "Your work has been saved",
-                                showConfirmButton: false,
-                                timer: 1500,
+                                position: "center",
+                                icon: "error",
+                                title: "Minimum Password Length is 8 character",
+                                showConfirmButton: true,
                                 footer: "<a href>InnovaTech</a>",
                             });
-                            $('#changePasswordForm')[0].reset();
-                            $('#changePasswordModal').modal('hide');
-                            location.reload();
                         }
-                    });
-
-                }else{
-                    swal.fire({
-                        position: "center",
-                        icon: "error",
-                        title: "Password Does Not Match",
-                        showConfirmButton: true,
-                        footer: "<a href>InnovaTech</a>",
-                    });
+                    }else{
+                        swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Incorrect Current Password",
+                            showConfirmButton: true,
+                            footer: "<a href>InnovaTech</a>",
+                        });
+                    }
                 }
-            }else{
-                swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Minimum Password Length is 8 character",
-                    showConfirmButton: true,
-                    footer: "<a href>InnovaTech</a>",
-                });
-            }
-        }else{
-            swal.fire({
-                position: "center",
-                icon: "error",
-                title: "Incorrect Current Password",
-                showConfirmButton: true,
-                footer: "<a href>InnovaTech</a>",
             });
-        }
     });
 });
