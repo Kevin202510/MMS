@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->nullable();
             $table->boolean('isApproved')->default(0);
             $table->string('username')->unique();
-            $table->string('password')->default(crypt::encryptString("password"."$". env('SECRET_KEY')));
+            $table->string('password')->default(md5("password"));
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
