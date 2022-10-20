@@ -17,10 +17,10 @@ class DatabaseSeeder extends Seeder
             LightsSeeder::class,
             RoleSeeder::class,
             SensorconfigurationSeeder::class,
-            SoilmoisturesSeeder::class,
+            // SoilmoisturesSeeder::class,
             TemperatureSeeder::class,
             UsersSeeder::class,
-            WaterlevelsSeeder::class,
+            // WaterlevelsSeeder::class,
         ]);
     }
 }

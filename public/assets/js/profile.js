@@ -94,9 +94,9 @@
 /***/ (function(module, exports) {
 
 $(document).on('click', '.edit-profile', function (event) {
-  $('#editProfileUserId').val(loggedInUser.id);
-  $('#pfName').val(loggedInUser.name);
-  $('#pfEmail').val(loggedInUser.email);
+  // $('#editProfileUserId').val(loggedInUser.id);
+  // $('#pfName').val(loggedInUser.name);
+  // $('#pfEmail').val(loggedInUser.email);
   $('#EditProfileModal').appendTo('body').modal('show');
 });
 $(document).on('change', '#pfImage', function () {
@@ -133,33 +133,33 @@ window.displayPhoto = function (input, selector) {
   }
 };
 
-$(document).on('submit', '#editProfileForm', function (event) {
-  event.preventDefault();
-  var userId = $('#editProfileUserId').val();
-  var loadingButton = jQuery(this).find('#btnPrEditSave');
-  loadingButton.button('loading');
-  $.ajax({
-    url: usersUrl + '/' + userId,
-    type: 'post',
-    data: new FormData($(this)[0]),
-    processData: false,
-    contentType: false,
-    success: function success(result) {
-      if (result.success) {
-        $('#EditProfileModal').modal('hide');
-        setTimeout(function () {
-          location.reload();
-        }, 1500);
-      }
-    },
-    error: function error(result) {
-      console.log(result);
-    },
-    complete: function complete() {
-      loadingButton.button('reset');
-    }
-  });
-});
+// $(document).on('submit', '#editProfileForm', function (event) {
+//   event.preventDefault();
+//   var userId = $('#editProfileUserId').val();
+//   var loadingButton = jQuery(this).find('#btnPrEditSave');
+//   loadingButton.button('loading');
+//   $.ajax({
+//     url: usersUrl + '/' + userId,
+//     type: 'post',
+//     data: new FormData($(this)[0]),
+//     processData: false,
+//     contentType: false,
+//     success: function success(result) {
+//       if (result.success) {
+//         $('#EditProfileModal').modal('hide');
+//         setTimeout(function () {
+//           location.reload();
+//         }, 1500);
+//       }
+//     },
+//     error: function error(result) {
+//       console.log(result);
+//     },
+//     complete: function complete() {
+//       loadingButton.button('reset');
+//     }
+//   });
+// });
 
 /***/ }),
 

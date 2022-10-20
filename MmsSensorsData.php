@@ -59,23 +59,38 @@ $result = $b->sql;
 
 
 while ($row = mysqli_fetch_assoc($result)) { 
-    if($row['sensor_name'] === "Temperature Sensor"){
-        $temperaturelimitval = (float)$row['sensor_limit_value'];
-        $temperaturemaxval = (float)$row['sensor_max_value'];
-        $temperaturestatusval = (int)$row['isOn'];
-    }if($row['sensor_name'] === "Humidity Sensor"){
-        $humiditylimitval = (float)$row['sensor_limit_value'];
-        $humiditymaxval = (float)$row['sensor_max_value'];
-        $humiditystatusval = (int)$row['isOn'];
-    }if($row['sensor_name'] === "Light Sensor"){
-        $lightlimitval = (float)$row['sensor_limit_value'];
-        $lightmaxval = (float)$row['sensor_max_value'];
-        $lightstatusval = (int)$row['isOn'];
-    }if($row['sensor_name'] === "Carbon Dioxide Sensor"){
-        $co2limitval = (float)$row['sensor_limit_value'];
-        $co2maxval = (float)$row['sensor_max_value'];
-        $co2statusval = (int)$row['isOn'];
-    }
+    $jsonobj = $row['configuration_value'];
+    $configval = json_decode($jsonobj);
+
+        var_dump($configval);
+        $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+        $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+        $humiditylimitval = (float)$configval->humiditylimitval;
+        $humiditymaxval = (float)$configval->humiditymaxval;
+        $lightlimitval = (float)$configval->lightlimitval;
+        $lightmaxval = (float)$configval->lightmaxval;
+        $co2limitval = (float)$configval->co2limitval;
+        $co2maxval = (float)$configval->co2maxval;
+
+        $temperaturestatusval = (int)$configval->temperaturestatusval;
+        $humiditystatusval = (int)$configval->humiditystatusval;
+        $lightstatusval = (int)$configval->lightstatusval;
+        $co2statusval = (int)$configval->co2statusval;
+
+
+        echo $temperaturelimitval."<br>";
+        echo $temperaturemaxval."<br>";
+        echo $humiditylimitval."<br>";
+        echo $humiditymaxval."<br>";
+        echo $lightlimitval."<br>";
+        echo $lightmaxval."<br>";
+        echo $co2limitval."<br>";
+        echo $co2maxval."<br>";
+        
+        echo $temperaturestatusval."<br>";
+        echo $humiditystatusval."<br>";
+        echo $lightstatusval."<br>";
+        echo $co2statusval."<br>";
 }
 
 if(!empty($_POST)){

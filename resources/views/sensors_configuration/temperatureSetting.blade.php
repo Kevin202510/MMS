@@ -1,5 +1,16 @@
 <div class="card-header">
     <h4>Edit Temperature</h4>
+    <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                      Preset Configuration
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#">Oyster Mushroom</a>
+                      <a class="dropdown-item" href="#">Button Mushroom</a>
+                      <a class="dropdown-item" href="#">Magic Mushroom</a>
+                      <a class="dropdown-item" href="#"><span class="fa fa-plus"></span>Add New</a>
+                    </div>
+                  </div>
 </div>
 <div class="card-body">
     <form id="temperatureSettingForm" class="needs-validation">

@@ -23,18 +23,18 @@ class Carbondioxide extends Model
 
     public function getTimeAttribute()
     {
-        return $this->created_at? $this->created_at->format('g:i A'): null;
+        return $this->created_at? $this->created_at->format('g:i:s A'): null;
     }
 
     public function getstatusNameAttribute()
     {
         $stat="";
         if($this->status==0){
-            $stat = "High Carbon Dioxide";
+            $stat = "High Co2 Concentration";
         }else if($this->status==1){
-            $stat = "Good Carbon Dioxide";
+            $stat = "Good  Co2 Concentration";
         }else if($this->status==2){
-            $stat = "Low Carbon Dioxide";
+            $stat = "Fair  Co2 Concentration";
         }
         return $stat;
     }

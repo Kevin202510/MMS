@@ -35,8 +35,8 @@
             <hr class="divider" />
         </div>
         <div class="col-lg-8 align-self-baseline">
-            <p class="text-white-75 mb-5">A Mushroom Monitoring System is a RealTime Monitoring for Bote Mushroom House located at Barangay Rio Chico General Tinio Nueva Ecija.</p>
-            <a class="btn btn-primary btn-xl" href="{{ route('login') }}">Find Out More</a>
+            <p class="text-white-75 mb-5">A Mushroom Monitoring System is a Real Time Monitoring for Bote Mushroom House located at Barangay Rio Chico General Tinio Nueva Ecija.</p>
+            <!-- <a class="btn btn-primary btn-xl" href="route('login') }}">Find Out More</a> -->
         </div>
     </div>
 </div>

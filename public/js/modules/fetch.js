@@ -495,6 +495,22 @@ const showOnModal = (model) => {
     });
     $("#modal-main").modal("show");
 };
+
+const viewOnModal = (model) => {
+    $("#set-model").trigger("reset");
+    $("#modal-title").html(`Configuration Data`);
+    // console.log(model)
+    Object.keys(model).map((key) => {
+        if ($(`[name='${key}']`).length !== 0 && key != "avatar") {
+            if (typeof model[key] == "boolean") {
+                $(`[name='${key}']`).val(model[key] ? 1 : 0);
+            } else {
+                $(`[name='${key}']`).val(model[key]).attr("disabled","disabled") ;
+            }
+        }
+    });
+    $("#modal-main").modal("show");
+};
 /*
 / include all noun that doesn't add s only
 */
@@ -575,5 +591,6 @@ export default {
     translate,
     showModal,
     showOnModal,
+    viewOnModal,
     option_list,
 };

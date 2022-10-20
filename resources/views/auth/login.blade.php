@@ -28,8 +28,8 @@
 <div class="container px-4 px-lg-5 h-100" id="cont">
     <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
         <div class="card-header"><h4>Login</h4></div>
-        <div class="card-body">
-        <form method="POST" action="{{ route('login') }}">
+            <div class="card-body">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @if (session()->has('error'))
                         <input type="hidden" id="errorMessage" value="{{ session()->get('error') }}">
@@ -82,7 +82,7 @@
             <div class="mt-5 text-muted text-center">
         Don't have an account ? <a
                 href="{{ route('register') }}">Sign Up</a>
-    </div>
+        </div>
         </div>
     </div>
 </div>

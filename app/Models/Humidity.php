@@ -23,7 +23,7 @@ class Humidity extends Model
 
     public function getTimeAttribute()
     {
-        return $this->created_at? $this->created_at->format('g:i A'): null;
+        return $this->created_at? $this->created_at->format('g:i:s A'): null;
     }
 
     public function getstatusNameAttribute()

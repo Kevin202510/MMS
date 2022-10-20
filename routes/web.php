@@ -21,11 +21,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Auth::routes();
 
+Route::post('/notify', 'Notifyusermmsstatus@sendEmail');
+Route::get('/video', function () { return view('video.index'); })->name('Video')->middleware('auth');
+
 Route::middleware('admin')->group(function () {
 
-    
     Route::get('/users', function () { return view('users.index'); })->name('Users')->middleware('auth');
+    Route::get('/roles', function () { return view('roles.index'); })->name('Roles')->middleware('auth');
+    Route::get('/export', 'UserController@export')->name('Export')->middleware('auth');
     Route::get('/sensorsconfiguration', function () { return view('sensors_configuration.index'); })->name('Sensor Configuration')->middleware('auth');
+    Route::get('/sensorsconfigurationhistory', function () { return view('sensors_configuration.history'); })->name('Sensor Configuration History')->middleware('auth');
     
     // API's
     Route::prefix('/api/sensorsconfigurations')->group(function() 
@@ -95,11 +100,20 @@ Route::middleware('admin')->group(function () {
         Route::get('/list', 'UserController@list'); 
         Route::post('/save', 'UserController@save'); 
         Route::put('/{user}/updateProfile', 'UserController@updateProfile'); 
+        Route::put('/{user}/updatePassword', 'UserController@updatePassword'); 
         Route::post('/upload/save', 'UserController@upload'); 
         Route::put('/{user}/update', 'UserController@update');
         Route::put('/{user}/updatestatus', 'UserController@updatestatus');
         Route::put('/{user}/updatestatusDisapproved', 'UserController@updatestatusDisapproved');
         Route::delete('/{user}/destroy', 'UserController@destroy');  
+    });
+
+    Route::prefix('/api/roles')->group(function() 
+    {
+        Route::get('/', 'RolesController@index');
+        Route::post('/save', 'RolesController@save'); 
+        Route::put('/{roles}/update', 'RolesController@update');
+        Route::delete('/{roles}/destroy', 'RolesController@destroy');  
     });
 });
 
@@ -153,9 +167,13 @@ Route::middleware('employeeOrAdmin')->group(function () {
 
     Route::prefix('/api/sensorsconfigurations')->group(function() 
     {
-        Route::get('/temperatureSetting', 'SensorsconfigurationController@index1');
-        Route::get('/lightSetting', 'SensorsconfigurationController@index2');
-        Route::get('/co2Setting', 'SensorsconfigurationController@index3');
-        Route::get('/humiditySetting', 'SensorsconfigurationController@index4'); 
+        Route::get('/', 'SensorsconfigurationController@index1');
+        Route::get('/histories', 'SensorsconfigurationController@index2');
+    });
+
+    Route::prefix('/api/users')->group(function() 
+    {
+        Route::put('/{user}/updateProfile', 'UserController@updateProfile'); 
+        Route::put('/{user}/updatePassword', 'UserController@updatePassword'); 
     });
 });

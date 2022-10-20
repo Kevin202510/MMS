@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Crypt;
 
 class UsersSeeder extends Seeder
 {
@@ -18,16 +19,9 @@ class UsersSeeder extends Seeder
                 'lname' => 'caluag',
                 'isApproved' => 1,
                 'username' => 'superadmin',
-                'password' => Hash::make('password'),
-            ],
-            [
-                'role_id' => 2,
-                'fname' => 'kevin',
-                'lname' => 'caluag',
-                'isApproved' => 1,
-                'username' => 'employee',
-                'password' => Hash::make('password'),
+                'password' => crypt::encryptString("password"."$".env('SECRET_KEY')),
             ]
             ]);
     }
+    
 }

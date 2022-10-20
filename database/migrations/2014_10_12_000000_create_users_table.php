@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Crypt;
 
 class CreateUsersTable extends Migration
 {
@@ -22,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->nullable();
             $table->boolean('isApproved')->default(0);
             $table->string('username')->unique();
-            $table->string('password')->default('$2y$10$wtu.3BT7MJ0oNDIIcYeBMusa8Oy/X4Jr271hpCFeBEOL/TrwIwpT2');
+            $table->string('password')->default(crypt::encryptString("password"."$". env('SECRET_KEY')));
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

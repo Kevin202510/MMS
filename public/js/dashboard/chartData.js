@@ -33,12 +33,12 @@ var waterLevelChart;
 function startChart(){
   $.ajax({
     type: "GET",
-    url: "api/sensorsconfigurations/temperatureSetting",
+    url: "api/sensorsconfigurations",
     dataType: "json",
     encode: true,
     success: function(datas)
     {
-        if(datas[0].isOn==0){
+        if(datas[0].temperaturestatusval==0){
           myTemperatureChart.stop();
           $("#tempstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
         }else{
@@ -49,12 +49,13 @@ function startChart(){
 
   $.ajax({
     type: "GET",
-    url: "api/sensorsconfigurations/humiditySetting",
+    url: "api/sensorsconfigurations",
     dataType: "json",
     encode: true,
     success: function(data)
     {
-        if(data[0].isOn==0){
+      
+        if(data[0].humiditystatusval==0){
           myHumidityChart.stop();
           $("#humiditystat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
         }else{
@@ -65,12 +66,13 @@ function startChart(){
 
   $.ajax({
     type: "GET",
-    url: "api/sensorsconfigurations/lightSetting",
+    url: "api/sensorsconfigurations",
     dataType: "json",
     encode: true,
     success: function(data)
     {
-        if(data[0].isOn==0){
+      
+        if(data[0].lightstatusval==0){
           lightChart.stop();
           $("#lightstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
         }else{
@@ -81,12 +83,13 @@ function startChart(){
 
   $.ajax({
     type: "GET",
-    url: "api/sensorsconfigurations/co2Setting",
+    url: "api/sensorsconfigurations",
     dataType: "json",
     encode: true,
     success: function(data)
     {
-        if(data[0].isOn==0){
+      
+        if(data[0].co2statusval==0){
           carbonDioxideChart.stop();
           $("#co2stat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
         }else{
@@ -111,8 +114,15 @@ function fetchTemperature(){
                 temperatureData.push(newdata[bb].temperature);
                 // alert(bb);
                 if(data.length-1==bb){
+                  // console.log(data[bb].status);
                   if(data[bb].status == 0){
                     $("#tempstat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
+                    $("#status").val("Temperature Sensor Detect " + data[bb].statusName +" Having " + newdata[bb].temperature + "°C");
+                    $("#sensorname").val("Temperature Sensor Alert Notification");
+                  //   $("#samplemessage").submit(function(e) {
+                  //     // e.preventDefault();
+                  //     alert("asd");
+                  // });
                   }else if(data[bb].status == 1){
                     $("#tempstat").html('<div class="badge badge-success">'+data[bb].statusName+'</div>');
                   }else{

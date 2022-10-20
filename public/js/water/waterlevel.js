@@ -25,7 +25,7 @@ function table(){
                   }else if(data[bb].status==2){
                     state = "badge-warning";
                   }
-                  html += '<tr><td class="text-break">' + data[bb].id + '</td><td class="text-break">' + data[bb].waterlevel + ' °C</td><td class="text-break"><div class="badge '+state+'">' + data[bb].statusName + '</div></td><td class="text-break">' + data[bb].date + '</td><td class="text-break">' + data[bb].time + '</td></tr>'
+                  html += '<tr><td class="text-break">' + data[bb].waterlevel + ' °C</td><td class="text-break"><div class="badge '+state+'">' + data[bb].statusName + '</div></td><td class="text-break">' + data[bb].date + '</td><td class="text-break">' + data[bb].time + '</td></tr>'
               });
               $('#table-main').html(html);
             }else{

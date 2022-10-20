@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class RegisterController extends Controller
 {
@@ -76,9 +77,10 @@ class RegisterController extends Controller
             'contact' => $data['contact'],
             'role_id' => $data['role_id'],
             'username' => $data['username'],
-            'password' => Hash::make($data['password']),
+            'password' => crypt::encryptString($data['password'] ."$". env('SECRET_KEY')),
         ]);
     }
+
 
     public function register(Request $request)
     {

@@ -12,9 +12,9 @@
     <!-- Ionicons -->
     <link rel="icon" type="image/png" href="/img/favicon.ico">
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
-
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
 @yield('page_css')
 <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
@@ -26,25 +26,25 @@
 </head>
 <body>
 
-<div id="app">
-    <div class="main-wrapper main-wrapper-1">
-        <div class="navbar-bg"></div>
-        <nav class="navbar navbar-expand-lg main-navbar">
-            @include('layouts.header')
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                @include('layouts.header')
 
-        </nav>
-        <div class="main-sidebar main-sidebar-postion">
-            @include('layouts.sidebar')
+            </nav>
+            <div class="main-sidebar main-sidebar-postion">
+                @include('layouts.sidebar')
+            </div>
+            <!-- Main Content -->
+            <div class="main-content">
+                @yield('content')
+            </div>
+            <footer class="main-footer">
+                @include('layouts.footer')
+            </footer>
         </div>
-        <!-- Main Content -->
-        <div class="main-content">
-            @yield('content')
-        </div>
-        <footer class="main-footer">
-            @include('layouts.footer')
-        </footer>
     </div>
-</div>
 
 @include('profile.change_password')
 @include('profile.edit_profile')
@@ -52,11 +52,15 @@
 </body>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('js/modules/moment.min.js') }}"></script>
+<script src="{{ asset('js/modules/daterangepicker.js') }}"></script>
 <script src="{{ asset('assets/js/Chart.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('assets/js/custom/passwordField.js') }}"></script>
+
 
 <!-- Template JS File -->
 <script src="{{ asset('web/js/stisla.js') }}"></script>
@@ -81,9 +85,9 @@
         };
     }(jQuery));
 
-        $(document).ready(function(){
+    $(document).ready(function(){
             $("#btnPrEditSave").click(function(event){
-            //   event.preventDefault();
+              event.preventDefault();
               var formData = {
                 id: $("#id").val(),
                 role_id: $("#role_id").val(),
@@ -93,6 +97,7 @@
                 address: $("#address").val(),
                 contact: $("#contact").val(),
                 username: $("#username").val(),
+                password:$("#user_password").val(),
               };
             //   var tempSettForm = $("#temperatureSettingForm");
             //   $("#temperatureSettingForm").submit();
@@ -113,12 +118,13 @@
                         timer: 1500,
                         footer: "<a href>InnovaTech</a>",
                     });
-
-                    $('#EditProfileModal').modal('toggle');
+                    $('#user_password').attr('type', 'password');
+                    $('#showhidepass i').addClass( "fa-eye-slash" );
+                    $('#showhidepass i').removeClass( "fa-eye" );
+                    $('#EditProfileModal').modal('hide');
                 }
             });
           })
     });
-    
 </script>
 </html>

@@ -9,6 +9,11 @@
         <div class="section-header">
             <h3 class="page__heading">Dashboard</h3>
         </div>
+        <!-- <form id="samplemessage" method="post" action="{{url('notify')}}">
+        {{csrf_field()}}
+            <input type="text" id="status" name="message">
+            <input type="text" id="sensorname" name="sensor_name">
+        </form> -->
         <div class="section-body">
             <div class="row">
                 <div class="col-lg-12">
@@ -62,7 +67,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row justify-content-center">
+                        <!-- <div class="row justify-content-center">
                             <div class="col-12 col-md-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -74,7 +79,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         </div>
                     </div>
                 </div>

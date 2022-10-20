@@ -23,18 +23,18 @@ class Lights extends Model
 
     public function getTimeAttribute()
     {
-        return $this->created_at? $this->created_at->format('g:i A'): null;
+        return $this->created_at? $this->created_at->format('g:i:s A'): null;
     }
 
     public function getstatusNameAttribute()
     {
         $stat="";
         if($this->status==0){
-            $stat = "High Light";
+            $stat = "Warm";
         }else if($this->status==1){
-            $stat = "Good Light";
+            $stat = "Neutral";
         }else if($this->status==2){
-            $stat = "Low Light";
+            $stat = "Cold";
         }
         return $stat;
     }

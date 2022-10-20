@@ -20,25 +20,13 @@ class SensorsconfigurationController extends Controller
 
     public function index1()
     {
-        $sensorsconfiguration=Sensorsconfiguration::where('id','1')->get();
+        $sensorsconfiguration=Sensorsconfiguration::where('isActive','1')->get();
         return response()->json($sensorsconfiguration);
     }
 
     public function index2()
     {
-        $sensorsconfiguration=Sensorsconfiguration::where('id','2')->get();
-        return response()->json($sensorsconfiguration);
-    }
-
-    public function index3()
-    {
-        $sensorsconfiguration=Sensorsconfiguration::where('id','3')->get();
-        return response()->json($sensorsconfiguration);
-    }
-
-    public function index4()
-    {
-        $sensorsconfiguration=Sensorsconfiguration::where('id','4')->get();
+        $sensorsconfiguration=Sensorsconfiguration::where('deleted_at','!=',NULL)->get();
         return response()->json($sensorsconfiguration);
     }
 
@@ -84,29 +72,25 @@ class SensorsconfigurationController extends Controller
      */
     public function update(Request $request, Sensorsconfiguration $sensorsconfiguration)
     {
-        $input = $request->all();
-        $sensorsconfiguration->update($input);
-        return response()->json($sensorsconfiguration, 200);
-    }
-
-    public function update2(Request $request, Sensorsconfiguration $sensorsconfiguration)
-    {
-        $input = $request->all();
-        $sensorsconfiguration->update($input);
-        return response()->json($sensorsconfiguration, 200);
-    }
-
-    public function update3(Request $request, Sensorsconfiguration $sensorsconfiguration)
-    {
-        $input = $request->all();
-        $sensorsconfiguration->update($input);
-        return response()->json($sensorsconfiguration, 200);
-    }
-
-    public function update4(Request $request, Sensorsconfiguration $sensorsconfiguration)
-    {
-        $input = $request->all();
-        $sensorsconfiguration->update($input);
+        $sensorsconfigurations = [
+            "configuration_name" => $request->configuration_name,
+            "configuration_value" => [
+                "temperatureSensorMinVal" => $request->temperatureSensorMinVal,
+                "temperatureSensorMaxVal" =>$request->temperatureSensorMaxVal,
+                "temperaturestatusval" =>$request->temperaturestatusval,
+                "humiditylimitval" =>$request->humiditylimitval,
+                "humiditymaxval" =>$request->humiditymaxval,
+                "humiditystatusval" =>$request->humiditystatusval,
+                "lightlimitval" =>$request->lightlimitval,
+                "lightmaxval" =>$request->lightmaxval,
+                "lightstatusval" =>$request->lightstatusval,
+                "co2limitval" =>$request->co2limitval,
+                "co2maxval" =>$request->co2maxval,
+                "co2statusval" =>$request->co2statusval
+            ],
+            "isActive" =>$request->isActive,
+        ];
+        $sensorsconfiguration->update($sensorsconfigurations);
         return response()->json($sensorsconfiguration, 200);
     }
 }

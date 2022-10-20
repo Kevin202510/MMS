@@ -1,26 +1,96 @@
 $(document).ready(function(){
-    $(window).on( "load", function() {
+    // $(window).on( "load", function() 
+    getCurrentSensorsVal();
+      setInterval(function(){
+        getCurrentSensorsVal();
+        }, 20000);
+      function getCurrentSensorsVal(){
+        $.ajax({
+          type: "GET",
+          url: 'api/temperature/getNewVal',
+          dataType: "json",
+          encode: true,
+          success: function(data)
+          {
+              if(data.length==0){
+                  $("#currentTemp").text=0;
+              }else{
+                  $("#currentTemp").text(data[0].temperature + " °C");
+              }
+          }
+        });
+
+        $.ajax({
+          type: "GET",
+          url: 'api/humidity/getNewVal',
+          dataType: "json",
+          encode: true,
+          success: function(data)
+          {
+              if(data.length==0){
+                  $("#currentHumidity").text=0;
+              }else{
+                  $("#currentHumidity").text(data[0].humidity + " %");
+              }
+          }
+        });
+
+        $.ajax({
+          type: "GET",
+          url: 'api/light/getNewVal',
+          dataType: "json",
+          encode: true,
+          success: function(data)
+          {
+              if(data.length==0){
+                  $("#currentLight").text=0;
+              }else{
+                  $("#currentLight").text(data[0].lightsAmount + " lm");
+              }
+          }
+        });
+
+        $.ajax({
+          type: "GET",
+          url: 'api/carbondioxide/getNewVal',
+          dataType: "json",
+          encode: true,
+          success: function(data)
+          {
+              if(data.length==0){
+                  $("#currentCo2").text=0;
+              }else{
+                  $("#currentCo2").text(data[0].carbondioxideAmount + " ppm");
+              }
+          }
+        });
+
+
+      }
+
+
         $.ajax({
             type: "GET",
-            url: "api/sensorsconfigurations/temperatureSetting",
+            url: "api/sensorsconfigurations",
             dataType: "json",
             encode: true,
             success: function(data)
             {
+              let tempobj = JSON.parse(data[0].configuration_value);
                 if(data.length==0){
                     $("#updateTemperatureSetting").hide();
                 }else{
                     $("#saveTemperatureSetting").hide();
                     $("#updateTemperatureSetting").show();
                     $("#saveTemperatureSetting").addClass("update");
-                    $("#sensor_limit_value").val(data[0].sensor_limit_value);
-                    $("#sensor_max_value").val(data[0].sensor_max_value);
+                    $("#sensor_limit_value").val(tempobj.temperatureSensorMinVal);
+                    $("#sensor_max_value").val(tempobj.temperatureSensorMaxVal);
                     $("#id").val(data[0].id);
-                    $("#isOn").val(data[0].isOn);
+                    $("#isOn").val(tempobj.temperaturestatusval);
                 }
             }
         });
-    })
+    // })
       $("#saveTemperatureSetting").click(function(event){
         //   event.preventDefault();
           var formData = {
@@ -30,8 +100,19 @@ $(document).ready(function(){
             sensor_max_value: $("#sensor_max_value").val(),
             isOn: $("#isOn").val(),
           };
-        //   var tempSettForm = $("#temperatureSettingForm");
-        //   $("#temperatureSettingForm").submit();
+
+          if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+              swal.fire({
+                icon: "error",
+                title: "Oops...",
+                showConfirmButton: false,
+                timer: 3000,
+                text: "Limit Value Cannot be Greater Than Max Value",
+                footer: "<a href>CleverTech</a>",
+            });
+          }else{
+
+          // alert(parseInt(formData.sensor_limit_value) + parseInt(formData.sensor_max_value));
 
           $.ajax({
             type: "POST",
@@ -54,8 +135,9 @@ $(document).ready(function(){
                     $("#updateTemperatureSetting").show();
             }
         });
+      }
 
-      })
+      });
 
 
       $("#updateTemperatureSetting").click(function(event){
@@ -70,6 +152,18 @@ $(document).ready(function(){
         //   var tempSettForm = $("#temperatureSettingForm");
         //   $("#temperatureSettingForm").submit();
 
+        // alert(parseInt(formData.sensor_limit_value) + parseInt(formData.sensor_max_value));
+
+        if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+            swal.fire({
+              icon: "error",
+              title: "Oops...",
+              showConfirmButton: false,
+              timer: 3000,
+              text: "Limit Value Cannot be Greater Than Max Value",
+              footer: "<a href>CleverTech</a>",
+          });
+        }else{
           $.ajax({
             type: "PUT",
             url: "api/sensorsconfigurations/"+formData.id+"/update",
@@ -88,27 +182,29 @@ $(document).ready(function(){
                 });
             }
         });
-    })
+      }
+    });
 
     $("#temperatureNavBtn").click(function(){
       
       $.ajax({
         type: "GET",
-        url: "api/sensorsconfigurations/temperatureSetting",
+        url: "api/sensorsconfigurations",
         dataType: "json",
         encode: true,
         success: function(data)
         {
+          let tempobj = JSON.parse(data[0].configuration_value);
             if(data.length==0){
                 $("#updateTemperatureSetting").hide();
             }else{
                 $("#saveTemperatureSetting").hide();
                 $("#updateTemperatureSetting").show();
                 $("#saveTemperatureSetting").addClass("update");
-                $("#sensor_limit_value").val(data[0].sensor_limit_value);
-                $("#sensor_max_value").val(data[0].sensor_max_value);
+                $("#sensor_limit_value").val(tempobj.temperatureSensorMinVal);
+                $("#sensor_max_value").val(tempobj.temperatureSensorMaxVal);
                 $("#id").val(data[0].id);
-                $("#isOn").val(data[0].isOn);
+                $("#isOn").val(tempobj.temperaturestatusval);
             }
         }
           });
@@ -124,6 +220,17 @@ $(document).ready(function(){
               };
             //   var tempSettForm = $("#temperatureSettingForm");
             //   $("#temperatureSettingForm").submit();
+
+            if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+              swal.fire({
+                icon: "error",
+                title: "Oops...",
+                showConfirmButton: false,
+                timer: 3000,
+                text: "Limit Value Cannot be Greater Than Max Value",
+                footer: "<a href>CleverTech</a>",
+            });
+          }else{
       
               $.ajax({
                 type: "POST",
@@ -146,8 +253,9 @@ $(document).ready(function(){
                         $("#updateTemperatureSetting").show();
                 }
             });
+          }
       
-          })
+          });
       
       
           $("#updateTemperatureSetting").click(function(event){
@@ -161,7 +269,16 @@ $(document).ready(function(){
               };
             //   var tempSettForm = $("#temperatureSettingForm");
             //   $("#temperatureSettingForm").submit();
-      
+            if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+              swal.fire({
+                icon: "error",
+                title: "Oops...",
+                showConfirmButton: false,
+                timer: 3000,
+                text: "Limit Value Cannot be Greater Than Max Value",
+                footer: "<a href>CleverTech</a>",
+            });
+          }else{
               $.ajax({
                 type: "PUT",
                 url: "api/sensorsconfigurations/"+formData.id+"/update",
@@ -180,27 +297,29 @@ $(document).ready(function(){
                     });
                 }
             });
-          })
-      })
+          }
+          });
+      });
 
     $("#lightsNavBtn").click(function(){
         // LIGHT
         $.ajax({
           type: "GET",
-          url: "api/sensorsconfigurations/lightSetting",
+          url: "api/sensorsconfigurations",
           dataType: "json",
           encode: true,
           success: function(data)
           {
+            let tempobj = JSON.parse(data[0].configuration_value);
               if(data.length==0){
                   $("#updatelightSetting").hide();
               }else{
                   $("#savelightSetting").hide();
                   $("#updatelightSetting").show();
-                  $("#lightsensor_limit_value").val(data[0].sensor_limit_value);
-                  $("#lightsensor_max_value").val(data[0].sensor_max_value);
+                  $("#lightsensor_limit_value").val(tempobj.lightlimitval);
+                  $("#lightsensor_max_value").val(tempobj.lightmaxval);
                   $("#lightid").val(data[0].id);
-                  $("#lightisOn").val(data[0].isOn);
+                  $("#lightisOn").val(tempobj.lightstatusval);
               }
           }
       });
@@ -216,7 +335,16 @@ $(document).ready(function(){
           };
         //   var tempSettForm = $("#temperatureSettingForm");
         //   $("#temperatureSettingForm").submit();
-
+        if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+          swal.fire({
+            icon: "error",
+            title: "Oops...",
+            showConfirmButton: false,
+            timer: 3000,
+            text: "Limit Value Cannot be Greater Than Max Value",
+            footer: "<a href>CleverTech</a>",
+        });
+      }else{
           $.ajax({
             type: "POST",
             url: "api/sensorsconfigurations/savelight",
@@ -238,7 +366,8 @@ $(document).ready(function(){
                   $("#updatelightSetting").show();
             }
         });
-      })
+      }
+      });
 
       $("#updatelightSetting").click(function(event){
         //   event.preventDefault();
@@ -251,7 +380,16 @@ $(document).ready(function(){
           };
         //   var tempSettForm = $("#temperatureSettingForm");
         //   $("#temperatureSettingForm").submit();
-
+        if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+          swal.fire({
+            icon: "error",
+            title: "Oops...",
+            showConfirmButton: false,
+            timer: 3000,
+            text: "Limit Value Cannot be Greater Than Max Value",
+            footer: "<a href>CleverTech</a>",
+        });
+      }else{
           $.ajax({
             type: "PUT",
             url: "api/sensorsconfigurations/"+formData.id+"/updatelight",
@@ -270,28 +408,30 @@ $(document).ready(function(){
                 });
             }
         });
-    })
+      }
+    });
 
-    })
+    });
 
     $("#co2NavBtn").click(function(){
       // LIGHT
       $.ajax({
         type: "GET",
-        url: "api/sensorsconfigurations/co2Setting",
+        url: "api/sensorsconfigurations",
         dataType: "json",
         encode: true,
         success: function(data)
         {
+          let tempobj = JSON.parse(data[0].configuration_value);
             if(data.length==0){
                 $("#updatecarbondioxideSetting").hide();
             }else{
                 $("#savecarbondioxideSetting").hide();
                 $("#updatecarbondioxideSetting").show();
-                $("#carbondioxidesensor_limit_value").val(data[0].sensor_limit_value);
-                $("#carbondioxidesensor_max_value").val(data[0].sensor_max_value);
+                $("#carbondioxidesensor_limit_value").val(tempobj.co2limitval);
+                $("#carbondioxidesensor_max_value").val(tempobj.co2maxval);
                 $("#carbondioxideid").val(data[0].id);
-                $("#carbondioxideisOn").val(data[0].isOn);
+                $("#carbondioxideisOn").val(tempobj.co2statusval);
             }
         }
     });
@@ -307,7 +447,16 @@ $(document).ready(function(){
         };
       //   var tempSettForm = $("#temperatureSettingForm");
       //   $("#temperatureSettingForm").submit();
-
+      if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+        swal.fire({
+          icon: "error",
+          title: "Oops...",
+          showConfirmButton: false,
+          timer: 3000,
+          text: "Limit Value Cannot be Greater Than Max Value",
+          footer: "<a href>CleverTech</a>",
+      });
+    }else{
         $.ajax({
           type: "POST",
           url: "api/sensorsconfigurations/saveco2",
@@ -329,7 +478,8 @@ $(document).ready(function(){
               $("#updatecarbondioxideSetting").show();
           }
       });
-    })
+    }
+    });
 
     $("#updatecarbondioxideSetting").click(function(event){
       //   event.preventDefault();
@@ -342,7 +492,16 @@ $(document).ready(function(){
         };
       //   var tempSettForm = $("#temperatureSettingForm");
       //   $("#temperatureSettingForm").submit();
-
+      if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+        swal.fire({
+          icon: "error",
+          title: "Oops...",
+          showConfirmButton: false,
+          timer: 3000,
+          text: "Limit Value Cannot be Greater Than Max Value",
+          footer: "<a href>CleverTech</a>",
+      });
+    }else{
         $.ajax({
           type: "PUT",
           url: "api/sensorsconfigurations/"+formData.id+"/updateco2",
@@ -361,27 +520,29 @@ $(document).ready(function(){
               });
           }
       });
-  })
-    })
+    }
+  });
+    });
 
     $("#humidityNavBtn").click(function(){
       // LIGHT
       $.ajax({
         type: "GET",
-        url: "api/sensorsconfigurations/humiditySetting",
+        url: "api/sensorsconfigurations",
         dataType: "json",
         encode: true,
         success: function(data)
         {
+          let tempobj = JSON.parse(data[0].configuration_value);
             if(data.length==0){
                 $("#updatehumiditySetting").hide();
             }else{
                 $("#savehumiditySetting").hide();
                 $("#updatehumiditySetting").show();
-                $("#humiditysensor_limit_value").val(data[0].sensor_limit_value);
-                $("#humiditysensor_max_value").val(data[0].sensor_max_value);
+                $("#humiditysensor_limit_value").val(tempobj.humiditylimitval);
+                $("#humiditysensor_max_value").val(tempobj.humiditymaxval);
                 $("#humidityid").val(data[0].id);
-                $("#humidityisOn").val(data[0].isOn);
+                $("#humidityisOn").val(tempobj.humiditystatusval);
             }
         }
     });
@@ -397,7 +558,16 @@ $(document).ready(function(){
         };
       //   var tempSettForm = $("#temperatureSettingForm");
       //   $("#temperatureSettingForm").submit();
-
+      if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+        swal.fire({
+          icon: "error",
+          title: "Oops...",
+          showConfirmButton: false,
+          timer: 3000,
+          text: "Limit Value Cannot be Greater Than Max Value",
+          footer: "<a href>CleverTech</a>",
+      });
+    }else{
         $.ajax({
           type: "POST",
           url: "api/sensorsconfigurations/savehumidity",
@@ -419,7 +589,8 @@ $(document).ready(function(){
               $("#updatehumiditySetting").show();
           }
       });
-    })
+    }
+    });
 
     $("#updatehumiditySetting").click(function(event){
       //   event.preventDefault();
@@ -432,7 +603,16 @@ $(document).ready(function(){
         };
       //   var tempSettForm = $("#temperatureSettingForm");
       //   $("#temperatureSettingForm").submit();
-
+      if(parseInt(formData.sensor_limit_value)>parseInt(formData.sensor_max_value)){
+        swal.fire({
+          icon: "error",
+          title: "Oops...",
+          showConfirmButton: false,
+          timer: 3000,
+          text: "Limit Value Cannot be Greater Than Max Value",
+          footer: "<a href>CleverTech</a>",
+      });
+    }else{
         $.ajax({
           type: "PUT",
           url: "api/sensorsconfigurations/"+formData.id+"/updatehumidity",
@@ -451,7 +631,8 @@ $(document).ready(function(){
               });
           }
       });
-  })
-    })
+    }
+  });
+    });
    
 });

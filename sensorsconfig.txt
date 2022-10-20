@@ -27,7 +27,7 @@ int photovalue = 0;
 float co2amount = 0; 
 
 char server[] = "192.168.2.102";
-IPAddress ip(192,168,2,103); 
+IPAddress ip(192,168,2,181); 
 EthernetClient client; 
 
 int tempsenId=1;
@@ -95,7 +95,7 @@ void sendDataToDB()   //CONNECTING WITH MYSQL
     dataToAddDBreview = (temperaturePostName+temperatureData+humidityPostName+humidityData+lightPostName+photovalue+co2PostName+co2amount);
     
     client.println("POST /MMS/MmsSensorsData.php HTTP/1.1");
-    client.println("Host: 192.168.2.102");
+    client.println("Host: 192.168.1.180");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.print("Content-Length: ");
     client.println(dataToAddDBreview.length());
@@ -143,4 +143,4 @@ void co2Sensor(){
 //   Serial.print ("ppm: ");
 //   Serial.println (co2amount);
 //   //end gas sensor
-}
+}4

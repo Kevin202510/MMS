@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 
 use App\Models\Roles;
 
@@ -28,6 +29,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
 
     /**
      * The attributes that should be cast to native types.
@@ -39,9 +41,17 @@ class User extends Authenticatable
         'fullName',
         'roleName',
         'statusName',
+        'passwordName',
     ];
 
-    public function getFullNameAttribute()
+    
+    public function getPasswordNameAttribute()
+    {
+        $password=crypt::decryptString($this->password);
+        $newpass = substr($password, 0, strpos($password, "$"));
+        return $newpass;
+    }
+        public function getFullNameAttribute()
         {
             $fn=$this->fname.' '.$this->lname;
             return  strtoupper($fn);

@@ -12,7 +12,7 @@
               @csrf
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Upload</span>
+                  <span class="input-group-text"> <i class="far fa-file-csv"></i>   Upload</span>
                 </div>
                 <div class="custom-file">
                   <input type="file" class="custom-file-input" id="upload_usersdata" name="upload_usersdata">

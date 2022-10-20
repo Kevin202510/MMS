@@ -15,10 +15,9 @@ class CreateSensorconfigurationsTable extends Migration
     {
         Schema::create('sensorsconfigurations', function (Blueprint $table) {
             $table->id();
-            $table->string("sensor_name");
-            $table->double("sensor_limit_value");
-            $table->double("sensor_max_value");
-            $table->integer("isOn")->default(0);
+            $table->string("configuration_name");
+            $table->json("configuration_value")->comment("Preset Value For Sensors");
+            $table->integer("isActive")->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +28,7 @@ class CreateSensorconfigurationsTable extends Migration
      *
      * @return void
      */
+    
     public function down()
     {
         Schema::dropIfExists('sensorsconfigurations');

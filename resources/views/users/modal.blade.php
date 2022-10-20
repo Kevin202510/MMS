@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title text-center" id="modal-title"> Add User </h4>
+                <h4 class="modal-title text-center" id="modal-title">Add Users</h4>
                 <div class="pull-left"><button type="button" class="close" data-dismiss="modal"><span class="fa fa-times"></button></div>
             </div>
             <div class="modal-body">
@@ -44,6 +44,10 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Username</span>
                                     <input type="email" aria-label="Description" id="username" name="username" class="form-control">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Password</span>
+                                    <input type="text" aria-label="Description" id="password" name="password" class="form-control">
                                 </div>
                             </div>
 
