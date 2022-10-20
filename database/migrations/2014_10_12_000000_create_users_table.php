@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('contact')->nullable();
             $table->boolean('isApproved')->default(0);
             $table->string('username')->unique();
-            $table->string('password')->default(md5("password"));
+            $table->string('password')->default(Hash::make("password"));
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

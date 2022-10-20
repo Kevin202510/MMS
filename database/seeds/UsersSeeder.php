@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
                 'lname' => 'caluag',
                 'isApproved' => 1,
                 'username' => 'superadmin',
-                'password' => md5("password"),
+                'password' => Hash::make("password"),
             ]
             ]);
     }
