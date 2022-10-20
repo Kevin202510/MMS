@@ -35,7 +35,9 @@ class Sensorsconfiguration extends Model
 
     public function getDatetimeValAttribute()
     {
-        return $this->deleted_at->format('M-d-Y'). ' '. $this->deleted_at->format('g:i:s A');
+        if($this->deleted_at!=NULL){
+            return $this->deleted_at->format('M-d-Y'). ' '. $this->deleted_at->format('g:i:s A');
+        }
     }
 
     public function getTemperatureSensorMinValAttribute(){return $this->configuration_value->temperatureSensorMinVal;}

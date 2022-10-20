@@ -141,7 +141,7 @@ class UserController extends Controller
 
     public function updatePassword(Request $request, User $user)
     {
-        $updateuserdata = ["password"=> crypt::encryptString($request->password."$".env('SECRET_KEY')),];
+        $updateuserdata = ["password"=> md5($request->password),];
         $user->update($updateuserdata);
         return response()->json($user, 200);
     }

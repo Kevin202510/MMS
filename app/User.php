@@ -47,9 +47,8 @@ class User extends Authenticatable
     
     public function getPasswordNameAttribute()
     {
-        $password=crypt::decryptString($this->password);
-        $newpass = substr($password, 0, strpos($password, "$"));
-        return $newpass;
+        $password=md5($this->password);
+        return $password;
     }
         public function getFullNameAttribute()
         {

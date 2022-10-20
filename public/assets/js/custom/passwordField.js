@@ -48,9 +48,9 @@ $(document).ready(function(){
     });
 
     $("#btnPrPasswordEditSave").click(function(event){
-        if($("#password").val() === $("#currentpassword").val()){
+        if($("#password").val() == CryptoJS.MD5($("#currentpassword").val())){
             if($("#newPassword").val().length>=8){
-                if($("#newPassword").val() === $("#confirmPassword").val()){
+                if($("#newPassword").val() == $("#confirmPassword").val()){
                     event.preventDefault();
                     var formData = {
                         id: $("#id").val(),

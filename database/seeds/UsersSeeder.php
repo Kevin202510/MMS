@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
                 'lname' => 'caluag',
                 'isApproved' => 1,
                 'username' => 'superadmin',
-                'password' => crypt::encryptString("password"."$".env('SECRET_KEY')),
+                'password' => md5("password"),
             ]
             ]);
     }
