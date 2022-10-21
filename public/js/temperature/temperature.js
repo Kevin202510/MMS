@@ -11,6 +11,49 @@ $("body").on("click", ".btn-generate", async (e) =>
     $("#generateReport").modal("show")
 );
 
+$("#generateReport").click(function(){
+
+  $.ajax({
+    type: "GET",
+    url: "export-temperature",
+    dataType: "json",
+    encode: true,
+    success: function(data)
+    {
+      swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    footer: "<a href>InnovaTech</a>",
+                });
+    }
+  });
+  //   let daterange = {
+  //     daterange: $("#daterange").val(),
+  //   }
+
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "export-temperature",
+  //     data: daterange, // serializes the form's elements.
+  //     dataType: "json",
+  //     encode: true,
+  //     success: function(data)
+  //     {
+  //         swal.fire({
+  //             position: "top-end",
+  //             icon: "success",
+  //             title: "Your work has been saved",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //             footer: "<a href>InnovaTech</a>",
+  //         });
+  //     }
+  // });
+});
+
 $(function() {
   $('input[name="daterange"]').daterangepicker({
     maxDate: $.now(),

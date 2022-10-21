@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Temperature;
 use Illuminate\Http\Request;
+use PDF;
+use App\Exports\TemperatureExport;
 
 class TemperatureController extends Controller
 {
@@ -31,9 +33,15 @@ class TemperatureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function export(Request $request)
     {
-        //
+        // $daterange = $request->daterange;
+        // $substring = strtok($daterange, "-");
+        // $substring1 = substr($daterange,13);
+        // dd($substring->format('M-d-Y'),$substring1->format('M-d-Y'));
+        $temperature=Temperature::all();
+        $temperaturedata = PDF::loadView('temperature.exportTemperature',compact('temperature'));
+        return $temperaturedata->download('temperature-data.pdf');
     }
 
     /**

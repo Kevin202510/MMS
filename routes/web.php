@@ -29,51 +29,43 @@ Route::middleware('admin')->group(function () {
     Route::get('/users', function () { return view('users.index'); })->name('Users')->middleware('auth');
     Route::get('/roles', function () { return view('roles.index'); })->name('Roles')->middleware('auth');
     Route::get('/export', 'UserController@export')->name('Export')->middleware('auth');
+    Route::get('/export-temperature', 'TemperatureController@export')->name('Export')->middleware('auth');
+    Route::get('/export-humidity', 'HumidityController@export')->name('Export')->middleware('auth');
+    Route::get('/export-carbondioxide', 'CarbonDioxideController@export')->name('Export')->middleware('auth');
+    Route::get('/export-lights', 'LightsController@export')->name('Export')->middleware('auth');
     
     // API's
 
     Route::prefix('/api/humidity')->group(function() 
     {
         Route::post('/save', 'HumidityController@save'); 
-        Route::put('/{roles}/update', 'HumidityController@update');
-        Route::delete('/{roles}/destroy', 'HumidityController@destroy');  
     });
 
     Route::prefix('/api/carbondioxide')->group(function() 
     {
         Route::post('/save', 'CarbonDioxideController@save'); 
-        Route::put('/{roles}/update', 'CarbonDioxideController@update');
-        Route::delete('/{roles}/destroy', 'CarbonDioxideController@destroy');  
     });
 
     Route::prefix('/api/soil')->group(function() 
     {
         Route::post('/save', 'SoilmoistureController@save'); 
-        Route::put('/{roles}/update', 'SoilmoistureController@update');
-        Route::delete('/{roles}/destroy', 'SoilmoistureController@destroy');  
     });
 
     Route::prefix('/api/water')->group(function() 
     {
         Route::post('/save', 'WaterlevelController@save'); 
-        Route::put('/{roles}/update', 'WaterlevelController@update');
-        Route::delete('/{roles}/destroy', 'WaterlevelController@destroy');  
     });
 
 
     Route::prefix('/api/light')->group(function() 
     {
-        Route::post('/save', 'HumidityController@save'); 
-        Route::put('/{roles}/update', 'HumidityController@update');
-        Route::delete('/{roles}/destroy', 'HumidityController@destroy');  
+        Route::post('/save', 'LightsController@save');  
     });
 
 
     Route::prefix('/api/temperature')->group(function() 
     {
         Route::post('/save', 'TemperatureController@save'); 
-        Route::put('/{roles}/update', 'TemperatureController@update');
-        Route::delete('/{roles}/destroy', 'TemperatureController@destroy');  
     });
 
     Route::prefix('/api/users')->group(function() 

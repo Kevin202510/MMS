@@ -58,7 +58,7 @@ class UserController extends Controller
     public function export()
     {
         $users = $users=User::where('role_id' , '!=' , '1')->get();
-        return Excel::store(new UsersExport($users),'users.csv');
+        return Excel::download(new UsersExport($users),'users.csv');
     }
 
     public function upload(Request $request)

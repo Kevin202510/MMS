@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
-    <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
+    <!-- <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/> -->
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 
     <style>

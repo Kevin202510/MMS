@@ -8,6 +8,7 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         @media screen and (max-width: 996px) {
             #heads {

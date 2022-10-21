@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lights;
 use Illuminate\Http\Request;
+use PDF;
 
 class LightsController extends Controller
 {
@@ -17,6 +18,17 @@ class LightsController extends Controller
         $lights=Lights::whereNull('deleted_at')
                                 ->orderBy('id', 'DESC')->get();
         return response()->json($lights);
+    }
+
+    public function export(Request $request)
+    {
+        // $daterange = $request->daterange;
+        // $substring = strtok($daterange, "-");
+        // $substring1 = substr($daterange,13);
+        // dd($substring->format('M-d-Y'),$substring1->format('M-d-Y'));
+        $lights=Lights::all();
+        $lightsdata = PDF::loadView('lights.exportLights',compact('lights'));
+        return $lightsdata->download('lights-data.pdf');
     }
 
     public function index2()

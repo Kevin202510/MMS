@@ -8,16 +8,15 @@
         </button>
       </div>
       <div class="modal-body">
-      
-            <!-- <input type="text" name="daterange"/> -->
+        <form id="generateReport">
             <div class="form-group">
-              <label class="d-block">Date Range Picker With Button</label>
-              <input type="text" aria-label="Item Code" name="daterange" class="form-control">
+              <label class="d-block">Date Range</label>
+              <input type="text" id="daterange" name="daterange" class="form-control">
             </div>
-            
+        </form>
       </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary">Generate</button>
         </div>
     </div>
   </div>

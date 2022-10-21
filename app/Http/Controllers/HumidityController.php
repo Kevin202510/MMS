@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Humidity;
 use Illuminate\Http\Request;
+use PDF;
 
 class HumidityController extends Controller
 {
@@ -24,6 +25,17 @@ class HumidityController extends Controller
         $humidity=Humidity::whereNull('deleted_at')
                                 ->orderBy('id', 'DESC')->limit(10)->get();
         return response()->json($humidity);
+    }
+
+    public function export(Request $request)
+    {
+        // $daterange = $request->daterange;
+        // $substring = strtok($daterange, "-");
+        // $substring1 = substr($daterange,13);
+        // dd($substring->format('M-d-Y'),$substring1->format('M-d-Y'));
+        $humidity=Humidity::all();
+        $humiditydata = PDF::loadView('humidity.exportHumidity',compact('humidity'));
+        return $humiditydata->download('humidity-data.pdf');
     }
 
     /**

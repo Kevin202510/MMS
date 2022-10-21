@@ -12,6 +12,49 @@ var humidityLabel = [];
 var humidityData = [];
 var myHumidityChart;
 
+$("#generateReport").click(function(){
+
+  $.ajax({
+    type: "GET",
+    url: "export-humidity",
+    dataType: "json",
+    encode: true,
+    success: function(data)
+    {
+      swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    footer: "<a href>InnovaTech</a>",
+                });
+    }
+  });
+  //   let daterange = {
+  //     daterange: $("#daterange").val(),
+  //   }
+
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "export-temperature",
+  //     data: daterange, // serializes the form's elements.
+  //     dataType: "json",
+  //     encode: true,
+  //     success: function(data)
+  //     {
+  //         swal.fire({
+  //             position: "top-end",
+  //             icon: "success",
+  //             title: "Your work has been saved",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //             footer: "<a href>InnovaTech</a>",
+  //         });
+  //     }
+  // });
+});
+
 function table(){
     $.ajax({
       url: 'api/humidity/getNewVal',

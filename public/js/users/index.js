@@ -101,15 +101,19 @@ function updateStatusApprove(id){
         confirmButtonText: "Yes, Approve it!",
     }).then((result) => {  
 	/* Read more about isConfirmed, isDenied below */  
-    if (result.isConfirmed) {   
+    console.log(result);
+    if (result.value==true) {   
 
-        var stat = {isApproved:1};
+        let stat = {
+            isApproved:1,
+        };
         
         $.ajax({
             type: "PUT",
             url: "api/users/"+id+"/updatestatus",
+            data: stat, // serializes the form's elements.
+            dataType: "json",
             encode: true,
-            data: stat,
             success: function(data)
             {
                 swal.fire({
