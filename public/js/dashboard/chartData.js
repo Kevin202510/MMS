@@ -38,6 +38,7 @@ function startChart(){
     encode: true,
     success: function(datas)
     {
+        $("#config_name").html(datas[0].configuration_name);
         if(datas[0].temperaturestatusval==0){
           myTemperatureChart.stop();
           $("#tempstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');

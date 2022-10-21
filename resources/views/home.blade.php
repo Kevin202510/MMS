@@ -18,6 +18,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <div class="card-header">
+                            <h5><i class="fas fa-leaf" style="color:#22f545;"></i> <span id="config_name"></span></h5>
+                        </div>
                         <div class="card-body">
                         <div class="row">
                             <div class="col-12 col-md-6">
