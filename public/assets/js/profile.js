@@ -93,11 +93,15 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+$(document).ready(function(){
+  $('#prof').attr('src',"profiles/"+$("#pfImages").val());
+});
 $(document).on('click', '.edit-profile', function (event) {
   $('#editProfileUserId').val(loggedInUser.id);
   $('#pfName').val(loggedInUser.name);
   $('#pfEmail').val(loggedInUser.email);
   $('#EditProfileModal').appendTo('body').modal('show');
+  $('#edit_preview_photo').attr('src',"profiles/"+$("#pfImages").val());
 });
 $(document).on('change', '#pfImage', function () {
   var ext = $(this).val().split('.').pop().toLowerCase();

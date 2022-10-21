@@ -35,7 +35,6 @@ class UserController extends Controller
           'contact'     => $request->contact,
           'username'    => $request->username,
           'role_id'  => $request->role_id,
-          "password"=> Hash::make($request->password),
       ]);
 
     //   dd(response()->json($users));
@@ -44,14 +43,23 @@ class UserController extends Controller
 
     public function updateProfile(Request $request, User $user)
     {
+
+      $profile = $request->file('pfImage');
+        $input['pfImage'] = time().'.'.$profile->getClientOriginalExtension();
+        $destinationPath = public_path('/profiles');
+        $profile->move($destinationPath,$input['pfImage']);
+
+
         $updateuserdata = ["fname"=>$request->fname,
         "lname"=>$request->lname,
         "role_id"=>$request->role_id,
         "isApproved"=>$request->isApproved,
         "address"=>$request->address,
         "contact"=>$request->contact,
-        "username"=>$request->username,];
+        "username"=>$request->username,
+        "profile"=>$input['pfImage']];
         $user->update($updateuserdata);
+
         return response()->json($user, 200);
     }
 

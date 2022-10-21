@@ -22,6 +22,11 @@
                   <div class="card-body">
                       <canvas style="display: block; width: 1002px; height: 180px;" id="temperatureChart"></canvas>
                       <center id="tempstat"></center>
+                      <center style="margin-top:10px;">
+                          <div class="badge badge-warning" id="warning"></div>
+                          <div class="badge badge-success" id="success"></div>
+                          <div style="margin-top:5px;" class="badge badge-danger" id="danger"></div>
+                      </center>
                   </div>
               </div>
           </div>
@@ -33,17 +38,14 @@
                     <h4>Temperature Sensor Data</h4>
                     <div class="card-header-form">
                     <!-- <button type="button" class="btn btn-primary">Generate Report <i class="far fa-file-invoice"></i></button> -->
-                    <div class="badge badge-warning" id="warning"></div>
-                    <div class="badge badge-success" id="success"></div>
-                    <div class="badge badge-danger" id="danger"></div>
-                      <!-- <form>
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search">
-                          <div class="input-group-btn">
-                            <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                        <form>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="searchData" placeholder="Search by Temperature">
+                            <div class="input-group-btn">
+                              <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
                           </div>
-                        </div>
-                      </form> -->
+                        </form>
                     </div>
                   </div>
                   <div class="card-body p-0">

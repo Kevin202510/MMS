@@ -160,7 +160,7 @@ Route::middleware('employeeOrAdmin')->group(function () {
 
     Route::prefix('/api/users')->group(function() 
     {
-        Route::put('/{user}/updateProfile', 'UserController@updateProfile'); 
+        Route::post('/{user}/updateProfile', 'UserController@updateProfile'); 
         Route::put('/{user}/updatePassword', 'UserController@updatePassword'); 
     });
 });

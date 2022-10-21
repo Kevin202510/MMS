@@ -22,6 +22,11 @@
                   <div class="card-body">
                       <canvas style="display: block; width: 1002px; height: 180px;" id="lightChart"></canvas>
                       <center id="lightstat"></center>
+                      <center style="margin-top:5px;">
+                      <div class="badge badge-warning" id="warning"></div>
+                    <div class="badge badge-success" id="success"></div>
+                    <div class="badge badge-danger" id="danger"></div>   
+                        </center>
                   </div>
               </div>
           </div>
@@ -33,17 +38,14 @@
                     <h4>Lights Sensor Data</h4>
                     <div class="card-header-form">
                     <!-- <div class="card-header-form"> -->
-                    <div class="badge badge-warning" id="warning"></div>
-                    <div class="badge badge-success" id="success"></div>
-                    <div class="badge badge-danger" id="danger"></div>   
-                    <!-- <form>
+                    <form>
                         <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" id="searchData" placeholder="Search by Lights">
                           <div class="input-group-btn">
                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                           </div>
                         </div>
-                      </form> -->
+                      </form>
                     </div>
                   </div>
                   <div class="card-body p-0">

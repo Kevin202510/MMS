@@ -45,10 +45,6 @@
                                     <span class="input-group-text">Username</span>
                                     <input type="email" aria-label="Description" id="username" name="username" class="form-control">
                                 </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Password</span>
-                                    <input type="text" aria-label="Description" id="password" name="password" class="form-control">
-                                </div>
                             </div>
 
                             <!-- <div class="col-md-12">

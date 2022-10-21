@@ -6,7 +6,7 @@
                 <h5 class="modal-title">Edit Profile</h5>
                 <button type="button" aria-label="Close" class="close outline-none" data-dismiss="modal">×</button>
             </div>
-            <form id="editProfileForm" enctype="multipart/form-data">
+            <form enctype="multipart/form-data">
                 <div class="modal-body">
                     <input type="hidden" name="id" id="id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
                     <input type="hidden" name="role_id" id="role_id" value="{{\Illuminate\Support\Facades\Auth::user()->role_id}}">
@@ -15,6 +15,7 @@
                     <div class="row">
                         <div class="form-group col-sm-6">
                             <label>Firstname</label><span class="required">*</span>
+                            <input type="hidden" id="pfImages" value="{{\Illuminate\Support\Facades\Auth::user()->profile}}">
                             <input type="text" name="fname" id="fname" value="{{\Illuminate\Support\Facades\Auth::user()->fname}}" class="form-control" required autofocus tabindex="1">
                         </div>
                         <div class="form-group col-sm-6 d-flex">
@@ -24,12 +25,12 @@
                                 <label
                                         class="image__file-upload btn btn-primary text-white"
                                         tabindex="2"> Choose
-                                    <input type="file" name="photo" id="pfImage" class="d-none" >
+                                    <input type="file" name="pfImage" id="pfImage" class="d-none" >
                                 </label>
                             </div>
                             <div class="col-sm-3 preview-image-video-container float-right mt-1">
                                 <img id='edit_preview_photo' class="img-thumbnail user-img user-profile-img profilePicture"
-                                     src="{{asset('img/logo.png')}}"/>
+                                     src="{{asset('profiles/logo.png')}}"/>
                             </div>
                         </div>
                     </div>

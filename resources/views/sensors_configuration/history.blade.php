@@ -21,7 +21,7 @@
                       </div>
                      <form>
                         <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" id="searchData" placeholder="Search configuration name">
                           <div class="input-group-btn">
                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                           </div>

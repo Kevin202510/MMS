@@ -15,6 +15,7 @@
     <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ asset('js/sweetalert.js') }}"></script>
     <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 @yield('page_css')
 <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
@@ -50,7 +51,6 @@
 @include('profile.edit_profile')
 
 </body>
-<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('js/modules/moment.min.js') }}"></script>
 <script src="{{ asset('js/modules/daterangepicker.js') }}"></script>
@@ -90,26 +90,33 @@
     $(document).ready(function(){
             $("#btnPrEditSave").click(function(event){
               event.preventDefault();
-              var formData = {
-                id: $("#id").val(),
-                role_id: $("#role_id").val(),
-                isApproved: $("#isApproved").val(),
-                fname: $("#fname").val(),
-                lname: $("#lname").val(),
-                address: $("#address").val(),
-                contact: $("#contact").val(),
-                username: $("#username").val(),
-                password:$("#user_password").val(),
-              };
+              let pkey = $("#id").val();
+
+              var datas = $("#pfImage")[0].files;
+
+                var fd = new FormData();
+                
+                fd.append('pfImage',datas[0]);
+                fd.append('id',$("#id").val());
+                fd.append('role_id',$("#role_id").val());
+                fd.append('isApproved',$("#isApproved").val());
+                fd.append('fname',$("#fname").val());
+                fd.append('lname',$("#lname").val());
+                fd.append('address',$("#address").val());
+                fd.append('contact',$("#contact").val());
+                fd.append('username',$("#username").val());
+
             //   var tempSettForm = $("#temperatureSettingForm");
             //   $("#temperatureSettingForm").submit();
-      
+                console.log(fd);
               $.ajax({
-                type: "PUT",
-                url: "api/users/"+formData.id+"/updateProfile",
-                data: formData, // serializes the form's elements.
-                dataType: "json",
-                encode: true,
+                type: "POST",
+                url: "api/users/"+pkey+"/updateProfile",
+                data: fd, // serializes the form's elements.
+                dataType: "JSON",
+                contentType: false,
+                cache:false,
+                processData:false,
                 success: function(data)
                 {
                     swal.fire({
@@ -120,6 +127,8 @@
                         timer: 1500,
                         footer: "<a href>InnovaTech</a>",
                     });
+
+                    location.reload();
                     $('#user_password').attr('type', 'password');
                     $('#showhidepass i').addClass( "fa-eye-slash" );
                     $('#showhidepass i').removeClass( "fa-eye" );
