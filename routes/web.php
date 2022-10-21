@@ -29,10 +29,6 @@ Route::middleware('admin')->group(function () {
     Route::get('/users', function () { return view('users.index'); })->name('Users')->middleware('auth');
     Route::get('/roles', function () { return view('roles.index'); })->name('Roles')->middleware('auth');
     Route::get('/export', 'UserController@export')->name('Export')->middleware('auth');
-    Route::get('/export-temperature', 'TemperatureController@export')->name('Export')->middleware('auth');
-    Route::get('/export-humidity', 'HumidityController@export')->name('Export')->middleware('auth');
-    Route::get('/export-carbondioxide', 'CarbonDioxideController@export')->name('Export')->middleware('auth');
-    Route::get('/export-lights', 'LightsController@export')->name('Export')->middleware('auth');
     
     // API's
 
@@ -102,6 +98,10 @@ Route::middleware('employeeOrAdmin')->group(function () {
     Route::get('/carbondioxide', function () { return view('carbondioxide.index'); })->name('CarbonDioxide')->middleware('auth');
     Route::get('/soil', function () { return view('soil.index'); })->name('SoilMoisture')->middleware('auth');
     Route::get('/water', function () { return view('water.index'); })->name('WaterLevel')->middleware('auth');
+    Route::get('/export-temperature', 'TemperatureController@export')->name('Export')->middleware('auth');
+    Route::get('/export-humidity', 'HumidityController@export')->name('Export')->middleware('auth');
+    Route::get('/export-carbondioxide', 'CarbonDioxideController@export')->name('Export')->middleware('auth');
+    Route::get('/export-lights', 'LightsController@export')->name('Export')->middleware('auth');
 
 
     Route::prefix('/api/humidity')->group(function() 
