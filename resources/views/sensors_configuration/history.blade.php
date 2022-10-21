@@ -49,7 +49,7 @@
             </div>
         </div>
     </section>
-@include('sensors_configuration/modal')
+    @include('sensors_configuration/modal')
 @endsection
 
 @section('javascript')

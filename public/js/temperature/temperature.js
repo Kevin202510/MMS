@@ -1,6 +1,10 @@
 $(document).ready(function(){
+  showTemperatureChart();
     table();
-    showTemperatureChart();
+
+    setInterval(function(){
+      table();
+      }, 5000);
 });
 
 $("body").on("click", ".btn-generate", async (e) =>
@@ -16,11 +20,9 @@ $(function() {
   });
 });
 
-$(document).ready(function(){
-    setInterval(function(){
-        table();
-        }, 20000);
-})
+var temperatureLabel = [];
+var temperatureData = [];
+var myTemperatureChart; 
 
 function table(){
     $.ajax({
@@ -42,7 +44,6 @@ function table(){
                 html += '<tr><td class="text-break">' + data[bb].temperature + ' °C</td><td class="text-break"><div class="badge '+state+'">' + data[bb].statusName + '</div></td><td class="text-break">' + data[bb].date + '</td><td class="text-break">' + data[bb].time + '</td></tr>'
             });
             $('#table-main').html(html);
-            fetchTemperature();
           }else{
             $('#table-main').html('<tr><td colspan="5"><center>NO AVAILABLE DATA<center></td></tr>');
           }
@@ -54,19 +55,28 @@ function table(){
       url: "api/sensorsconfigurations",
       dataType: "json",
       encode: true,
-      success: function(data)
+      success: function(datas)
       {
-        let tempobj = JSON.parse(data[0].configuration_value);
-          $("#success").text(tempobj.temperatureSensorMinVal + " °C above is Good Temperature");
-          $("#warning").text(tempobj.temperatureSensorMinVal + " °C below is Low Temperature");
-          $("#danger").text(tempobj.temperatureSensorMaxVal + " °C above is High Temperature");
-      }
-  });
-}
+        // console.log(datas[0].temperatureSensorMinVal);
+          $("#success").text(datas[0].temperatureSensorMinVal + " °C above is Good Temperature");
+          $("#warning").text(datas[0].temperatureSensorMinVal + " °C below is Low Temperature");
+          $("#danger").text(datas[0].temperatureSensorMaxVal + " °C above is High Temperature");
 
-var temperatureLabel = [];
-var temperatureData = [];
-var myTemperatureChart; 
+          if(datas[0].temperaturestatusval==0){
+            // myTemperatureChart.destroy();
+            // showTemperatureChart();
+            myTemperatureChart.reset();
+            myTemperatureChart.data.labels.pop();
+            myTemperatureChart.data.datasets[0].data = [];
+            myTemperatureChart.update();
+            $("#tempstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+          }else{
+            fetchTemperature();
+          }
+      }
+    });
+
+}
 
 function fetchTemperature(){
   $.ajax({
@@ -81,8 +91,8 @@ function fetchTemperature(){
         $.each (newdata, function (bb) {
               temperatureLabel.push(newdata[bb].temperature + "°C");
               temperatureData.push(newdata[bb].temperature);
-              // alert(bb);
               if(data.length-1==bb){
+                showTemperatureChart();
                 if(data[bb].status == 0){
                   $("#tempstat").html('<div class="badge badge-danger">'+data[bb].statusName+'</div>');
                 }else if(data[bb].status == 1){
@@ -91,12 +101,13 @@ function fetchTemperature(){
                   $("#tempstat").html('<div class="badge badge-warning">'+data[bb].statusName+'</div>');
                 }
               }
+              
           });   
-          // tempstat
-        showTemperatureChart();
     }
-  })
+  });
 }
+
+
 
 "use strict";
 

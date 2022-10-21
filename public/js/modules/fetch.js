@@ -110,7 +110,13 @@ const engrave = async (url, params, willEngrave = false) => {
  * @returns Updated Model
  */
 const update = async (_entity, pk, params, withMsge = true) => {
-    let url = `/${_entity.baseUrl}/${pluralize(_entity.name)}/${pk}/update`;
+    let entname;
+    if (_entity.name=="sensorsconfigurations/index") {
+        entname="sensorsconfiguration";
+    }else{
+        entname=_entity.name;
+    }
+    let url = `/${_entity.baseUrl}/${pluralize(entname)}/${pk}/update`;
     const model = await request(url, params, "PUT");
     if (model) {
         if (withMsge) {
@@ -164,6 +170,9 @@ const updateOrCreate = async (url, params, method) => {
  * @returns Boolean
  */
 const destroy = async (_entity, pk, remove = true, params = null) => {
+
+    let entname;
+
     const { value: result } = await swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -176,12 +185,56 @@ const destroy = async (_entity, pk, remove = true, params = null) => {
     });
     if (result) {
         let key = params ? `?${objectToQueryString(params)}` : "";
+        if (_entity.name=="sensorsconfigurations/index") {
+            entname="sensorsconfiguration";
+        }else{
+            entname=_entity.name;
+        }
         let url = `/${_entity.baseUrl}/${pluralize(
-            _entity.name
+            entname
         )}/${pk}/destroy${key}`;
         const response = await request(url, "", "DELETE");
         if (response) {
             if (response.success) {
+                $(`#${entname}-${pk}`).remove();
+                swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    footer: "<a href>CleverTech</a>",
+                });
+            }
+
+            if (remove) $(`#model-${pk}`).remove();
+            return true;
+        }
+    } else {
+        return false;
+    }
+};
+
+const recover = async (_entity, pk, remove = true, params = null) => {
+    const { value: result } = await swal.fire({
+        title: "Are you sure?",
+        text: "You want to recover this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, recover it!",
+        footer: "<a href>CleverTech</a>",
+    });
+    if (result) {
+        let key = params ? `?${objectToQueryString(params)}` : "";
+        let url = `/${_entity.baseUrl}/${pluralize(
+            _entity.name
+        )}/${pk}/recover${key}`;
+        const response = await request(url, "", "DELETE");
+        if (response) {
+            if (response.success) {
+                
                 $(`#${_entity.name}-${pk}`).remove();
                 swal.fire({
                     position: "top-end",
@@ -198,6 +251,39 @@ const destroy = async (_entity, pk, remove = true, params = null) => {
         }
     } else {
         return false;
+    }
+};
+
+const activate = async (_entity, pk, params, withMsge = true) => {
+
+    const { value: result } = await swal.fire({
+        title: "Are you sure?",
+        text: "You want to activate this!",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, activate it!",
+        footer: "<a href>CleverTech</a>",
+    });
+    if (result) {
+
+        let url = `/${_entity.baseUrl}/${pluralize(_entity.name)}/${pk}/activate`;
+        const model = await request(url, params, "PUT");
+        if (model) {
+            if (withMsge) {
+                swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500,
+                    footer: "<a href>CleverTech</a>",
+                });
+            }
+            return model;
+        }
+
     }
 };
 
@@ -271,6 +357,7 @@ const writer = (_entity, model) => {
     let group = $("<div>", { class: "btn-group" });
     Object.keys(actions).map((key) => {
         let icons = actions[key][0];
+        // alert(icons);
         if (actions[key][0].length == 3) {
             icons =
                 model[actions[key][0][0][0]] == actions[key][0][0][1]
@@ -586,6 +673,7 @@ export default {
     engrave,
     updateOrCreate,
     destroy,
+    recover,
     writer,
     writerUser,
     translate,
@@ -593,4 +681,5 @@ export default {
     showOnModal,
     viewOnModal,
     option_list,
+    activate,
 };

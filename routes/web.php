@@ -29,16 +29,8 @@ Route::middleware('admin')->group(function () {
     Route::get('/users', function () { return view('users.index'); })->name('Users')->middleware('auth');
     Route::get('/roles', function () { return view('roles.index'); })->name('Roles')->middleware('auth');
     Route::get('/export', 'UserController@export')->name('Export')->middleware('auth');
-    Route::get('/sensorsconfiguration', function () { return view('sensors_configuration.index'); })->name('Sensor Configuration')->middleware('auth');
-    Route::get('/sensorsconfigurationhistory', function () { return view('sensors_configuration.history'); })->name('Sensor Configuration History')->middleware('auth');
     
     // API's
-    Route::prefix('/api/sensorsconfigurations')->group(function() 
-    {
-        Route::post('/save', 'SensorsconfigurationController@save'); 
-        Route::put('/{sensorsconfiguration}/update', 'SensorsconfigurationController@update');
-        Route::delete('/{sensorsconfiguration}/destroy', 'SensorsconfigurationController@destroy');  
-    });
 
     Route::prefix('/api/humidity')->group(function() 
     {
@@ -110,6 +102,8 @@ Route::middleware('admin')->group(function () {
 
 Route::middleware('employeeOrAdmin')->group(function () {
 
+    Route::get('/sensorsconfiguration', function () { return view('sensors_configuration.index'); })->name('Sensor Configuration')->middleware('auth');
+    Route::get('/sensorsconfigurationhistory', function () { return view('sensors_configuration.history'); })->name('Sensor Configuration History')->middleware('auth');
     Route::get('/temperature', function () { return view('temperature.index'); })->name('Temperature')->middleware('auth');
     Route::get('/humidity', function () { return view('humidity.index'); })->name('Humidity')->middleware('auth');
     Route::get('/light', function () { return view('lights.index'); })->name('Light')->middleware('auth');
@@ -159,7 +153,17 @@ Route::middleware('employeeOrAdmin')->group(function () {
     Route::prefix('/api/sensorsconfigurations')->group(function() 
     {
         Route::get('/', 'SensorsconfigurationController@index1');
-        Route::get('/histories', 'SensorsconfigurationController@index2');
+        Route::get('/indexs', 'SensorsconfigurationController@index');
+        Route::put('/indexs/{sensorsconfiguration}/activate', 'SensorsconfigurationController@activate');
+        Route::post('/save', 'SensorsconfigurationController@save'); 
+        Route::put('/{sensorsconfiguration}/update', 'SensorsconfigurationController@update');
+        Route::delete('/{sensorsconfiguration}/destroy', 'SensorsconfigurationController@destroy');
+    });
+
+    Route::prefix('/api/histories')->group(function() 
+    {
+        Route::get('/', 'SensorsconfigurationController@index2');
+        Route::delete('/{sensorsconfiguration}/recover', 'SensorsconfigurationController@recover');
     });
 
     Route::prefix('/api/users')->group(function() 

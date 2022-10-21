@@ -35,7 +35,7 @@ class UserController extends Controller
           'contact'     => $request->contact,
           'username'    => $request->username,
           'role_id'  => $request->role_id,
-          "password"=> crypt::encryptString($request->password."$".env('SECRET_KEY')),
+          "password"=> Hash::make($request->password),
       ]);
 
     //   dd(response()->json($users));
@@ -134,7 +134,8 @@ class UserController extends Controller
         "role_id"=>$request->role_id,
         "address"=>$request->address,
         "contact"=>$request->contact,
-        "username"=>$request->username,];
+        "username"=>$request->username,
+        "password"=> Hash::make($request->password),];
         $user->update($updateuserdata);
         return response()->json($user, 200);
     }

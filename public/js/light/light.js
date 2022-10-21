@@ -1,13 +1,12 @@
 $(document).ready(function(){
   table();
   showLightChart();
-});
 
-$(document).ready(function(){
-    setInterval(function(){
-        table();
-        }, 20000);
-})
+  setInterval(function(){
+    table();
+    }, 5000);
+    
+});
 
 var lightLabel = [];
 var lightData = [];
@@ -33,7 +32,6 @@ function table(){
                 html += '<tr><td class="text-break">' + data[bb].lightsAmount + ' lm</td><td class="text-break"><div class="badge '+state+'">' + data[bb].statusName + '</div></td><td class="text-break">' + data[bb].date + '</td><td class="text-break">' + data[bb].time + '</td></tr>'
             });
             $('#table-main').html(html);
-            fetchLight();
           }else{
             $('#table-main').html('<tr><td colspan="5"><center>NO AVAILABLE DATA<center></td></tr>');
           }
@@ -42,15 +40,26 @@ function table(){
 
     $.ajax({
       type: "GET",
-      url: "api/sensorsconfigurations/temperatureSetting",
+      url: "api/sensorsconfigurations",
       dataType: "json",
       encode: true,
       success: function(data)
       {
-        let tempobj = JSON.parse(data[0].configuration_value);
-          $("#success").text(tempobj.lightlimitval + " lm above is Neutral");
-          $("#warning").text(tempobj.lightlimitval + " lm below is Cold");
-          $("#danger").text(tempobj.lightmaxval + " lm above is Warm");
+          $("#success").text(data[0].lightlimitval + " lm above is Neutral");
+          $("#warning").text(data[0].lightlimitval + " lm below is Cold");
+          $("#danger").text(data[0].lightmaxval + " lm above is Warm");
+
+          if(data[0].lightstatusval==0){
+            // myTemperatureChart.destroy();
+            // showTemperatureChart();
+            lightChart.reset();
+            lightChart.data.labels.pop();
+            lightChart.data.datasets[0].data = [];
+            lightChart.update();
+            $("#lightstat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+          }else{
+            fetchLight();
+          }
       }
   });
 }

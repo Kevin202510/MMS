@@ -13,26 +13,22 @@ import fetch from "../modules/fetch.js";
  * Note : Update if necessary only
  */
 
-$("body").on("click", ".btn-find", async (e) =>
-    state.show($(e.currentTarget).data("index"))
-);
-
 $("body").on("click", ".btn-view", async (e) =>
     state.view($(e.currentTarget).data("index"))
 );
 
-$("body").on("click", ".btn-delete", (e) =>
-    state.destroy($(e.currentTarget).data("index"))
+$("body").on("click", ".btn-recover", async (e) =>
+    state.recover($(e.currentTarget).data("index"))
 );
+
 const state = {
     /* [Table] */
     entity: {
-        name: "sensorsconfigurations/history",
+        name: "history",
         attributes: ["configuration_name", "datetimeval"],
         actions: {
-            view: ["fa fa-eye", "View", "success"],
-            find: ["fa fa-pencil-alt", "Edit", "info"],
-            delete: ["fa fa-trash", "Delete", "danger"],
+            recover: ["fas fa-undo-alt", "recover", "success"],
+            view: ["fa fa-eye", "View", "info"],
         },
         baseUrl: "api",
     },
@@ -49,9 +45,6 @@ const state = {
     btnDelete: null,
     /* [initialized] */
     init: () => {
-        state.btnNew.addEventListener("click", state.create);
-        state.btnNew.disabled = false;
-
         state.ask();
     },
     /* [ACTIONS] */
@@ -61,22 +54,6 @@ const state = {
         if (state.models) {
             state.models.forEach((model) => fetch.writer(state.entity, model));
         }
-    },
-    create: () => {
-        state.btnEngrave.innerHTML = "Save";
-
-        state.btnEngrave.removeEventListener("click", state.update);
-        state.btnEngrave.addEventListener("click", state.store);
-        fetch.showModal();
-    },
-    show: (i) => {
-        state.activeIndex = i;
-        state.btnEngrave.innerHTML = "Update";
-
-        state.btnEngrave.removeEventListener("click", state.store);
-        state.btnEngrave.addEventListener("click", state.update);
-        state.btnEngrave.setAttribute("data-id", state.models[i].id);
-        fetch.showOnModal(state.models[i]);
     },
     view: (i) => {
         state.activeIndex = i;
@@ -89,33 +66,9 @@ const state = {
     closethis: async(e)=>{
         $("#modal-main").modal("hide");
     },
-
-    store: async (e) => {
-        e.preventDefault();
-        let params = $("#set-Model").serializeArray();
-        let model = await fetch.store(state.entity, params);
-        if (model) {
-            state.models.push(model);
-            fetch.writer(state.entity, model);
-            $("#modal-main").modal("hide");
-        }
-    },
-    update: async () => {
-        let params = $("#set-Model").serializeArray();
-        let pk = state.btnEngrave.getAttribute("data-id");
-        let model = await fetch.update(state.entity, pk, params);
-
-        if (model) {
-            //    console.log(model)
-            state.models[state.activeIndex] = model;
-            fetch.writer(state.entity, model);
-
-            $("#modal-main").modal("hide");
-        }
-    },
-    destroy: async (i) => {
+    recover: async (i) => {
         let pkey = state.models[i].id;
-        let ans = await fetch.destroy(state.entity, pkey);
+        let ans = await fetch.recover(state.entity, pkey);
         if (ans) {
             state.models.splice(i, 1);
         }

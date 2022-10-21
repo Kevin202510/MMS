@@ -24,12 +24,18 @@ $("body").on("click", ".btn-view", async (e) =>
 $("body").on("click", ".btn-delete", (e) =>
     state.destroy($(e.currentTarget).data("index"))
 );
+
+$("body").on("click", ".btn-activate", (e) =>
+    state.activate($(e.currentTarget).data("index"))
+);
+
 const state = {
     /* [Table] */
     entity: {
-        name: "sensorsconfiguration",
+        name: "sensorsconfigurations/index",
         attributes: ["configuration_name", "statusName"],
         actions: {
+            activate: ["fas fa-power-off", "Activate", "warning"],
             view: ["fa fa-eye", "View", "success"],
             find: ["fa fa-pencil-alt", "Edit", "info"],
             delete: ["fa fa-trash", "Delete", "danger"],
@@ -118,6 +124,14 @@ const state = {
         let ans = await fetch.destroy(state.entity, pkey);
         if (ans) {
             state.models.splice(i, 1);
+        }
+    },
+    activate: async (i) => {
+        let pkey = state.models[i].id;
+        let ans = await fetch.activate(state.entity, pkey);
+        if (ans) {
+            state.models.splice(0, state.models.length);
+            state.ask();
         }
     },
 };

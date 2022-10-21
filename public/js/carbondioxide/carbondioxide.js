@@ -1,13 +1,12 @@
 $(document).ready(function(){
   table();
   showCarbonDioxideChart();
-});
 
-$(document).ready(function(){
-    setInterval(function(){
-        table();
-        }, 20000);
-})
+  setInterval(function(){
+    table();
+    }, 5000);
+    
+});
 
 var co2Label = [];
 var co2Data = [];
@@ -33,7 +32,6 @@ function table(){
                   html += '<tr><td class="text-break">' + data[bb].carbondioxideAmount + ' ppm</td><td class="text-break"><div class="badge '+state+'">' + data[bb].statusName + '</div></td><td class="text-break">' + data[bb].date + '</td><td class="text-break">' + data[bb].time + '</td></tr>'
               });
               $('#table-main').html(html);
-              fetchCarbonDioxide();
             }else{
               $('#table-main').html('<tr><td colspan="5"><center>NO AVAILABLE DATA<center></td></tr>');
             }
@@ -47,10 +45,21 @@ function table(){
       encode: true,
       success: function(data)
       {
-        let tempobj = JSON.parse(data[0].configuration_value);
-          $("#success").text(tempobj.co2limitval + " ppm above Good Co2 Concentration");
-          $("#warning").text(tempobj.co2limitval + " ppm below is Fair Co2 Concentration");
-          $("#danger").text(tempobj.co2maxval + " ppm above is High Co2 Concentration");
+          $("#success").text(data[0].co2limitval + " ppm above Good Co2 Concentration");
+          $("#warning").text(data[0].co2limitval + " ppm below is Fair Co2 Concentration");
+          $("#danger").text(data[0].co2maxval + " ppm above is High Co2 Concentration");
+
+          if(data[0].co2statusval==0){
+            // myTemperatureChart.destroy();
+            // showTemperatureChart();
+            carbonDioxideChart.reset();
+            carbonDioxideChart.data.labels.pop();
+            carbonDioxideChart.data.datasets[0].data = [];
+            carbonDioxideChart.update();
+            $("#co2stat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+          }else{
+            fetchCarbonDioxide();
+          }
       }
   });
 }

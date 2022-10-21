@@ -21,7 +21,7 @@ class SensorsconfigurationController extends Controller
 
     public function index1()
     {
-        $sensorsconfiguration=Sensorsconfiguration::whereNull('deleted_at')->get();
+        $sensorsconfiguration=Sensorsconfiguration::whereNull('deleted_at')->where('isActive','1')->get();
         return response()->json($sensorsconfiguration);
     }
 
@@ -99,6 +99,20 @@ class SensorsconfigurationController extends Controller
     {
         $sensorsconfiguration->deleted_at = Carbon::tomorrow();
         $sensorsconfiguration->update();
+        return response()->json(array('success'=>true));
+    }
+
+    public function recover(Sensorsconfiguration $sensorsconfiguration)
+    {
+        $sensorsconfiguration->deleted_at = NULL;
+        $sensorsconfiguration->update();
+        return response()->json(array('success'=>true));
+    }
+    
+    public function activate(Sensorsconfiguration $sensorsconfiguration)
+    {
+        $sensorsconfiguration->where('id','!=',$sensorsconfiguration->id)->update(['isActive' => 0]);
+        $sensorsconfiguration->where('id','=',$sensorsconfiguration->id)->update(['isActive' => 1]);
         return response()->json(array('success'=>true));
     }
 }

@@ -1,13 +1,12 @@
 $(document).ready(function(){
   table();
   showHumidityChart();
-});
 
-$(document).ready(function(){
-    setInterval(function(){
-        table();
-        }, 20000);
-})
+  setInterval(function(){
+    table();
+    }, 5000);
+    
+});
 
 var humidityLabel = [];
 var humidityData = [];
@@ -33,7 +32,6 @@ function table(){
                   html += '<tr><td class="text-break">' + data[bb].humidity + ' %</td><td class="text-break"><div class="badge '+state+'">' + data[bb].statusName + '</div></td><td class="text-break">' + data[bb].date + '</td><td class="text-break">' + data[bb].time + '</td></tr>'
               });
               $('#table-main').html(html);
-              fetchHumidity();
             }else{
               $('#table-main').html('<tr><td colspan="5"><center>NO AVAILABLE DATA<center></td></tr>');
             }
@@ -47,10 +45,24 @@ function table(){
       encode: true,
       success: function(data)
       {
-        let tempobj = JSON.parse(data[0].configuration_value);
-          $("#success").text(tempobj.humiditylimitval + " % above is Good Humidity");
-          $("#warning").text(tempobj.humiditylimitval + " % below is Low Humidity");
-          $("#danger").text(tempobj.humiditymaxval + " % above is High Humidity");
+
+          // console.log(datas[0].temperatureSensorMinVal);
+          $("#success").text(data[0].humiditylimitval + " % above is Good Humidity");
+          $("#warning").text(data[0].humiditylimitval + " % below is Low Humidity");
+          $("#danger").text(data[0].humiditymaxval + " % above is High Humidity");
+
+          if(data[0].humiditystatusval==0){
+            // myTemperatureChart.destroy();
+            // showTemperatureChart();
+            myHumidityChart.reset();
+            myHumidityChart.data.labels.pop();
+            myHumidityChart.data.datasets[0].data = [];
+            myHumidityChart.update();
+            $("#humiditystat").html('<div class="badge badge-secondary">Sensor is OFF</div>');
+          }else{
+            fetchHumidity();
+          }
+
       }
   });
 
