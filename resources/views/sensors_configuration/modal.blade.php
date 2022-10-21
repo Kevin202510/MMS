@@ -31,7 +31,7 @@
                         <input type="number" class="form-control" id="temperatureSensorMaxVal" name="temperatureSensorMaxVal">
                         </div>
                         <div class="form-group col-md-4">
-                        <label for="temperaturestatusval">Maximum Value</label>
+                        <label for="temperaturestatusval">Status</label>
                         <select class="form-control form-control-lg" id="temperaturestatusval" name="temperaturestatusval">
                             <option value="1">ON</option>
                             <option value="0">OFF</option>
@@ -51,7 +51,7 @@
                         <input type="number" class="form-control" id="humiditymaxval" name="humiditymaxval">
                         </div>
                         <div class="form-group col-md-4">
-                        <label for="temperaturestatusval">Maximum Value</label>
+                        <label for="temperaturestatusval">Status</label>
                         <select class="form-control form-control-lg" id="humiditystatusval" name="humiditystatusval">
                             <option value="1">ON</option>
                             <option value="0">OFF</option>
@@ -71,7 +71,7 @@
                         <input type="number" class="form-control" id="lightmaxval" name="lightmaxval">
                         </div>
                         <div class="form-group col-md-4">
-                        <label>Maximum Value</label>
+                        <label>Status</label>
                         <select class="form-control form-control-lg" id="lightstatusval" name="lightstatusval">
                             <option value="1">ON</option>
                             <option value="0">OFF</option>
@@ -91,7 +91,7 @@
                         <input type="number" class="form-control" id="co2maxval" name="co2maxval">
                         </div>
                         <div class="form-group col-md-4">
-                        <label for="temperaturestatusval">Maximum Value</label>
+                        <label for="temperaturestatusval">Status</label>
                         <select class="form-control form-control-lg" id="co2statusval" name="co2statusval">
                             <option value="1">ON</option>
                             <option value="0">OFF</option>

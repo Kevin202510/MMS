@@ -576,7 +576,7 @@ const showOnModal = (model) => {
             if (typeof model[key] == "boolean") {
                 $(`[name='${key}']`).val(model[key] ? 1 : 0);
             } else {
-                $(`[name='${key}']`).val(model[key]);
+                $(`[name='${key}']`).val(model[key]).removeAttr("disabled");
             }
         }
     });
