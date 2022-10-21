@@ -23,10 +23,10 @@ class UsersSeeder extends Seeder
             ],
             [
                 'role_id' => 2,
-                'fname' => 'Customer',
-                'lname' => 'Customer',
+                'fname' => 'Employee',
+                'lname' => 'Employee',
                 'isApproved' => 1,
-                'username' => 'customer',
+                'username' => 'employee',
                 'password' => Hash::make("password"),
             ]
             ]);
