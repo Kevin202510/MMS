@@ -46,7 +46,7 @@
 
 @section('javascript')
 <!-- First, include the Webcam.js JavaScript Library -->
-<script type="text/javascript" src="{{ secure_asset('js/webcam.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/webcam.min.js') }}"></script>
 	
 	<!-- Configure a few settings and attach camera -->
 	<script language="JavaScript">

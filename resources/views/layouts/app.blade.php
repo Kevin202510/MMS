@@ -8,17 +8,17 @@
     <title>@yield('title') | {{ Route::currentRouteName() }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 4.1.1 -->
-    <link href="{{ secure_asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <!-- Ionicons -->
     <link rel="icon" type="image/png" href="/img/favicon.ico">
     <link href="//fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-    <link href="{{ secure_asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
-    <script src="{{ secure_asset('js/sweetalert.js') }}"></script>
-    <link href="{{ secure_asset('css/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
 @yield('page_css')
 <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ secure_asset('web/css/style.css') }}">
-    <link rel="stylesheet" href="{{ secure_asset('web/css/components.css')}}">
+    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     @yield('page_css')
 
 
@@ -50,21 +50,21 @@
 @include('profile.edit_profile')
 
 </body>
-<script src="{{ secure_asset('assets/js/jquery.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/popper.min.js') }}"></script>
-<script src="{{ secure_asset('js/modules/moment.min.js') }}"></script>
-<script src="{{ secure_asset('js/modules/daterangepicker.js') }}"></script>
-<script src="{{ secure_asset('assets/js/Chart.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/bootstrap.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/iziToast.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/select2.min.js') }}"></script>
-<script src="{{ secure_asset('assets/js/jquery.nicescroll.js') }}"></script>
-<script src="{{ secure_asset('assets/js/custom/passwordField.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('js/modules/moment.min.js') }}"></script>
+<script src="{{ asset('js/modules/daterangepicker.js') }}"></script>
+<script src="{{ asset('assets/js/Chart.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/js/iziToast.min.js') }}"></script>
+<script src="{{ asset('assets/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('assets/js/custom/passwordField.js') }}"></script>
 
 
 <!-- Template JS File -->
-<script src="{{ secure_asset('web/js/stisla.js') }}"></script>
-<script src="{{ secure_asset('web/js/scripts.js') }}"></script>
+<script src="{{ asset('web/js/stisla.js') }}"></script>
+<script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
