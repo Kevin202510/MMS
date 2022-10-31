@@ -1,35 +1,28 @@
 @extends('layouts.welcome')
 
-@section('css')
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-    <style>
-        @media screen and (min-width: 999px) {
-        #cont {
-          width: 600px;  
-        }
-        }
-        header.masthead {
-            padding-top: 8rem;
-            padding-bottom: calc(10rem - 3.2rem);
-            background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../img/bg4.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            background-size: cover;
-        }
-    </style>
-@endsection
-
 @section('title')
     MMS
 @endsection
 
+
 @section('content')
-<div class="container px-4 px-lg-5 h-100" id="cont">
-    <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
-        <div class="card-header"><h4>Login</h4></div>
-            <div class="card-body">
-            <form method="POST" action="{{ route('login') }}">
+
+<!-- About Start -->
+<div class="container-xxl py-5" style="margin-top:50px;">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                        <img class="img-fluid w-100" src="{{ asset('landingpageassets/img/mushroomkoto.jpg') }}">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="card">
+                <div class="card-header text-center">
+                    <h3>Login</h3>
+                </div>
+                <div class="card-body">
+                <form method="POST" action="{{ route('login') }}">
                 @csrf
                 @if (session()->has('error'))
                         <input type="hidden" id="errorMessage" value="{{ session()->get('error') }}">
@@ -49,11 +42,6 @@
                 <div class="form-group">
                     <div class="d-block">
                         <label for="password" class="control-label" style="color: black; font-size:15px; font-weight: bold;">Password</label>
-                        <div class="float-right">
-                            <a href="{{ route('password.request') }}" style="color: #282b3c; font-size:15px; font-weight: bold;" class="text-small">
-                                Forgot Password?
-                            </a>
-                        </div>
                     </div>
                     <input aria-describedby="passwordHelpBlock" id="password" type="password"
                            value="{{ (Cookie::get('password') !== null) ? Cookie::get('password') : null }}"
@@ -79,13 +67,15 @@
                     </button>
                 </div>
             </form>
-            <div class="mt-5 text-muted text-center">
-        Don't have an account ? <a
-                href="{{ route('register') }}">Sign Up</a>
-        </div>
+            <a href="{{ route('register') }}" class="btn btn-lg btn-block" type="button">Register</a>
+                </div>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <!-- About End -->
+
 @endsection
 
 @section('javascript')

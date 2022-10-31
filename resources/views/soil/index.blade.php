@@ -50,6 +50,6 @@
 @endsection
 
 @section('javascript')
-<script type="module" src="{{ asset('js/soilmoisture/soilmoisture.js') }}"></script>
+<script type="module" src="{{ secure_asset('js/soilmoisture/soilmoisture.js') }}"></script>
 @endsection
 

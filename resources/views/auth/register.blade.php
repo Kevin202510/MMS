@@ -4,32 +4,25 @@
     MMS
 @endsection
 
-@section('css')
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
-    <style>
-        @media screen and (min-width: 999px) {
-        #cont {
-          width: 750px;  
-        }
-        }
-        header.masthead {
-            padding-top: 5rem;
-            padding-bottom: calc(5rem - 2.5rem);
-            background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../../img/bg4.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            background-size: cover;
-        }
-    </style>
-@endsection
 
 @section('content')
-<div class="container px-4 px-lg-5 h-100" id="cont">
-    <div class="card card-primary" style="border-top: 2px solid rgb(116 177 151); background-color: rgba( 223, 255, 255, 0.4); border-radius: 25px;">
-        <div class="card-header"><h4>Register</h4></div>
-        <div class="card-body">
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                        <img class="img-fluid w-100" src="{{ asset('landingpageassets/img/mushroomkoto.jpg') }}">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <div class="card">
+                <div class="card-header text-center">
+                    <h3>Register</h3>
+                </div>
+                <div class="card-body">
+                <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="role_id" id="role_id" value="2">
                 <div class="row">
@@ -137,10 +130,13 @@
                     </div>
                 </div>
             </form>
-            <div class="mt-2 text-muted text-center">
-                Don't have an account ? <a href="{{ route('login') }}">Sign Up</a>
+                <a href="{{ route('login') }}" class="btn btn-lg btn-block" type="button">Login</a>
+                </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- About End -->
+
 @endsection
