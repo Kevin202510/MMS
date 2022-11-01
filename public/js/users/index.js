@@ -15,7 +15,7 @@ import fetch from "../modules/fetch.js";
 
 let evnt = "click";
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
- event = "touchstart";
+    evnt = "touchstart";
 }
 
 $("body").on(evnt, ".btn-find", async (e) =>
