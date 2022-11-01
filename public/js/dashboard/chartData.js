@@ -163,7 +163,6 @@ function fetchHumidity(){
             }
           }
           });    
-          $("#curhum").html(humidityLabel[humidityLabel.length-1]);
         showHumidityChart();
     }
   })
@@ -224,7 +223,7 @@ function fetchCarbonDioxide(){
           }
 
           });    
-          $("#curco2").html(co2Label[co2Label.length-1]);
+          // $("#curco2").html(co2Label[co2Label.length-1]);
         showCarbonDioxideChart();
     }
   })
@@ -256,7 +255,7 @@ function fetchLight(){
 
 
           });    
-          $("#curlig").html(lightLabel[lightLabel.length-1]);
+          // $("#curlig").html(lightLabel[lightLabel.length-1]);
         showLightChart();
     }
   })
