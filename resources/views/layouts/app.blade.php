@@ -15,7 +15,8 @@
     <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <script src="{{ asset('js/sweetalert.js') }}"></script>
     <link href="{{ asset('css/daterangepicker.css') }}" rel="stylesheet" type="text/css"/>
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <!-- <script src="{{ asset('assets/js/jquery.min.js') }}"></script> -->
 @yield('page_css')
 <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
@@ -67,8 +68,6 @@
 <script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 <script type="module" src="{{ asset('js/dashboard/notification.js') }}"></script>
 @yield('page_js')
 @yield('scripts')
