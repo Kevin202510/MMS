@@ -14,7 +14,7 @@
         <h4>Current Temperature</h4>
         </div>
         <div class="card-body">
-        <span id="curtemp"></span>
+        <p id="curtemp"></p>
         </div>
     </div>
     </div>

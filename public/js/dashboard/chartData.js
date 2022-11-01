@@ -110,6 +110,7 @@ function fetchTemperature(){
         temperatureData = [];
 
         // alert(data[0].temperature);
+        $("#curtemp").html("45");
         
         var newdata = data.reverse();
           $.each (newdata, function (bb) {
@@ -133,8 +134,6 @@ function fetchTemperature(){
                   }
                 }
             });   
-
-                $("#curtemp").html("45");
                 
             // tempstat
           showTemperatureChart();
