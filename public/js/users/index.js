@@ -13,7 +13,7 @@ import fetch from "../modules/fetch.js";
  * Note : Update if necessary only
  */
 
-$("body").on("click", ".btn-find", async (e) =>
+$("body").on("touchstart", ".btn-find", async (e) =>
 alert("hello"),
     // state.show($(e.currentTarget).data("index"))
 );
