@@ -6,31 +6,34 @@
 
 @section('content')
     <section class="section">
-        <div class="section-header">
+    <div class="section-header">
             <h3 class="page__heading">Humidity</h3>
             <div class="section-header-breadcrumb">
-            <button type="button" class="btn btn-primary" id="generateReport" >Generate Report <i class="far fa-file-invoice"></i></button>
+            <nav aria-label="breadcrumb">
+              @include('layouts.breadcrum')
+            </nav>
+            <!-- <button type="button" class="btn btn-primary" id="generateReport" >Generate Report <i class="far fa-file-invoice"></i></button> -->
             </div>
         </div>
         <div class="section-body">
-        <div class="row justify-content-md-center"> 
-            <div class="col-12 col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 style="color: #f27e1f;">Humidity Sensor</h4>
-                    </div>
-                    <div class="card-body">
-                        <canvas style="display: block; width: 1002px; height: 180px;" id="humidityChart"></canvas>
-                        <center id="humiditystat"></center>
-                        <center style="margin-top:5px;">
-                            <div class="badge badge-warning" id="warning"></div>
-                            <div class="badge badge-success" id="success"></div>
-                            <div class="badge badge-danger" id="danger"></div>  
-                        </center>
-                    </div>
-                </div>
-            </div>
+        <div class="col">
+          <div class="col-12 col-md-12">
+              <div class="card">
+                  <div class="card-header">
+                      <h4>Humidity Sensor</h4>
+                  </div>
+                  <div class="card-body">
+                      <canvas style="width: 1002px; height: 180px;" id="humidityChart"></canvas>
+                      <center id="humiditystat"></center>
+                      <center style="margin-top:10px;">
+                          <div class="badge badge-warning" id="warning"></div>
+                          <div class="badge badge-success" id="success"></div>
+                          <div style="margin-top:5px;" class="badge badge-danger" id="danger"></div>
+                      </center>
+                  </div>
+              </div>
           </div>
+        </div>
         <div class="row">
               <div class="col-12">
                 <div class="card">

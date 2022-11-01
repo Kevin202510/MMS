@@ -15,9 +15,15 @@
 
 @section('content')
 <section class="section">
-    <div class="section-header">
-        <h3 class="page__heading">Video Feeder</h3>
-    </div>
+<div class="section-header">
+            <h3 class="page__heading">Video Feeder</h3>
+            <div class="section-header-breadcrumb">
+            <nav aria-label="breadcrumb">
+              @include('layouts.breadcrum')
+            </nav>
+            <!-- <button type="button" class="btn btn-primary" id="generateReport" >Generate Report <i class="far fa-file-invoice"></i></button> -->
+            </div>
+        </div>
     <div class="section-body">
         <div class="col-12">
             <div class="card">

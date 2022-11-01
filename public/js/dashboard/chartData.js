@@ -108,6 +108,8 @@ function fetchTemperature(){
       success: function (data){
         temperatureLabel = [];
         temperatureData = [];
+
+        // alert(data[0].temperature);
         
         var newdata = data.reverse();
           $.each (newdata, function (bb) {
@@ -131,6 +133,9 @@ function fetchTemperature(){
                   }
                 }
             });   
+
+                $("#curtemp").html(temperatureLabel[temperatureLabel.length-1]);
+                
             // tempstat
           showTemperatureChart();
       }
@@ -160,6 +165,7 @@ function fetchHumidity(){
             }
           }
           });    
+          $("#curhum").html(humidityLabel[humidityLabel.length-1]);
         showHumidityChart();
     }
   })
@@ -220,6 +226,7 @@ function fetchCarbonDioxide(){
           }
 
           });    
+          $("#curco2").html(co2Label[co2Label.length-1]);
         showCarbonDioxideChart();
     }
   })
@@ -251,6 +258,7 @@ function fetchLight(){
 
 
           });    
+          $("#curlig").html(lightLabel[lightLabel.length-1]);
         showLightChart();
     }
   })

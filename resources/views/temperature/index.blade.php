@@ -9,18 +9,21 @@
         <div class="section-header">
             <h3 class="page__heading">Temperature</h3>
             <div class="section-header-breadcrumb">
-            <button type="button" class="btn btn-primary" id="generateReport" >Generate Report <i class="far fa-file-invoice"></i></button>
+            <nav aria-label="breadcrumb">
+              @include('layouts.breadcrum')
+            </nav>
+            <!-- <button type="button" class="btn btn-primary" id="generateReport" >Generate Report <i class="far fa-file-invoice"></i></button> -->
             </div>
         </div>
         <div class="section-body">
-        <div class="row justify-content-md-center">
-          <div class="col-8">
+        <div class="col">
+          <div class="col-12 col-md-12">
               <div class="card">
                   <div class="card-header">
                       <h4>Temperature Sensor</h4>
                   </div>
                   <div class="card-body">
-                      <canvas style="display: block; width: 1002px; height: 180px;" id="temperatureChart"></canvas>
+                      <canvas style="width: 1002px; height: 180px;" id="temperatureChart"></canvas>
                       <center id="tempstat"></center>
                       <center style="margin-top:10px;">
                           <div class="badge badge-warning" id="warning"></div>

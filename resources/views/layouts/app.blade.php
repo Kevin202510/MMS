@@ -69,6 +69,7 @@
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+<script type="module" src="{{ asset('js/dashboard/notification.js') }}"></script>
 @yield('page_js')
 @yield('scripts')
 @yield('javascript')
@@ -86,6 +87,13 @@
             }
         };
     }(jQuery));
+
+    $(window).resize(function(){
+        if ($(window).width() <= 771){ 
+            
+        }   
+    });
+
 
     $(document).ready(function(){
             $("#btnPrEditSave").click(function(event){

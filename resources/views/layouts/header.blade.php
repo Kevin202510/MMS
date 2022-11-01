@@ -10,7 +10,7 @@
     </div>
 </form>
 <ul class="navbar-nav navbar-right">
-
+    @include('layouts.notification')
     @if(\Illuminate\Support\Facades\Auth::user())
         <li class="dropdown">
             <a href="#" data-toggle="dropdown"
