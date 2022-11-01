@@ -134,7 +134,7 @@ function fetchTemperature(){
                 }
             });   
 
-                $("#curtemp").html(temperatureLabel[temperatureLabel.length-1]);
+                $("#curtemp").html("45");
                 
             // tempstat
           showTemperatureChart();
