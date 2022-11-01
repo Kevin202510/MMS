@@ -14,8 +14,8 @@ import fetch from "../modules/fetch.js";
  */
 
 $("body").on("touchstart", ".btn-find", async (e) =>
-alert("hello"),
-    // state.show($(e.currentTarget).data("index"))
+// alert("hello"),
+    state.show($(e.currentTarget).data("index"))
 );
 $("body").on("click", ".btn-delete", (e) =>
     state.destroy($(e.currentTarget).data("index"))
