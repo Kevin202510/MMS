@@ -13,14 +13,19 @@ import fetch from "../modules/fetch.js";
  * Note : Update if necessary only
  */
 
-$("body").on("touchstart", ".btn-find", async (e) =>
+let evnt = "click";
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ event = "touchstart";
+}
+
+$("body").on(evnt, ".btn-find", async (e) =>
 // alert("hello"),
     state.show($(e.currentTarget).data("index"))
 );
-$("body").on("click", ".btn-delete", (e) =>
+$("body").on(evnt, ".btn-delete", (e) =>
     state.destroy($(e.currentTarget).data("index"))
 );
-$("body").on("click", ".btn-approved", function(e){
+$("body").on(evnt, ".btn-approved", function(e){
     updateStatusApprove($(e.currentTarget).data("id"));
 });
 
