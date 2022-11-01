@@ -13,19 +13,28 @@ import fetch from "../modules/fetch.js";
  * Note : Update if necessary only
  */
 
-$("body").on("click", ".btn-find", async (e) =>
+ let evnt;
+ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+     evnt = "touchstart";
+     // console.log("asd");
+ }else{
+     evnt = "click";
+ }
+
+ 
+$("body").on(evnt, ".btn-find", async (e) =>
     state.show($(e.currentTarget).data("index"))
 );
 
-$("body").on("click", ".btn-view", async (e) =>
+$("body").on(evnt, ".btn-view", async (e) =>
     state.view($(e.currentTarget).data("index"))
 );
 
-$("body").on("click", ".btn-delete", (e) =>
+$("body").on(evnt, ".btn-delete", (e) =>
     state.destroy($(e.currentTarget).data("index"))
 );
 
-$("body").on("click", ".btn-activate", (e) =>
+$("body").on(evnt, ".btn-activate", (e) =>
     state.activate($(e.currentTarget).data("index"))
 );
 

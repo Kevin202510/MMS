@@ -22,7 +22,6 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 }
 
 $("body").on(evnt, ".btn-find", async (e) =>
-// alert("hello"),
     state.show($(e.currentTarget).data("index"))
 );
 $("body").on(evnt, ".btn-delete", (e) =>
@@ -113,11 +112,11 @@ $("#uploadUsersData").click(function(event){
     });
 });
 
-$(document).ready(function(){
-    setInterval(function(){
-        state.ask();
-        }, 20000);
-})
+// $(document).ready(function(){
+//     setInterval(function(){
+//         state.ask();
+//         }, 20000);
+// })
 
 
 function updateStatusApprove(id){
