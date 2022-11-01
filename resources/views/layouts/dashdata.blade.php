@@ -11,10 +11,10 @@
     </div>
     <div class="card-wrap">
         <div class="card-header">
-        <h4 id="curtemp"></h4>
+        <h4>Current Temperature</h4>
         </div>
         <div class="card-body">
-        <!-- <p id="curtemp"></p> -->
+        <span id="curtemp"></span>
         </div>
     </div>
     </div>
