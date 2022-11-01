@@ -17,17 +17,17 @@ $("body").on("click", ".btn-find", async (e) =>
     state.show($(e.currentTarget).data("index"))
 );
 
-$("body").on("click", ".btn-view", async (e) =>
-    state.view($(e.currentTarget).data("index"))
-);
+// $("body").on("click", ".btn-view", async (e) =>
+//     state.view($(e.currentTarget).data("index"))
+// );
 
-$("body").on("click", ".btn-delete", (e) =>
-    state.destroy($(e.currentTarget).data("index"))
-);
+// $("body").on("click", ".btn-delete", (e) =>
+//     state.destroy($(e.currentTarget).data("index"))
+// );
 
-$("body").on("click", ".btn-activate", (e) =>
-    state.activate($(e.currentTarget).data("index"))
-);
+// $("body").on("click", ".btn-activate", (e) =>
+//     state.activate($(e.currentTarget).data("index"))
+// );
 
 $("#searchData").keyup(function(){
     var input, filter, table, tr, td, i, txtValue;
@@ -56,8 +56,8 @@ const state = {
         name: "sensorsconfigurations/index",
         attributes: ["configuration_name", "statusName"],
         actions: {
-            activate: ["fas fa-power-off", "Activate", "warning"],
-            view: ["fa fa-eye", "View", "success"],
+            // activate: ["fas fa-power-off", "Activate", "warning"],
+            // view: ["fa fa-eye", "View", "success"],
             find: ["fa fa-pencil-alt", "Edit", "info"],
             delete: ["fa fa-trash", "Delete", "danger"],
         },
