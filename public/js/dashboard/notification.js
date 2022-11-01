@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $("#curtemp").html("45");
+    
     $.ajax({
         url: 'api/temperature/getNewVal',
         type: 'GET',

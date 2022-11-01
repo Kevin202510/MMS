@@ -110,7 +110,6 @@ function fetchTemperature(){
         temperatureData = [];
 
         // alert(data[0].temperature);
-        $("#curtemp").html("45");
         
         var newdata = data.reverse();
           $.each (newdata, function (bb) {
