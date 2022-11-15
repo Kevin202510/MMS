@@ -5,17 +5,32 @@ $(document).ready(function(){
     setInterval(function(){
       table();
       }, 5000);
+
+    datePickerId.max = new Date().toISOString().split("T")[0];
 });
 
 $("body").on("click", ".btn-generate", async (e) =>
     $("#generateReport").modal("show")
 );
 
-$("#generateReport").click(function(){
+$("#datePickerId").focusout(function(){
+  
+  console.log($("#datePickerId").val());
+  datePickerId2.min = new Date($("#datePickerId").val()).toISOString().split("T")[0];
+
+});
+
+$("#generateReportss").click(function(){
+
+  var formData = {
+    datef: $("#datePickerId").val(),
+    datet: $("#datePickerId2").val(),
+  };
 
   $.ajax({
-    type: "GET",
-    url: "export-temperature",
+    type: "POST",
+    url: "api/exporttemperature/generatereport",
+    data: formData, // serializes the form's elements.
     dataType: "json",
     encode: true,
     success: function(data)
@@ -30,28 +45,6 @@ $("#generateReport").click(function(){
                 });
     }
   });
-  //   let daterange = {
-  //     daterange: $("#daterange").val(),
-  //   }
-
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "export-temperature",
-  //     data: daterange, // serializes the form's elements.
-  //     dataType: "json",
-  //     encode: true,
-  //     success: function(data)
-  //     {
-  //         swal.fire({
-  //             position: "top-end",
-  //             icon: "success",
-  //             title: "Your work has been saved",
-  //             showConfirmButton: false,
-  //             timer: 1500,
-  //             footer: "<a href>InnovaTech</a>",
-  //         });
-  //     }
-  // });
 });
 
 $("#searchData").keyup(function(){

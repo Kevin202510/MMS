@@ -65,10 +65,7 @@
                 @auth
                     <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                     @else
-                    <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
-                    @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="nav-item nav-link">Register</a>
-                    @endif
+                    <a href="{{ route('login') }}" class="nav-item nav-link"><b>Login</b></a>
                 @endauth
                 </div>
             @endif

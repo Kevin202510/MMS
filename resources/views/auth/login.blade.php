@@ -67,7 +67,6 @@
                     </button>
                 </div>
             </form>
-            <a href="{{ route('register') }}" class="btn btn-lg btn-block" type="button">Register</a>
                 </div>
                 </div>
                 </div>
