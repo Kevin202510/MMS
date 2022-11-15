@@ -75,7 +75,7 @@
 
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-light bg-icon my-5 py-6">
+    <div class="container-fluid bg-light  my-5 py-6">
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-3">Our Features</h1>
@@ -87,7 +87,7 @@
                         <img class="img-fluid mb-4" src="{{ asset('landingpageassets/img/icon-1.png') }}" alt="">
                         <h4 class="mb-3">Natural Process</h4>
                         <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -95,7 +95,7 @@
                         <img class="img-fluid mb-4" src="{{ asset('landingpageassets/img/icon-2.png') }}" alt="">
                         <h4 class="mb-3">Organic Products</h4>
                         <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -103,9 +103,22 @@
                         <img class="img-fluid mb-4" src="{{ asset('landingpageassets/img/icon-3.png') }}" alt="">
                         <h4 class="mb-3">Biologically Safe</h4>
                         <p class="mb-4">Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed vero dolor duo.</p>
-                        <a class="btn btn-outline-primary border-2 py-2 px-4 rounded-pill" href="">Read More</a>
+                        
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+    <!-- Feature Start -->
+    <div class="container-fluid bg-light  my-5 py-6">
+        <div class="container">
+            <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h1 class="display-5 mb-3">Our Mushrooms Varieties</h1>
+                <!-- <p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p> -->
+            </div>
+            <div class="row g-4 justify-content-center" id="mushroomvar">
             </div>
         </div>
     </div>
@@ -669,7 +682,7 @@
 
 
     <!-- Firm Visit Start -->
-    <!-- <div class="container-fluid bg-primary bg-icon mt-5 py-6">
+    <!-- <div class="container-fluid bg-primary  mt-5 py-6">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-md-7 wow fadeIn" data-wow-delay="0.1s">
@@ -686,7 +699,7 @@
 
 
     <!-- Testimonial Start -->
-    <!-- <div class="container-fluid bg-light bg-icon py-6 mb-5">
+    <!-- <div class="container-fluid bg-light  py-6 mb-5">
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-3">Customer Review</h1>
@@ -786,4 +799,9 @@
     </div> -->
     <!-- Blog End -->
 @endsection
+
+@section('javascript')
+<script type="module" src="{{ asset('js/welcome/index.js') }}"></script>
+@endsection
+
 

@@ -23,6 +23,10 @@ Auth::routes();
 
 Route::post('/notify', 'Notifyusermmsstatus@sendEmail');
 Route::get('/video', function () { return view('video.index'); })->name('Video')->middleware('auth');
+Route::prefix('/api/mushroomvar')->group(function() 
+{
+    Route::get('/', 'SensorsconfigurationController@index');
+});
 
 Route::middleware('admin')->group(function () {
 

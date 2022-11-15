@@ -63,7 +63,7 @@
             @if (Route::has('login'))
                 <div class="navbar-nav ms-auto p-4 p-lg-0">
                 @auth
-                    <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ url('home') }}" class="nav-item nav-link active">Home</a>
                     @else
                     <a href="{{ route('login') }}" class="nav-item nav-link"><b>Login</b></a>
                 @endauth
