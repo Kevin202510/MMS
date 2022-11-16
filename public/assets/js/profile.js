@@ -94,7 +94,10 @@
 /***/ (function(module, exports) {
 
 $(document).ready(function(){
-  $('#prof').attr('src',"profiles/"+$("#pfImages").val());
+  if($("#pfsImages").val()!==""){
+    $('#prof').attr('src',"profiles/"+$("#pfsImages").val());
+    $('#profs').attr('src',"profiles/"+$("#pfsImages").val());
+  }
 });
 $(document).on('click', '.edit-profile', function (event) {
   $('#editProfileUserId').val(loggedInUser.id);

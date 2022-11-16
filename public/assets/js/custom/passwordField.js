@@ -67,7 +67,7 @@ $(document).ready(function(){
                             if($("#newPassword").val() == $("#confirmPassword").val()){
                                 event.preventDefault();
                                 var formData = {
-                                    id: $("#id").val(),
+                                    id: $("#ids").val(),
                                     password:$("#newPassword").val(),
                                 };
             

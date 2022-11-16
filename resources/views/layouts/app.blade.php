@@ -28,6 +28,7 @@
 <body>
 
     <div id="app">
+    <input type="hidden" id="pfsImages" value="{{\Illuminate\Support\Facades\Auth::user()->profile}}">
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">

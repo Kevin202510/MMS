@@ -22,6 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::post('/notify', 'Notifyusermmsstatus@sendEmail');
+Route::get('/lockscreen', function () { return view('layouts.lockscreen'); })->name('lockscreen');
 Route::get('/video', function () { return view('video.index'); })->name('Video')->middleware('auth');
 Route::prefix('/api/mushroomvar')->group(function() 
 {
@@ -155,7 +156,7 @@ Route::middleware('employeeOrAdmin')->group(function () {
         Route::get('/', 'SensorsconfigurationController@index1');
         Route::get('/indexs', 'SensorsconfigurationController@index');
         Route::put('/indexs/{sensorsconfiguration}/activate', 'SensorsconfigurationController@activate');
-        Route::post('/save', 'SensorsconfigurationController@save'); 
+        Route::post('/indexs/save', 'SensorsconfigurationController@save'); 
         Route::put('/{sensorsconfiguration}/update', 'SensorsconfigurationController@update');
         Route::delete('/{sensorsconfiguration}/destroy', 'SensorsconfigurationController@destroy');
     });

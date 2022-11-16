@@ -10,7 +10,7 @@
         <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="w-100" src="{{ asset('landingpageassets/img/bg4.jpg') }}" alt="Image">
+                    <img class="w-100" src="{{ asset('landingpageassets/img/a1.png') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img class="w-100" src="{{ asset('landingpageassets/img/bg4.jpg') }}" alt="Image">
+                    <img class="w-100" src="{{ asset('landingpageassets/img/a2.png') }}" alt="Image">
                     <div class="carousel-caption">
                         <div class="container">
                             <div class="row justify-content-start">
@@ -38,12 +38,12 @@
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="carousel-control-prev-icon" style="background-color: #e2d880; border: 10px solid #e2d880;" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="carousel-control-next-icon" style="background-color: #e2d880; border: 10px solid #e2d880;" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
@@ -52,11 +52,11 @@
 
 
     <!-- About Start -->
-    <div class="container-xxl py-5">
+    <div class="container-xxl py-5" style="background-color:#e1e4eb;">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <div class="about-img position-relative overflow-hidden p-5 pe-0">
+                    <div class="position-relative overflow-hidden p-5 pe-0">
                         <img class="img-fluid w-100" src="{{ asset('landingpageassets/img/mushroomkoto.jpg') }}">
                     </div>
                 </div>
@@ -75,7 +75,7 @@
 
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-light  my-5 py-6">
+    <div class="container-fluid my-5 py-6" style="background-color:#e1e4eb;">
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-3">Our Features</h1>
@@ -112,7 +112,7 @@
     <!-- Feature End -->
 
     <!-- Feature Start -->
-    <div class="container-fluid bg-light  my-5 py-6">
+    <div class="container-fluid my-5 py-6" style="background-color:#e1e4eb;">
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-3">Our Mushrooms Varieties</h1>

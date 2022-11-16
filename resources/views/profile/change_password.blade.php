@@ -7,6 +7,7 @@
                 <button type="button" aria-label="Close" class="close outline-none" data-dismiss="modal">×</button>
             </div>
             <form id='changePasswordForm'>
+                <input type="hidden" name="id" id="ids" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
                 <input type="hidden" name="password" id="password" value="{{\Illuminate\Support\Facades\Auth::user()->password}}">
             <div class="modal-body">
                     @csrf

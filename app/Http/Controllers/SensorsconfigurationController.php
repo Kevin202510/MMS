@@ -38,9 +38,25 @@ class SensorsconfigurationController extends Controller
      */
     public function save(Request $request)
     {
-        $input = $request->all();
-        $sensorsconfiguration=Sensorsconfiguration::create($input); 
-        return response()->json($sensorsconfiguration);
+        $sensorsconfigurations =Sensorsconfiguration::create([
+            "configuration_name" => $request->configuration_name,
+            "configuration_value" => [
+                "temperatureSensorMinVal" => $request->temperatureSensorMinVal,
+                "temperatureSensorMaxVal" =>$request->temperatureSensorMaxVal,
+                "temperaturestatusval" =>$request->temperaturestatusval,
+                "humiditylimitval" =>$request->humiditylimitval,
+                "humiditymaxval" =>$request->humiditymaxval,
+                "humiditystatusval" =>$request->humiditystatusval,
+                "lightlimitval" =>$request->lightlimitval,
+                "lightmaxval" =>$request->lightmaxval,
+                "lightstatusval" =>$request->lightstatusval,
+                "co2limitval" =>$request->co2limitval,
+                "co2maxval" =>$request->co2maxval,
+                "co2statusval" =>$request->co2statusval
+            ],
+            "isActive" =>0,
+        ]);
+        return response()->json($sensorsconfigurations, 200);
     }
 
     public function save2(Request $request)

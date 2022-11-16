@@ -7,6 +7,27 @@
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="250">
         <button class="btn" type="submit"><i class="fas fa-search"></i></button>
         <div class="search-backdrop"></div>
+        <div class="search-result">
+        <div class="search-header">
+            Projects
+        </div>
+        <div class="search-item">
+            <a href="{{ route('Temperature') }}">
+            <div class="search-icon bg-warning text-white mr-3">
+                <i class="fas fa-temperature-high"></i>
+            </div>
+                Temperature
+            </a>
+        </div>
+        <div class="search-item">
+            <a href="{{ route('Humidity') }}">
+            <div class="search-icon text-white mr-3" style="background-color:#f27e1f;">
+                <i class="fas fa-humidity"></i>
+            </div>
+                Humidity
+            </a>
+        </div>
+        </div>
     </div>
 </form>
 <ul class="navbar-nav navbar-right">
@@ -28,7 +49,10 @@
                     <i class="fa fa-user"></i>Edit Profile</a>
                     <a class="dropdown-item has-icon" data-toggle="modal" data-target="#changePasswordModal" href="#" data-id="{{ \Auth::id() }}"><i
                             class="fa fa-lock"> </i>Change Password</a>
-                <a href="{{ url('logout') }}" class="dropdown-item has-icon text-danger" id="logouti"
+                    <a href="{{ url('lockscreen') }}" class="dropdown-item has-icon">
+                        <i class="fas fa-power-off text-warning"></i> Lock Screen
+                    </a>
+                    <a href="{{ url('logout') }}" class="dropdown-item has-icon text-danger" id="logouti"
                    onclick="event.preventDefault(); localStorage.clear();  document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
