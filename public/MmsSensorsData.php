@@ -151,7 +151,7 @@ class Sensors{
         $rowCount = $stmt->rowCount();
         $details = $stmt->fetch();
 
-        var_dump($details);
+        print_r($details);
        }
 ?>
 
