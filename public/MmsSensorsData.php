@@ -6,8 +6,8 @@ class Sensors{
  }
  
  function connect(){
-  $this->link = mysqli_connect('ec2-18-214-134-226.compute-1.amazonaws.com','qjxtfcpyolovht','dbc417634f8ce8ba2abc874571c9cfe1e03d494693e23ac499188553a802b9c2') or die('Cannot connect to the DB');
-  mysqli_select_db($this->link,'d1ab2u185tq6et') or die('Cannot select the DB');
+  $this->link = mysqli_connect('localhost','root','') or die('Cannot connect to the DB');
+  mysqli_select_db($this->link,'mmsdb') or die('Cannot select the DB');
  }
  
  function temperatureInsert($temperature,$temperaturestat){
@@ -39,7 +39,6 @@ function CO2AmountInsert($co2Amount,$co2Amountstat){
 
 include("../InnovatechDbCrudFunctions.php");
 
-$tempsenId = $_POST["temperaturesensorId"];
 
 $temperaturelimitval;
 $temperaturemaxval;
@@ -55,28 +54,43 @@ $lightstatusval;
 $co2statusval;
 
 $b = new InnovatechDbCrudFunctions();
-$b->select("sensorsconfigurations","*");
+$b->select("sensorsconfigurations","*","isActive=1");
 $result = $b->sql;
 
 
 while ($row = mysqli_fetch_assoc($result)) { 
-    if($row['sensor_name'] === "Temperature Sensor"){
-        $temperaturelimitval = (float)$row['sensor_limit_value'];
-        $temperaturemaxval = (float)$row['sensor_max_value'];
-        $temperaturestatusval = (int)$row['isOn'];
-    }if($row['sensor_name'] === "Humidity Sensor"){
-        $humiditylimitval = (float)$row['sensor_limit_value'];
-        $humiditymaxval = (float)$row['sensor_max_value'];
-        $humiditystatusval = (int)$row['isOn'];
-    }if($row['sensor_name'] === "Light Sensor"){
-        $lightlimitval = (float)$row['sensor_limit_value'];
-        $lightmaxval = (float)$row['sensor_max_value'];
-        $lightstatusval = (int)$row['isOn'];
-    }if($row['sensor_name'] === "Carbon Dioxide Sensor"){
-        $co2limitval = (float)$row['sensor_limit_value'];
-        $co2maxval = (float)$row['sensor_max_value'];
-        $co2statusval = (int)$row['isOn'];
-    }
+    $jsonobj = $row['configuration_value'];
+    $configval = json_decode($jsonobj);
+
+        var_dump($configval);
+        $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+        $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+        $humiditylimitval = (float)$configval->humiditylimitval;
+        $humiditymaxval = (float)$configval->humiditymaxval;
+        $lightlimitval = (float)$configval->lightlimitval;
+        $lightmaxval = (float)$configval->lightmaxval;
+        $co2limitval = (float)$configval->co2limitval;
+        $co2maxval = (float)$configval->co2maxval;
+
+        $temperaturestatusval = (int)$configval->temperaturestatusval;
+        $humiditystatusval = (int)$configval->humiditystatusval;
+        $lightstatusval = (int)$configval->lightstatusval;
+        $co2statusval = (int)$configval->co2statusval;
+
+
+        echo $temperaturelimitval."<br>";
+        echo $temperaturemaxval."<br>";
+        echo $humiditylimitval."<br>";
+        echo $humiditymaxval."<br>";
+        echo $lightlimitval."<br>";
+        echo $lightmaxval."<br>";
+        echo $co2limitval."<br>";
+        echo $co2maxval."<br>";
+        
+        echo $temperaturestatusval."<br>";
+        echo $humiditystatusval."<br>";
+        echo $lightstatusval."<br>";
+        echo $co2statusval."<br>";
 }
 
 if(!empty($_POST)){
