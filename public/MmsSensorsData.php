@@ -55,7 +55,7 @@ class Sensors{
    $password="";
    $dbname="mmsdb";
 
-        $sql = 'SELECT * FROM sensorsconfigurations WHERE isActive>0';
+        $sql = 'SELECT * FROM sensorsconfigurations';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $rowCount = $stmt->rowCount();   
