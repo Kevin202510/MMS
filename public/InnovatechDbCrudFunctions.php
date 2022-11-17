@@ -5,7 +5,7 @@
         private $mysqli='';
 
         public function __construct($servername,$username,$password,$dbname){
-            $this->mysqli = new mysqli($servername,$username,$password,$dbname);
+            $this->mysqli = pg_connect("host=".$servername." dbname=".$dbname." user=".$username." password=".$password);
         }
 
         public function insert($table,$para=array()){
@@ -47,7 +47,7 @@
                 $sql="SELECT $rows FROM $table";
             }
 
-            $this->sql = $result = $this->mysqli->query($sql);
+            $this->sql = $result = $this->mysqli->pg_query($sql);
         }
 
         public function __destruct(){
