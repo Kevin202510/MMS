@@ -55,28 +55,28 @@ class Sensors{
    $password="";
    $dbname="mmsdb";
 
-        $sql = 'SELECT * FROM sensorsconfigurations';
+        $sql = 'SELECT * FROM sensorsconfigurations WHERE isActive=1';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $details = $stmt->fetchall();
 
         echo json_encode($details);
 
-        $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
-        $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
-        $humiditylimitval = (float)$configval->humiditylimitval;
-        $humiditymaxval = (float)$configval->humiditymaxval;
-        $lightlimitval = (float)$configval->lightlimitval;
-        $lightmaxval = (float)$configval->lightmaxval;
-        $co2limitval = (float)$configval->co2limitval;
-        $co2maxval = (float)$configval->co2maxval;
+        // $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+        // $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+        // $humiditylimitval = (float)$configval->humiditylimitval;
+        // $humiditymaxval = (float)$configval->humiditymaxval;
+        // $lightlimitval = (float)$configval->lightlimitval;
+        // $lightmaxval = (float)$configval->lightmaxval;
+        // $co2limitval = (float)$configval->co2limitval;
+        // $co2maxval = (float)$configval->co2maxval;
 
-        $temperaturestatusval = (int)$configval->temperaturestatusval;
-        $humiditystatusval = (int)$configval->humiditystatusval;
-        $lightstatusval = (int)$configval->lightstatusval;
-        $co2statusval = (int)$configval->co2statusval;
+        // $temperaturestatusval = (int)$configval->temperaturestatusval;
+        // $humiditystatusval = (int)$configval->humiditystatusval;
+        // $lightstatusval = (int)$configval->lightstatusval;
+        // $co2statusval = (int)$configval->co2statusval;
    
-        echo $temperaturelimitval;
+        // echo $temperaturelimitval;
 //            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
 //            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
 //            $humiditylimitval = (float)$configval->humiditylimitval;
