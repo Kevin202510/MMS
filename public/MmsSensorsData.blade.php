@@ -83,6 +83,7 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 <script type="module" src="js/dashboard/chartData.js"></script>
 
 
