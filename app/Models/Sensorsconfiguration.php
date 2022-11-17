@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sensorsconfiguration extends Model
 {
     protected $fillable = [
-        'id','configuration_name','configuration_value','isActive',
+        'id','configuration_name','configuration_value','isactives',
     ];
 
     protected $casts = [
@@ -62,7 +62,7 @@ class Sensorsconfiguration extends Model
     { 
         $status="Active";
             
-            if($this->isActive==0){
+            if($this->isactives==0){
                 $status = "Not Active";
             }
             return $status;
