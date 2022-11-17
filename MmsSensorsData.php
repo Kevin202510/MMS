@@ -54,7 +54,7 @@ $lightstatusval;
 $co2statusval;
 
 $b = new InnovatechDbCrudFunctions();
-$b->select("sensorsconfigurations","*");
+$b->select("sensorsconfigurations","*","isActive=1");
 $result = $b->sql;
 
 
