@@ -5,7 +5,7 @@
         private $mysqli='';
 
         public function __construct($servername,$username,$password,$dbname){
-            $this->mysqli = new mysqli($servername.":5432",$username,$password,$dbname);
+            $this->mysqli = new mysqli($servername,$username,$password,$dbname);
         }
 
         public function insert($table,$para=array()){
