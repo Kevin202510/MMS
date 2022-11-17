@@ -58,8 +58,7 @@ class Sensors{
         $sql = 'SELECT * FROM sensorsconfigurations';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        $rowCount = $stmt->rowCount();   
-        $details = $stmt->fetch();
+        $details = $stmt->fetchall();
 
         echo json_encode($details);
 
