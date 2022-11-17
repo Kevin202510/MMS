@@ -26,8 +26,8 @@ int limit = 1000;
 int photovalue = 0; 
 float co2amount = 0; 
 
-char server[] = "192.168.2.102";
-IPAddress ip(192,168,2,181); 
+char server[] = "https://mushroommonitoringsystem.herokuapp.com";
+IPAddress ip(192,168,0,110); 
 EthernetClient client; 
 
 int tempsenId=1;
@@ -80,7 +80,7 @@ void setup() {
 /* Infinite Loop */
 void loop(){
   sendDataToDB(); 
-  delay(20000); // interval
+  delay(5000); // interval
 }
 
 void sendDataToDB()   //CONNECTING WITH MYSQL
@@ -94,8 +94,8 @@ void sendDataToDB()   //CONNECTING WITH MYSQL
     // Make a HTTP request:
     dataToAddDBreview = (temperaturePostName+temperatureData+humidityPostName+humidityData+lightPostName+photovalue+co2PostName+co2amount);
     
-    client.println("POST /MMS/MmsSensorsData.php HTTP/1.1");
-    client.println("Host: 192.168.1.180");
+    client.println("POST /MmsSensorsData.php HTTP/1.1");
+    client.println("Host: 192.168.2.101");
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.print("Content-Length: ");
     client.println(dataToAddDBreview.length());
@@ -143,4 +143,4 @@ void co2Sensor(){
 //   Serial.print ("ppm: ");
 //   Serial.println (co2amount);
 //   //end gas sensor
-}4
+}
