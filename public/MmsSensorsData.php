@@ -59,7 +59,7 @@ class Sensors{
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $rowCount = $stmt->rowCount();   
-        $details = $stmt->fetchObject();
+        $details = $stmt->fetch();
 
         echo json_encode($details);
 
