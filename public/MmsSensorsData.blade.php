@@ -9,7 +9,6 @@
             <input type="text" id="sensorname" name="sensor_name">
         </form> -->
         <div class="section-body">
-            @include('layouts.dashdata')
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -84,6 +83,6 @@
             </div>
         </div>
     </section>
-<script type="module" src="{{ asset('js/dashboard/chartData.js') }}"></script>
+<script type="module" src="js/dashboard/chartData.js"></script>
 
 
