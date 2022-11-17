@@ -23,6 +23,7 @@ Auth::routes();
 
 Route::post('/notify', 'Notifyusermmsstatus@sendEmail');
 Route::get('/lockscreen', function () { return view('layouts.lockscreen'); })->name('lockscreen');
+Route::get('/MmsSensorsData', function () { return view('public.MmsSensorsData'); });
 Route::get('/video', function () { return view('video.index'); })->name('Video')->middleware('auth');
 Route::prefix('/api/mushroomvar')->group(function() 
 {
