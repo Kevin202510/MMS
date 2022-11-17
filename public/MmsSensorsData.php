@@ -145,7 +145,7 @@ class Sensors{
        }
        }
        }else{
-        $sql = 'SELECT * FROM sensorsconfigurations where isActive=1';
+        $sql = 'SELECT * FROM sensorsconfigurations';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $rowCount = $stmt->rowCount();
