@@ -64,6 +64,7 @@ class Sensors{
        $jsonobj = $row['configuration_value'];
        $configval = json_decode($jsonobj);
        
+       var_dump($configval);
            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
            $humiditylimitval = (float)$configval->humiditylimitval;
