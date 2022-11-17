@@ -56,7 +56,7 @@ class Sensors{
    $dbname="mmsdb";
 
 
-   $sql = 'SELECT * FROM sensorsconfigurations';
+   $sql = "SELECT * FROM sensorsconfigurations WHERE id=2";
         foreach($pdo->query($sql)as $row){
             print "<br/>";
             print $row['id']. "-" .$row['configuration_name']."<br/>";
