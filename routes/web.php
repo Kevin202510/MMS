@@ -30,6 +30,11 @@ Route::prefix('/api/mushroomvar')->group(function()
     Route::get('/', 'SensorsconfigurationController@index');
 });
 
+Route::prefix('/api/sensorsconfigurationss')->group(function() 
+{
+    Route::get('/', 'SensorsconfigurationController@index1');
+});
+
 Route::middleware('admin')->group(function () {
 
     Route::get('/users', function () { return view('users.index'); })->name('Users')->middleware('auth');

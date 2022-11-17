@@ -50,37 +50,37 @@ class Sensors{
    $lightstatusval;
    $co2statusval;
    
-   $servername = "ec2-18-214-134-226.compute-1.amazonaws.com:5432";
-   $username="qjxtfcpyolovht";
-   $password="dbc417634f8ce8ba2abc874571c9cfe1e03d494693e23ac499188553a802b9c2";
-   $dbname="d1ab2u185tq6et";
+   $servername = "localhost";
+   $username="root";
+   $password="";
+   $dbname="mmsdb";
    
-   $b = new InnovatechDbCrudFunctions($servername,$username,$password,$dbname);
-   $b->select("sensorsconfigurations","*","isActive=1");
-   $result = $b->sql;
+//    $b = new InnovatechDbCrudFunctions($servername,$username,$password,$dbname);
+//    $b->select("sensorsconfigurations","*","isActive=1");
+//    $result = $b->sql;
 
-   echo $dbname;
+//    echo $dbname;
    
    
-   while ($row = mysqli_fetch_assoc($result)) { 
-       $jsonobj = $row['configuration_value'];
-       $configval = json_decode($jsonobj);
+//    while ($row = mysqli_fetch_assoc($result)) { 
+//        $jsonobj = $row['configuration_value'];
+//        $configval = json_decode($jsonobj);
        
-       var_dump($configval);
-           $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
-           $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
-           $humiditylimitval = (float)$configval->humiditylimitval;
-           $humiditymaxval = (float)$configval->humiditymaxval;
-           $lightlimitval = (float)$configval->lightlimitval;
-           $lightmaxval = (float)$configval->lightmaxval;
-           $co2limitval = (float)$configval->co2limitval;
-           $co2maxval = (float)$configval->co2maxval;
+//        var_dump($configval);
+//            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+//            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+//            $humiditylimitval = (float)$configval->humiditylimitval;
+//            $humiditymaxval = (float)$configval->humiditymaxval;
+//            $lightlimitval = (float)$configval->lightlimitval;
+//            $lightmaxval = (float)$configval->lightmaxval;
+//            $co2limitval = (float)$configval->co2limitval;
+//            $co2maxval = (float)$configval->co2maxval;
    
-           $temperaturestatusval = (int)$configval->temperaturestatusval;
-           $humiditystatusval = (int)$configval->humiditystatusval;
-           $lightstatusval = (int)$configval->lightstatusval;
-           $co2statusval = (int)$configval->co2statusval;
-   }
+//            $temperaturestatusval = (int)$configval->temperaturestatusval;
+//            $humiditystatusval = (int)$configval->humiditystatusval;
+//            $lightstatusval = (int)$configval->lightstatusval;
+//            $co2statusval = (int)$configval->co2statusval;
+//    }
 
 
     if(!empty($_GET)){
@@ -144,6 +144,14 @@ class Sensors{
            $sensorsval->CO2AmountInsert($_GET['co2Amount'],$co2stat);
        }
        }
+       }else{
+        $sql = 'SELECT * FROM users';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $rowCount = $stmt->rowCount();
+        $details = $stmt->fetch();
+
+        print_r ($details);
        }
 ?>
 
