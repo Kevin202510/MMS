@@ -54,19 +54,30 @@ class Sensors{
    $username="root";
    $password="";
    $dbname="mmsdb";
-   
-//    $b = new InnovatechDbCrudFunctions($servername,$username,$password,$dbname);
-//    $b->select("sensorsconfigurations","*","isActive=1");
-//    $result = $b->sql;
 
-//    echo $dbname;
+        $sql = 'SELECT * FROM sensorsconfigurations';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        // $rowCount = $stmt->rowCount();
+        $details = $stmt->fetch();
+
+        echo json_encode($details);
+
+        $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+        $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+        $humiditylimitval = (float)$configval->humiditylimitval;
+        $humiditymaxval = (float)$configval->humiditymaxval;
+        $lightlimitval = (float)$configval->lightlimitval;
+        $lightmaxval = (float)$configval->lightmaxval;
+        $co2limitval = (float)$configval->co2limitval;
+        $co2maxval = (float)$configval->co2maxval;
+
+        $temperaturestatusval = (int)$configval->temperaturestatusval;
+        $humiditystatusval = (int)$configval->humiditystatusval;
+        $lightstatusval = (int)$configval->lightstatusval;
+        $co2statusval = (int)$configval->co2statusval;
    
-   
-//    while ($row = mysqli_fetch_assoc($result)) { 
-//        $jsonobj = $row['configuration_value'];
-//        $configval = json_decode($jsonobj);
-       
-//        var_dump($configval);
+        echo $temperaturelimitval;
 //            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
 //            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
 //            $humiditylimitval = (float)$configval->humiditylimitval;
@@ -144,14 +155,6 @@ class Sensors{
            $sensorsval->CO2AmountInsert($_GET['co2Amount'],$co2stat);
        }
        }
-       }else{
-        $sql = 'SELECT * FROM sensorsconfigurations';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $rowCount = $stmt->rowCount();
-        $details = $stmt->fetch();
-
-        echo json_encode($details);
        }
 ?>
 
