@@ -1,10 +1,4 @@
-@extends('layouts.app')
 
-@section('title')
-    MMS
-@endsection
-
-@section('content')
     <section class="section">
         <div class="section-header">
             <h3 class="page__heading">Dashboard</h3>
@@ -90,10 +84,6 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('javascript')
 <script type="module" src="{{ asset('js/dashboard/chartData.js') }}"></script>
-@endsection
 
 
