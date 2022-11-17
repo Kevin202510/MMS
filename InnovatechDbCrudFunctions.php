@@ -1,15 +1,11 @@
 <?php 
     class InnovatechDbCrudFunctions{
         public $que;
-        private $servername='localhost';
-        private $username='root';
-        private $password='';
-        private $dbname='mmsdb';
         private $result=array();
         private $mysqli='';
 
-        public function __construct(){
-            $this->mysqli = new mysqli($this->servername,$this->username,$this->password,$this->dbname);
+        public function __construct($servername,$username,$password,$dbname){
+            $this->mysqli = new mysqli($servername,$username,$password,$dbname);
         }
 
         public function insert($table,$para=array()){

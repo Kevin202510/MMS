@@ -1,15 +1,11 @@
 <?php 
     class InnovatechDbCrudFunctions{
         public $que;
-        private $servername='ec2-18-214-134-226.compute-1.amazonaws.com';
-        private $username='qjxtfcpyolovht';
-        private $password='dbc417634f8ce8ba2abc874571c9cfe1e03d494693e23ac499188553a802b9c2';
-        private $dbname='d1ab2u185tq6et';
         private $result=array();
         private $mysqli='';
 
-        public function __construct(){
-            $this->mysqli = new mysqli($this->servername,$this->username,$this->password,$this->dbname);
+        public function __construct($servername,$username,$password,$dbname){
+            $this->mysqli = new mysqli($servername,$username,$password,$dbname);
         }
 
         public function insert($table,$para=array()){

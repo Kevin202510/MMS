@@ -50,10 +50,10 @@ class Sensors{
    $lightstatusval;
    $co2statusval;
    
-   $servername = "127.0.0.1";
-   $username="root";
-   $password="";
-   $dbname="mmsdb";
+   $servername = "ec2-18-214-134-226.compute-1.amazonaws.com";
+   $username="qjxtfcpyolovht";
+   $password="dbc417634f8ce8ba2abc874571c9cfe1e03d494693e23ac499188553a802b9c2";
+   $dbname="d1ab2u185tq6et";
    
    $b = new InnovatechDbCrudFunctions($servername,$username,$password,$dbname);
    $b->select("sensorsconfigurations","*","isActive=1");
