@@ -58,6 +58,8 @@ class Sensors{
    $b = new InnovatechDbCrudFunctions($servername,$username,$password,$dbname);
    $b->select("sensorsconfigurations","*","isActive=1");
    $result = $b->sql;
+
+   echo $dbname;
    
    
    while ($row = mysqli_fetch_assoc($result)) { 
