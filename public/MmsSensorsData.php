@@ -55,13 +55,6 @@ class Sensors{
    $password="";
    $dbname="mmsdb";
 
-        $sql = 'SELECT * FROM sensorsconfigurations isActive=1';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
-        $details = $stmt->fetchall();
-
-        echo json_encode($details);
-
         // $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
         // $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
         // $humiditylimitval = (float)$configval->humiditylimitval;

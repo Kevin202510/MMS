@@ -13,8 +13,16 @@
 
         //create a pdo instance
         $pdo = new PDO($dsn, $user, $password);
-        $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'SELECT * FROM sensorsconfigurations isActive=1';
+        foreach($pdo->query($sql)as $row){
+            print "<br/>";
+            print $row['id']. "-" .$row['configuration_name']."<br/>";
+        }
+        // $stmt = $pdo->prepare($sql);
+        // $stmt->execute();
+        // $details = $stmt->fetchall();
+
+        // echo json_encode($details);
         }
         catch (PDOException $e) {
         echo 'Connection failed: ' . $e->getMessage();
