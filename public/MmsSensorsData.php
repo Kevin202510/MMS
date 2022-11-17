@@ -145,13 +145,13 @@ class Sensors{
        }
        }
        }else{
-        $sql = 'SELECT * FROM users';
+        $sql = 'SELECT * FROM sensorsconfigurations where isActive=1';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         $rowCount = $stmt->rowCount();
         $details = $stmt->fetch();
 
-        print_r ($details);
+        var_dump($details);
        }
 ?>
 
