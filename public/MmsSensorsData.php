@@ -148,10 +148,10 @@ class Sensors{
         $sql = 'SELECT * FROM sensorsconfigurations';
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
-        // $rowCount = $stmt->rowCount();
-        $details = pg_fetch_all($stmt);
+        $rowCount = $stmt->rowCount();
+        $details = $stmt->fetch();
 
-        var_dump($details);
+        echo json_encode($details);
        }
 ?>
 
