@@ -143,3 +143,11 @@ class Sensors{
        }
        }
 ?>
+
+<form>
+    <input type="text" name="temperature"><br>
+    <input type="text" name="humidity"><br>
+    <input type="text" name="lightAmount"><br>
+    <input type="text" name="co2Amount"><br>
+    <input type="submit" name=""><br>
+</form>
