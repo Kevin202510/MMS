@@ -55,8 +55,10 @@ class Sensors{
    $password="";
    $dbname="mmsdb";
 
-        $stmt = $pdo->query("SELECT * FROM sensorsconfigurations WHERE isActive=1");
-        $details = $stmt->fetch();
+        $sql = 'SELECT * FROM sensorsconfigurations';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $details = $stmt->fetchall();
 
         echo json_encode($details);
 
