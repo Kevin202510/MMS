@@ -13,11 +13,6 @@
 
         //create a pdo instance
         $pdo = new PDO($dsn, $user, $password);
-        $sql = 'SELECT * FROM sensorsconfigurations isActive=1';
-        foreach($pdo->query($sql)as $row){
-            print "<br/>";
-            print $row['id']. "-" .$row['configuration_name']."<br/>";
-        }
         // $stmt = $pdo->prepare($sql);
         // $stmt->execute();
         // $details = $stmt->fetchall();
