@@ -149,9 +149,9 @@ class Sensors{
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
         // $rowCount = $stmt->rowCount();
-        $details = $stmt->fetch();
+        $details = pg_fetch_all($stmt);
 
-        print_r($details);
+        var_dump($details);
        }
 ?>
 
