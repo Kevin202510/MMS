@@ -44,9 +44,6 @@
             $humiditystatusval = (int)$configval->humiditystatusval;
             $lightstatusval = (int)$configval->lightstatusval;
             $co2statusval = (int)$configval->co2statusval;
-
-            echo $lightstatusval."<br>";
-            echo $co2statusval;
         }
    } catch (\PDOException $e) {
         print $e->getMessage();
