@@ -49,24 +49,24 @@
         print $e->getMessage();
    }
 
-   if(isset($_POST['temperature'])){
-    if($temperaturestatusval==1){
-       $tempval = (float)$_POST['temperature'];
-       $tempstat;
-       if($tempval<$temperaturelimitval){
-           $tempstat = 2;
-       } else if($tempval>$temperaturemaxval){
-           $tempstat = 0;
-       } else{
-           $tempstat = 1;
-       }
-       $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_POST['temperature'].','.$tempstat.')';
-       $pdo->query($sql1);
-   }
-}
-
 
     if(!empty($_POST)){
+
+        if(isset($_POST['temperature'])){
+            if($temperaturestatusval==1){
+               $tempval = (float)$_POST['temperature'];
+               $tempstat;
+               if($tempval<$temperaturelimitval){
+                   $tempstat = 2;
+               } else if($tempval>$temperaturemaxval){
+                   $tempstat = 0;
+               } else{
+                   $tempstat = 1;
+               }
+               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_POST['temperature'].','.$tempstat.')';
+               $pdo->query($sql1);
+           }
+        }
 
         if(isset($_POST['lightAmount'])){
             if($lightstatusval==1){
@@ -115,8 +115,5 @@
             $pdo->query($sql10);
        }
        }
-       }else{
-        $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES(20.00,1)';
-        $pdo->query($sql10);
        }
 ?>

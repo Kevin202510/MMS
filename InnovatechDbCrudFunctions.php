@@ -1,57 +1,26 @@
-<?php 
-    class InnovatechDbCrudFunctions{
-        public $que;
-        private $result=array();
-        private $mysqli='';
+<?php
 
-        public function __construct($servername,$username,$password,$dbname){
-            $this->mysqli = new mysqli($servername,$username,$password,$dbname);
+        $host = "ec2-18-214-134-226.compute-1.amazonaws.com";
+        $user = "qjxtfcpyolovht";
+        $password = "dbc417634f8ce8ba2abc874571c9cfe1e03d494693e23ac499188553a802b9c2";
+        $dbname = "d1ab2u185tq6et";
+        $port = "5432";
+
+        try{
+        //Set DSN data source name
+            $dsn = "pgsql:host=" . $host . ";port=" . $port .";dbname=" . $dbname . ";user=" . $user . ";password=" . $password . ";";
+
+
+        //create a pdo instance
+        $pdo = new PDO($dsn, $user, $password);
+        // $stmt = $pdo->prepare($sql);
+        // $stmt->execute();
+        // $details = $stmt->fetchall();
+
+        // echo json_encode($details);
+        }
+        catch (PDOException $e) {
+        echo 'Connection failed: ' . $e->getMessage();
         }
 
-        public function insert($table,$para=array()){
-            $table_columns = implode(',', array_keys($para));
-            $table_value = implode("','", $para);
-
-            $sql="INSERT INTO $table($table_columns) VALUES('$table_value')";
-
-            $result = $this->mysqli->query($sql);
-        }
-
-        public function update($table,$para=array(),$id){
-            $args = array();
-
-            foreach ($para as $key => $value) {
-                $args[] = "$key = '$value'"; 
-            }
-
-            $sql="UPDATE  $table SET " . implode(',', $args);
-
-            $sql .=" WHERE $id";
-
-            $result = $this->mysqli->query($sql);
-        }
-
-        public function delete($table,$id){
-            $sql="DELETE FROM $table";
-            $sql .=" WHERE $id ";
-            $sql;
-            $result = $this->mysqli->query($sql);
-        }
-
-        public $sql;
-
-        public function select($table,$rows="*",$where = null){
-            if ($where != null) {
-                $sql="SELECT $rows FROM $table WHERE $where";
-            }else{
-                $sql="SELECT $rows FROM $table";
-            }
-
-            $this->sql = $result = $this->mysqli->query($sql);
-        }
-
-        public function __destruct(){
-            $this->mysqli->close();
-        }
-    }
 ?>
