@@ -61,7 +61,7 @@ class Sensors{
 
    try {
         foreach($pdo->query($sql)as $row){
-            $jsonobj = json_encode($row['configuration_value']);
+            $jsonobj = $row['configuration_value'];
             $configval = json_decode($jsonobj);
 
             var_dump($configval);
