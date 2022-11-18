@@ -59,7 +59,7 @@ class Sensors{
 
    try {
         foreach($pdo->query($sql)as $row){
-            print $row['configuration_value']."<br/>";
+            print $row['configuration_value'].['temperatureSensorMinVal']."<br/>";
         }
    } catch (\PDOException $e) {
         print $e->getMessage();
