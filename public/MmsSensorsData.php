@@ -45,6 +45,8 @@
             $lightstatusval = (int)$configval->lightstatusval;
             $co2statusval = (int)$configval->co2statusval;
 
+            echo $lightstatusval."<br>";
+            echo $co2statusval;
         }
    } catch (\PDOException $e) {
         print $e->getMessage();
@@ -95,8 +97,8 @@
            } else{
                $lightstat = 1;
            }
-           $sql3 = 'INSERT INTO lights(lightsAmount,status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
-               $pdo->query($sql3);
+           $sql20 = 'INSERT INTO lights(lightsAmount,status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
+               $pdo->query($sql20);
        }
        }
        
@@ -111,8 +113,8 @@
            } else{
                $co2stat = 1;
            }
-           $sql4 = 'INSERT INTO carbondioxides(carbondioxideAmount,status)VALUES('.$_GET['co2Amount'].','.$co2stat.')';
-               $pdo->query($sql4);
+            $sql10 = 'INSERT INTO carbondioxides(carbondioxideAmount,status)VALUES('.$_GET['co2Amount'].','.$co2stat.')';
+            $pdo->query($sql10);
        }
        }
        }
