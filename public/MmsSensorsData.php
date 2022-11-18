@@ -112,7 +112,7 @@ class Sensors{
                } else{
                    $tempstat = 1;
                }
-               $sql1 = 'insert into temperatures set "temperature"='.$_GET["temperature"].',status='.$tempstat.'';
+               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES(20.00,1)';
                $pdo->query($sql1);
            }
         }
