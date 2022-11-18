@@ -59,28 +59,11 @@ class Sensors{
 
    try {
         foreach($pdo->query($sql)as $row){
-            var_dump($row);
-            print "<br/>";
-            print $row['id']. "-" .$row['configuration_name']."<br/>";
+            print $row['configuration_value']."<br/>";
         }
    } catch (\PDOException $e) {
         print $e->getMessage();
    }
-
-   echo "<h1>".$sql."</h1>";
-        // $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
-        // $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
-        // $humiditylimitval = (float)$configval->humiditylimitval;
-        // $humiditymaxval = (float)$configval->humiditymaxval;
-        // $lightlimitval = (float)$configval->lightlimitval;
-        // $lightmaxval = (float)$configval->lightmaxval;
-        // $co2limitval = (float)$configval->co2limitval;
-        // $co2maxval = (float)$configval->co2maxval;
-
-        // $temperaturestatusval = (int)$configval->temperaturestatusval;
-        // $humiditystatusval = (int)$configval->humiditystatusval;
-        // $lightstatusval = (int)$configval->lightstatusval;
-        // $co2statusval = (int)$configval->co2statusval;
    
         // echo $temperaturelimitval;
 //            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
