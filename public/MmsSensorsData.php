@@ -32,7 +32,7 @@ class Sensors{
        $result = mysqli_query($this->link,$query) or die('Errant query:  '.$query);
    }
     
-   }
+}
 
    include("InnovatechDbCrudFunctions.php");
 
@@ -55,9 +55,9 @@ class Sensors{
    $password="";
    $dbname="mmsdb";
 
+   $sql = "SELECT * FROM sensorsconfigurations WHERE isActive=1";
 
    try {
-    $sql = "SELECT * FROM sensorsconfigurations WHERE isActive=1";
         foreach($pdo->query($sql)as $row){
             var_dump($row);
             print "<br/>";
@@ -67,6 +67,7 @@ class Sensors{
         print $e->getMessage();
    }
 
+   echo "<h1>".$sql."</h1>";
         // $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
         // $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
         // $humiditylimitval = (float)$configval->humiditylimitval;
