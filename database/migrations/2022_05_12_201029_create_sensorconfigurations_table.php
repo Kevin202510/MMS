@@ -17,6 +17,7 @@ class CreateSensorconfigurationsTable extends Migration
             $table->id();
             $table->string("configuration_name");
             $table->string("mushroom_image")->default("bg4.jpg");
+            $table->string("description");
             $table->json("configuration_value")->comment("Preset Value For Sensors");
             $table->integer("isActive")->default(0);
             $table->timestamps();

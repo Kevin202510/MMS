@@ -100,6 +100,11 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Description</label>
+                        <textarea class="form-control" id="description" name="description" style="height:100px;"></textarea>
+                    </div>
+
                     
                 </form>
             </div>

@@ -40,6 +40,7 @@ class SensorsconfigurationController extends Controller
     {
         $sensorsconfigurations =Sensorsconfiguration::create([
             "configuration_name" => $request->configuration_name,
+            "description" =>$request->description,
             "configuration_value" => [
                 "temperatureSensorMinVal" => $request->temperatureSensorMinVal,
                 "temperatureSensorMaxVal" =>$request->temperatureSensorMaxVal,
@@ -91,6 +92,7 @@ class SensorsconfigurationController extends Controller
     {
         $sensorsconfigurations = [
             "configuration_name" => $request->configuration_name,
+            "description" =>$request->description,
             "configuration_value" => [
                 "temperatureSensorMinVal" => $request->temperatureSensorMinVal,
                 "temperatureSensorMaxVal" =>$request->temperatureSensorMaxVal,
