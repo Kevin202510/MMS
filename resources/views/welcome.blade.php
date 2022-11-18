@@ -35,6 +35,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{{ asset('landingpageassets/img/panglima.png') }}" alt="Image">
+                    <div class="carousel-caption">
+                        <div class="container">
+                            <div class="row justify-content-start">
+                            <div class="col-lg-8">
+                                    <h1 style="margin-left:25px;" class="display-4 mb-5 animated slideInDown">Mushroom Monitoring System</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
