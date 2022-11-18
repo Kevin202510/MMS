@@ -1,39 +1,5 @@
 <?php
 
-class Sensors{
-    public $link='';
-    function __construct($servername,$username,$password,$dbname){
-        $this->link = mysqli_connect($servername,$username,$password) or die('Cannot connect to the DB');
-        mysqli_select_db($this->link,$dbname) or die('Cannot select the DB');
-    }
-
-    function temperatureInsert($temperature,$temperaturestat){
-       $query = "insert into temperatures set temperature='".$temperature."',status='".$temperaturestat."'";
-       $result = mysqli_query($this->link,$query) or die('Errant query:  '.$query);
-    }
-   
-    function humidityInsert($humidity,$humiditystat){
-       $query = "insert into humidities set humidity='".$humidity."',status='".$humiditystat."'";
-       $result = mysqli_query($this->link,$query) or die('Errant query:  '.$query);
-   }
-   
-   function soilMoistureInsert($soilmoisture){
-       $query = "insert into soilmoistures set soilmoisture='".$soilmoisture."'";
-       $result = mysqli_query($this->link,$query) or die('Errant query:  '.$query);
-   }
-   
-   function LightAmountInsert($lightAmount,$lightAmountstat){
-       $query = "insert into lights set lightsAmount='".$lightAmount."',status='".$lightAmountstat."'";
-       $result = mysqli_query($this->link,$query) or die('Errant query:  '.$query);
-   }
-   
-   function CO2AmountInsert($co2Amount,$co2Amountstat){
-       $query = "insert into carbondioxides set carbondioxideAmount='".$co2Amount."',status='".$co2Amountstat."'";
-       $result = mysqli_query($this->link,$query) or die('Errant query:  '.$query);
-   }
-    
-}
-
    include("InnovatechDbCrudFunctions.php");
 
 
@@ -84,23 +50,8 @@ class Sensors{
         print $e->getMessage();
    }
 
-           echo $temperaturelimitval."<br>";
-           echo $temperaturemaxval."<br>";
-           echo $humiditylimitval."<br>";
-           echo $humiditymaxval."<br>";
-           echo $lightlimitval."<br>";
-           echo $lightmaxval."<br>";
-           echo $co2limitval."<br>";
-           echo $co2maxval."<br>";
-           echo $temperaturestatusval."<br>";
-           echo $humiditystatusval."<br>";
-           echo $lightstatusval."<br>";
-           echo $co2statusval."<br>";
-//    }
-
 
     if(!empty($_GET)){
-        $sensorsval=new Sensors($servername,$username,$password,$dbname);
         if(isset($_GET['temperature'])){
             if($temperaturestatusval==1){
                $tempval = (float)$_GET['temperature'];
@@ -112,7 +63,7 @@ class Sensors{
                } else{
                    $tempstat = 1;
                }
-               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES(20.00,1)';
+               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_GET['temperature'].','.$tempstat.')';
                $pdo->query($sql1);
            }
         }
@@ -128,7 +79,8 @@ class Sensors{
            } else{
                $humiditystat = 1;
            }
-           $sensorsval->humidityInsert($_GET['humidity'],$humiditystat);
+           $sql2 = 'INSERT INTO humidities(humidity,status)VALUES('.$_GET['humidity'].','.$humiditystat.')';
+            $pdo->query($sql2);
        }
        }
        
@@ -143,7 +95,8 @@ class Sensors{
            } else{
                $lightstat = 1;
            }
-           $sensorsval->LightAmountInsert($_GET['lightAmount'],$lightstat);
+           $sql3 = 'INSERT INTO lights(lightsAmount,status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
+               $pdo->query($sql3);
        }
        }
        
@@ -158,7 +111,8 @@ class Sensors{
            } else{
                $co2stat = 1;
            }
-           $sensorsval->CO2AmountInsert($_GET['co2Amount'],$co2stat);
+           $sql4 = 'INSERT INTO carbondioxides(carbondioxideAmount,status)VALUES('.$_GET['co2Amount'].','.$co2stat.')';
+               $pdo->query($sql4);
        }
        }
        }
