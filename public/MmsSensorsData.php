@@ -117,5 +117,8 @@
             $pdo->query($sql10);
        }
        }
+       }else{
+        $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES(20.00,1)';
+        $pdo->query($sql10);
        }
 ?>
