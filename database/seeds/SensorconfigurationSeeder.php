@@ -32,14 +32,7 @@ class SensorconfigurationSeeder extends Seeder
                   'mushroom_image'  => 'btnmush.webp',
                   'configuration_value'  => '{"temperatureSensorMinVal":30,"temperatureSensorMaxVal":50,"temperaturestatusval":1,"humiditylimitval":30,"humiditymaxval":50,"humiditystatusval":1,"lightlimitval":100,"lightmaxval":120,"lightstatusval":1,"co2limitval":1000,"co2maxval":1200,"co2statusval":1}',
                   'isActive'  => 0,
-                ],
-                [
-                    'id'   => 4, 
-                    'configuration_name'  => 'Portabella Mushroom',
-                    'mushroom_image'  => 'btnmush.webp',
-                    'configuration_value'  => '{"temperatureSensorMinVal":30,"temperatureSensorMaxVal":50,"temperaturestatusval":1,"humiditylimitval":30,"humiditymaxval":50,"humiditystatusval":1,"lightlimitval":100,"lightmaxval":120,"lightstatusval":1,"co2limitval":1000,"co2maxval":1200,"co2statusval":1}',
-                    'isActive'  => 0,
-                  ]
+                ]
             ]
             );
     }
