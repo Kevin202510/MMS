@@ -59,26 +59,38 @@ class Sensors{
 
    try {
         foreach($pdo->query($sql)as $row){
-            print $row['configuration_value'].['temperatureSensorMinVal']."<br/>";
+            $configval =  json_encode($row['configuration_value']);
         }
    } catch (\PDOException $e) {
         print $e->getMessage();
    }
    
-        // echo $temperaturelimitval;
-//            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
-//            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
-//            $humiditylimitval = (float)$configval->humiditylimitval;
-//            $humiditymaxval = (float)$configval->humiditymaxval;
-//            $lightlimitval = (float)$configval->lightlimitval;
-//            $lightmaxval = (float)$configval->lightmaxval;
-//            $co2limitval = (float)$configval->co2limitval;
-//            $co2maxval = (float)$configval->co2maxval;
+           $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+           $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+           $humiditylimitval = (float)$configval->humiditylimitval;
+           $humiditymaxval = (float)$configval->humiditymaxval;
+           $lightlimitval = (float)$configval->lightlimitval;
+           $lightmaxval = (float)$configval->lightmaxval;
+           $co2limitval = (float)$configval->co2limitval;
+           $co2maxval = (float)$configval->co2maxval;
    
-//            $temperaturestatusval = (int)$configval->temperaturestatusval;
-//            $humiditystatusval = (int)$configval->humiditystatusval;
-//            $lightstatusval = (int)$configval->lightstatusval;
-//            $co2statusval = (int)$configval->co2statusval;
+           $temperaturestatusval = (int)$configval->temperaturestatusval;
+           $humiditystatusval = (int)$configval->humiditystatusval;
+           $lightstatusval = (int)$configval->lightstatusval;
+           $co2statusval = (int)$configval->co2statusval;
+
+           echo $temperaturelimitval."<br>";
+           echo $temperaturemaxval."<br>";
+           echo $humiditylimitval."<br>";
+           echo $humiditymaxval."<br>";
+           echo $lightlimitval."<br>";
+           echo $lightmaxval."<br>";
+           echo $co2limitval."<br>";
+           echo $co2maxval."<br>";
+           echo $temperaturestatusval."<br>";
+           echo $humiditystatusval."<br>";
+           echo $lightstatusval."<br>";
+           echo $co2statusval."<br>";
 //    }
 
 
