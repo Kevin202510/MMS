@@ -57,6 +57,8 @@ class Sensors{
 
    $sql = 'SELECT * FROM sensorsconfigurations WHERE "isActive"=1';
 
+   $configval;
+
    try {
         foreach($pdo->query($sql)as $row){
             $configval =  json_encode($row['configuration_value']);
