@@ -61,27 +61,28 @@ class Sensors{
 
    try {
         foreach($pdo->query($sql)as $row){
-            $configval =  json_decode($row['configuration_value']);
+            $jsonobj = json_encode($row['configuration_value']);
+            $configval = json_decode($jsonobj);
+
+            echo $configval;
+            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+            $humiditylimitval = (float)$configval->humiditylimitval;
+            $humiditymaxval = (float)$configval->humiditymaxval;
+            $lightlimitval = (float)$configval->lightlimitval;
+            $lightmaxval = (float)$configval->lightmaxval;
+            $co2limitval = (float)$configval->co2limitval;
+            $co2maxval = (float)$configval->co2maxval;
+
+            $temperaturestatusval = (int)$configval->temperaturestatusval;
+            $humiditystatusval = (int)$configval->humiditystatusval;
+            $lightstatusval = (int)$configval->lightstatusval;
+            $co2statusval = (int)$configval->co2statusval;
+
         }
    } catch (\PDOException $e) {
         print $e->getMessage();
    }
-
-   echo $configval;
-   
-           $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
-           $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
-           $humiditylimitval = (float)$configval->humiditylimitval;
-           $humiditymaxval = (float)$configval->humiditymaxval;
-           $lightlimitval = (float)$configval->lightlimitval;
-           $lightmaxval = (float)$configval->lightmaxval;
-           $co2limitval = (float)$configval->co2limitval;
-           $co2maxval = (float)$configval->co2maxval;
-   
-           $temperaturestatusval = (int)$configval->temperaturestatusval;
-           $humiditystatusval = (int)$configval->humiditystatusval;
-           $lightstatusval = (int)$configval->lightstatusval;
-           $co2statusval = (int)$configval->co2statusval;
 
            echo $temperaturelimitval."<br>";
            echo $temperaturemaxval."<br>";
