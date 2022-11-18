@@ -53,10 +53,10 @@
    }
 
 
-    if(!empty($_GET)){
-        if(isset($_GET['temperature'])){
+    if(!empty($_POST)){
+        if(isset($_POST['temperature'])){
             if($temperaturestatusval==1){
-               $tempval = (float)$_GET['temperature'];
+               $tempval = (float)$_POST['temperature'];
                $tempstat;
                if($tempval<$temperaturelimitval){
                    $tempstat = 2;
@@ -65,14 +65,14 @@
                } else{
                    $tempstat = 1;
                }
-               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_GET['temperature'].','.$tempstat.')';
+               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_POST['temperature'].','.$tempstat.')';
                $pdo->query($sql1);
            }
         }
 
-        if(isset($_GET['lightAmount'])){
+        if(isset($_POST['lightAmount'])){
             if($lightstatusval==1){
-                $lightval = (float)$_GET['lightAmount'];
+                $lightval = (float)$_POST['lightAmount'];
                 $lightstat;
             if($lightval<$lightlimitval){
                 $lightstat = 2;
@@ -81,14 +81,14 @@
             } else{
                 $lightstat = 1;
             }
-            $sql20 = 'INSERT INTO lights("lightsAmount",status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
+            $sql20 = 'INSERT INTO lights("lightsAmount",status)VALUES('.$_POST['lightAmount'].','.$lightstat.')';
             $pdo->query($sql20);
         }
         }
        
-        if(isset($_GET['humidity'])){
+        if(isset($_POST['humidity'])){
            if($humiditystatusval==1){
-               $humidityval = (float)$_GET['humidity'];
+               $humidityval = (float)$_POST['humidity'];
                $humiditystat;
            if($humidityval<$humiditylimitval){
                $humiditystat = 2;
@@ -97,14 +97,14 @@
            } else{
                $humiditystat = 1;
            }
-           $sql2 = 'INSERT INTO humidities(humidity,status)VALUES('.$_GET['humidity'].','.$humiditystat.')';
+           $sql2 = 'INSERT INTO humidities(humidity,status)VALUES('.$_POST['humidity'].','.$humiditystat.')';
             $pdo->query($sql2);
        }
        }
        
-       if(isset($_GET['co2Amount'])){
+       if(isset($_POST['co2Amount'])){
            if($co2statusval==1){
-               $co2val = (float)$_GET['co2Amount'];
+               $co2val = (float)$_POST['co2Amount'];
                $co2stat;
            if($co2val<$co2limitval){
                $co2stat = 2;
@@ -113,7 +113,7 @@
            } else{
                $co2stat = 1;
            }
-            $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES('.$_GET['co2Amount'].','.$co2stat.')';
+            $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES('.$_POST['co2Amount'].','.$co2stat.')';
             $pdo->query($sql10);
        }
        }
