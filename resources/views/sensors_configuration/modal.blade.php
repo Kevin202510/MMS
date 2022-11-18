@@ -7,6 +7,7 @@
             </div>
             <div class="modal-body">
                 <form id="set-Model">
+                    <input type="hidden" name="id" id="id">
                     @csrf
                     <div class="form-row">
                         <div class="form-group col-md-6">
