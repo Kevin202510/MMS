@@ -7,9 +7,9 @@
             </div>
             <div class="modal-body">
                 <form id="set-Model">
-                    <input type="text" name="id" id="id">
                     @csrf
                     <div class="form-row">
+                    <input type="hidden" name="id" id="id">
                         <div class="form-group col-md-6">
                             <label for="configuration_name">Configuration Name</label>
                             <input type="text" class="form-control" id="configuration_name" name="configuration_name">
