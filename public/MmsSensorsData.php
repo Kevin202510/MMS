@@ -66,6 +66,8 @@ class Sensors{
    } catch (\PDOException $e) {
         print $e->getMessage();
    }
+
+   echo $configval;
    
            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
@@ -81,18 +83,18 @@ class Sensors{
            $lightstatusval = (int)$configval->lightstatusval;
            $co2statusval = (int)$configval->co2statusval;
 
-           echo $temperaturelimitval."<br>";
-           echo $temperaturemaxval."<br>";
-           echo $humiditylimitval."<br>";
-           echo $humiditymaxval."<br>";
-           echo $lightlimitval."<br>";
-           echo $lightmaxval."<br>";
-           echo $co2limitval."<br>";
-           echo $co2maxval."<br>";
-           echo $temperaturestatusval."<br>";
-           echo $humiditystatusval."<br>";
-           echo $lightstatusval."<br>";
-           echo $co2statusval."<br>";
+        //    echo $temperaturelimitval."<br>";
+        //    echo $temperaturemaxval."<br>";
+        //    echo $humiditylimitval."<br>";
+        //    echo $humiditymaxval."<br>";
+        //    echo $lightlimitval."<br>";
+        //    echo $lightmaxval."<br>";
+        //    echo $co2limitval."<br>";
+        //    echo $co2maxval."<br>";
+        //    echo $temperaturestatusval."<br>";
+        //    echo $humiditystatusval."<br>";
+        //    echo $lightstatusval."<br>";
+        //    echo $co2statusval."<br>";
 //    }
 
 
