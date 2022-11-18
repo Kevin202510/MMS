@@ -69,6 +69,23 @@
                $pdo->query($sql1);
            }
         }
+
+        if(isset($_GET['lightAmount'])){
+            if($lightstatusval==1){
+                $lightval = (float)$_GET['lightAmount'];
+                $lightstat;
+            if($lightval<$lightlimitval){
+                $lightstat = 2;
+            } else if($lightval>$lightmaxval){
+                $lightstat = 0;
+            } else{
+                $lightstat = 1;
+            }
+            echo "<script>alert('asdasd');</script>";
+            $sql20 = 'INSERT INTO lights("lightsAmount",status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
+            $pdo->query($sql20);
+        }
+        }
        
         if(isset($_GET['humidity'])){
            if($humiditystatusval==1){
@@ -86,22 +103,6 @@
        }
        }
        
-       if(isset($_GET['lightAmount'])){
-           if($lightstatusval==1){
-               $lightval = (float)$_GET['lightAmount'];
-               $lightstat;
-           if($lightval<$lightlimitval){
-               $lightstat = 2;
-           } else if($lightval>$lightmaxval){
-               $lightstat = 0;
-           } else{
-               $lightstat = 1;
-           }
-           $sql20 = 'INSERT INTO lights(lightsAmount,status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
-               $pdo->query($sql20);
-       }
-       }
-       
        if(isset($_GET['co2Amount'])){
            if($co2statusval==1){
                $co2val = (float)$_GET['co2Amount'];
@@ -113,7 +114,7 @@
            } else{
                $co2stat = 1;
            }
-            $sql10 = 'INSERT INTO carbondioxides(carbondioxideAmount,status)VALUES('.$_GET['co2Amount'].','.$co2stat.')';
+            $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES('.$_GET['co2Amount'].','.$co2stat.')';
             $pdo->query($sql10);
        }
        }
