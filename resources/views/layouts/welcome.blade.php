@@ -46,9 +46,9 @@
     <!-- Navbar Start -->
     <div class="container-fluid fixed-top px-0 wow fadeIn" data-wow-delay="0.1s">
         <div class="top-bar row gx-0 align-items-center d-none d-lg-flex">
-            <div class="col-lg-6 px-5 text-start">
+            <div class="col-lg-12 px-5 text-start">
                 <small style="color:black;"><i class="fa fa-map-marker-alt me-2"></i>Brgy. Rio Chico General Tinio NE</small>
-                <!-- <small class="ms-4"><i class="fa fa-envelope me-2"></i>info@example.com</small> -->
+                <small class="ms-4" style="float:right;"><i class="fa fa-phone me-2"></i>09261364720</small>
             </div>
         </div>
 
@@ -158,7 +158,7 @@
     </div>
     <!-- Footer End -->
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <a href="#" class="btn btn-lg btn-lg-square rounded-circle back-to-top" style="background-color: #e2d880;"><i class="bi bi-arrow-up"></i></a>
     @endif
     
     <!-- JavaScript Libraries -->
