@@ -81,7 +81,6 @@
             } else{
                 $lightstat = 1;
             }
-            echo "<script>alert('asdasd');</script>";
             $sql20 = 'INSERT INTO lights("lightsAmount",status)VALUES('.$_GET['lightAmount'].','.$lightstat.')';
             $pdo->query($sql20);
         }
@@ -120,11 +119,3 @@
        }
        }
 ?>
-
-<form>
-    <input type="text" name="temperature"><br>
-    <input type="text" name="humidity"><br>
-    <input type="text" name="lightAmount"><br>
-    <input type="text" name="co2Amount"><br>
-    <input type="submit" name=""><br>
-</form>
