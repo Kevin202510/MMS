@@ -64,7 +64,7 @@ class Sensors{
             $jsonobj = $row['configuration_value'];
             $configval = json_decode($jsonobj);
 
-            var_dump($configval);
+            // var_dump($configval);
             $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
             $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
             $humiditylimitval = (float)$configval->humiditylimitval;
@@ -112,7 +112,8 @@ class Sensors{
                } else{
                    $tempstat = 1;
                }
-               $sensorsval->temperatureInsert($_GET['temperature'],$tempstat);
+               $sql1 = 'insert into temperatures set "temperature"='.$_GET["temperature"].',status='.$tempstat.'';
+               $pdo->query($sql1);
            }
         }
        
