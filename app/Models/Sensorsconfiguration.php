@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sensorsconfiguration extends Model
 {
     protected $fillable = [
-        'id','configuration_name','configuration_value','isactives',
+        'id','configuration_name','configuration_value','isActive',
     ];
 
     protected $casts = [
