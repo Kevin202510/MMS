@@ -58,6 +58,7 @@ class Sensors{
 
    $sql = "SELECT * FROM sensorsconfigurations WHERE isActive=1";
         foreach($pdo->query($sql)as $row){
+            var_dump($row);
             print "<br/>";
             print $row['id']. "-" .$row['configuration_name']."<br/>";
         }
