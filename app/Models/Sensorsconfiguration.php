@@ -62,7 +62,7 @@ class Sensorsconfiguration extends Model
     { 
         $status="Active";
             
-            if($this->isactives==0){
+            if($this->isActive==0){
                 $status = "Not Active";
             }
             return $status;
