@@ -21,7 +21,7 @@ class SensorsconfigurationController extends Controller
 
     public function index1()
     {
-        $sensorsconfiguration=Sensorsconfiguration::whereNull('deleted_at')->where('isactives','1')->get();
+        $sensorsconfiguration=Sensorsconfiguration::whereNull('deleted_at')->where('isActive','1')->get();
         return response()->json($sensorsconfiguration);
     }
 
@@ -54,7 +54,7 @@ class SensorsconfigurationController extends Controller
                 "co2maxval" =>$request->co2maxval,
                 "co2statusval" =>$request->co2statusval
             ],
-            "isactives" =>0,
+            "isActive" =>0,
         ]);
         return response()->json($sensorsconfigurations, 200);
     }
@@ -65,7 +65,7 @@ class SensorsconfigurationController extends Controller
         $sensorsconfiguration=Sensorsconfiguration::create($input); 
         return response()->json($sensorsconfiguration);
     }
-    
+     
     public function save3(Request $request)
     {
         $input = $request->all();
@@ -105,7 +105,7 @@ class SensorsconfigurationController extends Controller
                 "co2maxval" =>$request->co2maxval,
                 "co2statusval" =>$request->co2statusval
             ],
-            "isactives" =>$request->isActive,
+            "isActive" =>$request->isActive,
         ];
         $sensorsconfiguration->update($sensorsconfigurations);
         return response()->json($sensorsconfiguration, 200);
@@ -127,8 +127,8 @@ class SensorsconfigurationController extends Controller
     
     public function activate(Sensorsconfiguration $sensorsconfiguration)
     {
-        $sensorsconfiguration->where('id','!=',$sensorsconfiguration->id)->update(['isactives' => 0]);
-        $sensorsconfiguration->where('id','=',$sensorsconfiguration->id)->update(['isactives' => 1]);
+        $sensorsconfiguration->where('id','!=',$sensorsconfiguration->id)->update(['isActive' => 0]);
+        $sensorsconfiguration->where('id','=',$sensorsconfiguration->id)->update(['isActive' => 1]);
         return response()->json(array('success'=>true));
     }
 }
