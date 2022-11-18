@@ -55,7 +55,7 @@ class Sensors{
    $password="";
    $dbname="mmsdb";
 
-   $sql = "SELECT * FROM sensorsconfigurations WHERE id=4";
+   $sql = "SELECT * FROM sensorsconfigurations WHERE IS isActive";
 
    try {
         foreach($pdo->query($sql)as $row){
