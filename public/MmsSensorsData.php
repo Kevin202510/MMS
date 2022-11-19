@@ -50,6 +50,8 @@
    }
 
 
+   $date = date('Y-m-d H:i:s');
+
     if(!empty($_POST)){
 
         if(isset($_POST['temperature'])){
@@ -63,7 +65,7 @@
                } else{
                    $tempstat = 1;
                }
-               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_POST['temperature'].','.$tempstat.')';
+               $sql1 = 'INSERT INTO temperatures(temperature,status,created_at)VALUES('.$_POST['temperature'].','.$tempstat.','.$date.')';
                $pdo->query($sql1);
            }
         }
