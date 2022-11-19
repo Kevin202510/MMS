@@ -17,8 +17,8 @@ class CreateTemperatureTable extends Migration
             $table->id();
             $table->double("temperature", 15, 8);
             $table->integer("status")->default(0);
-            $table->string('created_at');
             $table->softDeletes();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             
         });
     }

@@ -49,9 +49,9 @@
         print $e->getMessage();
    }
 
+
     if(!empty($_POST)){
 
-        
         if(isset($_POST['temperature'])){
             if($temperaturestatusval==1){
                $tempval = (float)$_POST['temperature'];
@@ -63,9 +63,7 @@
                } else{
                    $tempstat = 1;
                }
-               date_default_timezone_set('ASIA/Manila');
-                $date = date('Y-m-d H:i:s');
-               $sql1 = 'INSERT INTO temperatures(temperature,status,created_at)VALUES('.$_POST['temperature'].','.$tempstat.','.$date.')';
+               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_POST['temperature'].','.$tempstat.')';
                $pdo->query($sql1);
            }
         }
