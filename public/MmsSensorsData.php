@@ -49,11 +49,12 @@
         print $e->getMessage();
    }
 
-
-   $date = date('Y-m-d H:i:s');
-
     if(!empty($_POST)){
 
+        date_default_timezone_set('ASIA/Manila');
+        $date = date('Y-m-d H:i:s');
+
+        
         if(isset($_POST['temperature'])){
             if($temperaturestatusval==1){
                $tempval = (float)$_POST['temperature'];
