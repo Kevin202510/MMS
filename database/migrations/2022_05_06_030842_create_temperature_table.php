@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class CreateTemperatureTable extends Migration
 {
@@ -18,7 +19,7 @@ class CreateTemperatureTable extends Migration
             $table->double("temperature", 15, 8);
             $table->integer("status")->default(0);
             $table->softDeletes();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(Carbon::now());
             
         });
     }
