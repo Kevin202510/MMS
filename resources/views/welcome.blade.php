@@ -70,7 +70,8 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{{ asset('landingpageassets/img/mushroomkoto.jpg') }}">
+                        <video class="img-fluid w-100" src="{{ asset('video/vid2.mp4') }}" muted loop autoplay></video>
+                        <!-- <img class="img-fluid w-100" src=" asset('landingpageassets/img/mushroomkoto.jpg') }}"> -->
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
@@ -84,11 +85,32 @@
             </div>
         </div>
     </div>
+
+    <div class="container-xxl py-5" style="background-color:#e1e4eb;">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                    <h1 class="display-5 mb-4">Mushroom cultivation</h1>
+                    <p class="mb-4">Mushroom cultivation is a technology of growing mushrooms using plant, animal and industrial waste. In short it is wealth out of waste technology. This technology has gained importance worldwide because of its dietary fibres and proteins value. Mushroom is a fungi belonging to basidiomycetes.</p>
+                    <!-- <p><i class="fa fa-check text-primary me-3"></i>Tempor erat elitr rebum at clita</p>
+                    <p><i class="fa fa-check text-primary me-3"></i>Aliqu diam amet diam et eos</p>
+                    <p><i class="fa fa-check text-primary me-3"></i>Clita duo justo magna dolore erat amet</p>
+                    <a class="btn btn-primary rounded-pill py-3 px-5 mt-3" href="">Read More</a> -->
+                </div>
+                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="position-relative overflow-hidden p-5 pe-0">
+                        <video class="img-fluid w-100" src="{{ asset('video/vid1.mp4') }}" muted loop autoplay></video>
+                        <!-- <img class="img-fluid w-100" src=" asset('landingpageassets/img/mushroomkoto.jpg') }}"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- About End -->
 
 
     <!-- Feature Start -->
-    <div class="container-fluid my-5 py-6" style="background-color:#e1e4eb;">
+    <!-- <div class="container-fluid my-5 py-6" style="background-color:#e1e4eb;">
         <div class="container">
             <div class="section-header text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h1 class="display-5 mb-3">Our Features</h1>
@@ -121,7 +143,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Feature End -->
 
     <!-- Feature Start -->
