@@ -3,6 +3,10 @@
    include("InnovatechDbCrudFunctions.php");
 
 
+   $temperaturenameval="Temperature Sensor";
+   $humiditynameval = "=Humidity Sensor";
+   $lightnameval = "=Light Sensor";
+   $co2nameval = "=CO2 Sensor";
    $temperaturelimitval;
    $temperaturemaxval;
    $humiditylimitval;
@@ -15,18 +19,16 @@
    $humiditystatusval;
    $lightstatusval;
    $co2statusval;
-   
-   $servername = "localhost";
-   $username="root";
-   $password="";
-   $dbname="mmsdb";
 
-   $sql = 'SELECT * FROM sensorsconfigurations WHERE "isActive"=1';
 
    $configval;
 
-   try {
-        foreach($pdo->query($sql)as $row){
+   $b = new InnovatechDbCrudFunctions();
+        $b->select("sensorsconfigurations","*","isActive=1");
+        $result = $b->sql;
+
+
+        while ($row = mysqli_fetch_assoc($result)) { 
             $jsonobj = $row['configuration_value'];
             $configval = json_decode($jsonobj);
 
@@ -45,9 +47,6 @@
             $lightstatusval = (int)$configval->lightstatusval;
             $co2statusval = (int)$configval->co2statusval;
         }
-   } catch (\PDOException $e) {
-        print $e->getMessage();
-   }
 
 
     if(!empty($_POST)){
@@ -63,8 +62,10 @@
                } else{
                    $tempstat = 1;
                }
-               $sql1 = 'INSERT INTO temperatures(temperature,status)VALUES('.$_POST['temperature'].','.$tempstat.')';
-               $pdo->query($sql1);
+               $b->insert("temperatures",[
+                'temperature'=>$_POST['temperature'],
+                'status'=>$tempstat,
+               ]);
            }
         }
 
@@ -79,8 +80,10 @@
             } else{
                 $lightstat = 1;
             }
-            $sql20 = 'INSERT INTO lights("lightsAmount",status)VALUES('.$_POST['lightAmount'].','.$lightstat.')';
-            $pdo->query($sql20);
+            $b->insert("lights",[
+                'lightsAmount'=>$_POST['lightsAmount'],
+                'status'=>$lightstat,
+               ]);
         }
         }
        
@@ -95,8 +98,10 @@
            } else{
                $humiditystat = 1;
            }
-           $sql2 = 'INSERT INTO humidities(humidity,status)VALUES('.$_POST['humidity'].','.$humiditystat.')';
-            $pdo->query($sql2);
+           $b->insert("humidities",[
+            'humidity'=>$_POST['humidity'],
+            'status'=>$humiditystat,
+           ]);
        }
        }
        
@@ -111,9 +116,16 @@
            } else{
                $co2stat = 1;
            }
-            $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES('.$_POST['co2Amount'].','.$co2stat.')';
-            $pdo->query($sql10);
+           $b->insert("carbondioxides",[
+            'carbondioxideAmount'=>$_POST['co2Amount'],
+            'status'=>$co2stat,
+           ]);
        }
        }
        }
+
+       echo $temperaturenameval . '=' . $temperaturelimitval . '=' .  $temperaturemaxval . '=' . $temperaturestatusval.':';
+       echo $humiditynameval . '=' . $humiditylimitval . '=' .  $humiditymaxval . '=' . $humiditystatusval.':';
+        echo $lightnameval . '=' . $lightlimitval . '=' .  $lightmaxval . '=' . $lightstatusval.':';
+        echo $co2nameval . '=' . $co2limitval . '=' .  $co2maxval . '=' . $co2statusval.':';
 ?>

@@ -1,68 +1,145 @@
-<?php 
+<?php
 
-    include("InnovatechDbCrudFunctions.php");
+   include("InnovatechDbCrudFunctions.php");
 
-    if (!empty($_POST)) {
 
-        $tempsenId = $_POST["temperaturesensorId"];
-        $lightsenId = $_POST["lightsensorId"];
-        $co2senId = $_POST["co2sensorId"];
-        $humsenId = $_POST["humiditysensorId"];
+   $temperaturenameval="Temperature Sensor";
+   $humiditynameval = "=Humidity Sensor";
+   $lightnameval = "=Light Sensor";
+   $co2nameval = "=CO2 Sensor";
+   $temperaturelimitval;
+   $temperaturemaxval;
+   $humiditylimitval;
+   $humiditymaxval;
+   $lightlimitval;
+   $lightmaxval;
+   $co2limitval;
+   $co2maxval;
+   $temperaturestatusval;
+   $humiditystatusval;
+   $lightstatusval;
+   $co2statusval;
 
-        $temperaturenameval= "";
-        $temperaturelimitval = "";
-        $temperaturemaxval = "";
-        $temperaturestatusval = "";
 
-        $humiditynameval= "";
-        $humiditylimitval = "";
-        $humiditymaxval = "";
-        $humiditystatusval = "";
+   $configval;
 
-        $lightnameval= "";
-        $lightlimitval = "";
-        $lightmaxval = "";
-        $lightstatusval = "";
-
-        $co2nameval= "";
-        $co2limitval = "";
-        $co2maxval = "";
-        $co2statusval = "";
-
-        $b = new InnovatechDbCrudFunctions();
-        $b->select("sensorsconfigurations","*");
+   $b = new InnovatechDbCrudFunctions();
+        $b->select("sensorsconfigurations","*","isActive=1");
         $result = $b->sql;
 
 
         while ($row = mysqli_fetch_assoc($result)) { 
-            if($row['sensor_name'] === "Temperature Sensor"){
-                $temperaturenameval = $row['sensor_name'];
-                $temperaturelimitval = $row['sensor_limit_value'];
-                $temperaturemaxval = $row['sensor_max_value'];
-                $temperaturestatusval = $row['isOn'];
-            }if($row['sensor_name'] === "Light Sensor"){
-              $lightnameval = $row['sensor_name'];
-              $lightlimitval = $row['sensor_limit_value'];
-              $lightmaxval = $row['sensor_max_value'];
-              $lightstatusval = $row['isOn'];
-            }if($row['sensor_name'] === "Carbon Dioxide Sensor"){
-              $co2nameval = $row['sensor_name'];
-              $co2limitval = $row['sensor_limit_value'];
-              $co2maxval = $row['sensor_max_value'];
-              $co2statusval = $row['isOn'];
-            }if($row['sensor_name'] === "Humidity Sensor"){
-              $humiditynameval = $row['sensor_name'];
-              $humiditylimitval = $row['sensor_limit_value'];
-              $humiditymaxval = $row['sensor_max_value'];
-              $humiditystatusval = $row['isOn'];
-            }
+            $jsonobj = $row['configuration_value'];
+            $configval = json_decode($jsonobj);
+
+            // var_dump($configval);
+            $temperaturelimitval = (float)$configval->temperatureSensorMinVal;
+            $temperaturemaxval = (float)$configval->temperatureSensorMaxVal;
+            $humiditylimitval = (float)$configval->humiditylimitval;
+            $humiditymaxval = (float)$configval->humiditymaxval;
+            $lightlimitval = (float)$configval->lightlimitval;
+            $lightmaxval = (float)$configval->lightmaxval;
+            $co2limitval = (float)$configval->co2limitval;
+            $co2maxval = (float)$configval->co2maxval;
+
+            $temperaturestatusval = (int)$configval->temperaturestatusval;
+            $humiditystatusval = (int)$configval->humiditystatusval;
+            $lightstatusval = (int)$configval->lightstatusval;
+            $co2statusval = (int)$configval->co2statusval;
+        }
+
+        if(isset($_POST['temperature'])){
+            if($temperaturestatusval==1){
+               $tempval = (float)$_POST['temperature'];
+               $tempstat;
+               if($tempval<$temperaturelimitval){
+                   $tempstat = 2;
+               } else if($tempval>$temperaturemaxval){
+                   $tempstat = 0;
+               } else{
+                   $tempstat = 1;
+               }
+               $b->insert("temperatures",[
+                'temperature'=>$_POST['temperature'],
+                'status'=>$tempstat,
+               ]);
+                // $result = $b->sql;
+           }
         }
 
 
+    // if(!empty($_POST)){
 
-        echo $temperaturenameval . '=' . $temperaturelimitval . '=' .  $temperaturemaxval . '=' . $temperaturestatusval.':';
+    //     if(isset($_POST['temperature'])){
+    //         if($temperaturestatusval==1){
+    //            $tempval = (float)$_POST['temperature'];
+    //            $tempstat;
+    //            if($tempval<$temperaturelimitval){
+    //                $tempstat = 2;
+    //            } else if($tempval>$temperaturemaxval){
+    //                $tempstat = 0;
+    //            } else{
+    //                $tempstat = 1;
+    //            }
+    //            $b->insert("temperatures",[
+    //             'temperature'=>$_POST['temperature'],
+    //             'status'=>$tempstat,
+    //            ]);
+    //             $result = $b->sql;
+    //        }
+    //     }
+
+    //     if(isset($_POST['lightAmount'])){
+    //         if($lightstatusval==1){
+    //             $lightval = (float)$_POST['lightAmount'];
+    //             $lightstat;
+    //         if($lightval<$lightlimitval){
+    //             $lightstat = 2;
+    //         } else if($lightval>$lightmaxval){
+    //             $lightstat = 0;
+    //         } else{
+    //             $lightstat = 1;
+    //         }
+    //         $sql20 = 'INSERT INTO lights("lightsAmount",status)VALUES('.$_POST['lightAmount'].','.$lightstat.')';
+    //         $pdo->query($sql20);
+    //     }
+    //     }
+       
+    //     if(isset($_POST['humidity'])){
+    //        if($humiditystatusval==1){
+    //            $humidityval = (float)$_POST['humidity'];
+    //            $humiditystat;
+    //        if($humidityval<$humiditylimitval){
+    //            $humiditystat = 2;
+    //        } else if($humidityval>$humiditymaxval){
+    //            $humiditystat = 0;
+    //        } else{
+    //            $humiditystat = 1;
+    //        }
+    //        $sql2 = 'INSERT INTO humidities(humidity,status)VALUES('.$_POST['humidity'].','.$humiditystat.')';
+    //         $pdo->query($sql2);
+    //    }
+    //    }
+       
+    //    if(isset($_POST['co2Amount'])){
+    //        if($co2statusval==1){
+    //            $co2val = (float)$_POST['co2Amount'];
+    //            $co2stat;
+    //        if($co2val<$co2limitval){
+    //            $co2stat = 2;
+    //        } else if($co2val>$co2maxval){
+    //            $co2stat = 0;
+    //        } else{
+    //            $co2stat = 1;
+    //        }
+    //         $sql10 = 'INSERT INTO carbondioxides("carbondioxideAmount",status)VALUES('.$_POST['co2Amount'].','.$co2stat.')';
+    //         $pdo->query($sql10);
+    //    }
+    //    }
+    //    }
+
+       echo $temperaturenameval . '=' . $temperaturelimitval . '=' .  $temperaturemaxval . '=' . $temperaturestatusval.':';
+       echo $humiditynameval . '=' . $humiditylimitval . '=' .  $humiditymaxval . '=' . $humiditystatusval.':';
         echo $lightnameval . '=' . $lightlimitval . '=' .  $lightmaxval . '=' . $lightstatusval.':';
-        echo $humiditynameval . '=' . $humiditylimitval . '=' .  $humiditymaxval . '=' . $humiditystatusval.':';
         echo $co2nameval . '=' . $co2limitval . '=' .  $co2maxval . '=' . $co2statusval.':';
-      }
 ?>
